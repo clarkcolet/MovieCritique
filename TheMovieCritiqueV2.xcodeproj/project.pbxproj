@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D11070B1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11070A1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift */; };
 		1D21B64F1EC0780800E5D482 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21B64E1EC0780800E5D482 /* AppDelegate.swift */; };
 		1D21B6511EC0780800E5D482 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21B6501EC0780800E5D482 /* ViewController.swift */; };
 		1D21B6541EC0780800E5D482 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D21B6521EC0780800E5D482 /* Main.storyboard */; };
@@ -15,6 +16,13 @@
 		1D21B65C1EC0780800E5D482 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D21B65A1EC0780800E5D482 /* LaunchScreen.storyboard */; };
 		1D21B6671EC0780800E5D482 /* TheMovieCritiqueV2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21B6661EC0780800E5D482 /* TheMovieCritiqueV2Tests.swift */; };
 		1D21B6721EC0780800E5D482 /* TheMovieCritiqueV2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21B6711EC0780800E5D482 /* TheMovieCritiqueV2UITests.swift */; };
+		1D2215681EC4E951007EE363 /* ViewControllerFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2215671EC4E951007EE363 /* ViewControllerFriends.swift */; };
+		1D8687141EC4F4C400CF4C74 /* CollectionViewFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8687131EC4F4C400CF4C74 /* CollectionViewFriends.swift */; };
+		1D96B51F1EC354820001B6C0 /* ViewController_NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96B51E1EC354820001B6C0 /* ViewController_NewsFeed.swift */; };
+		1D96B5231EC36A7B0001B6C0 /* CollectionViewMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96B5221EC36A7B0001B6C0 /* CollectionViewMovies.swift */; };
+		1D96B5251EC39E9B0001B6C0 /* TableViewCellMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96B5241EC39E9B0001B6C0 /* TableViewCellMovies.swift */; };
+		1DF2918B1EC096C600AD4574 /* ViewControllerCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2918A1EC096C600AD4574 /* ViewControllerCreateAccount.swift */; };
+		1DF2918D1EC229A800AD4574 /* ViewControllerNavigationExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2918C1EC229A800AD4574 /* ViewControllerNavigationExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D11070A1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerFriendProfile.swift; path = ../ViewControllerFriendProfile.swift; sourceTree = "<group>"; };
 		1D21B64B1EC0780800E5D482 /* TheMovieCritiqueV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieCritiqueV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D21B64E1EC0780800E5D482 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D21B6501EC0780800E5D482 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +58,13 @@
 		1D21B66D1EC0780800E5D482 /* TheMovieCritiqueV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieCritiqueV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D21B6711EC0780800E5D482 /* TheMovieCritiqueV2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieCritiqueV2UITests.swift; sourceTree = "<group>"; };
 		1D21B6731EC0780800E5D482 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D2215671EC4E951007EE363 /* ViewControllerFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerFriends.swift; path = ../ViewControllerFriends.swift; sourceTree = "<group>"; };
+		1D8687131EC4F4C400CF4C74 /* CollectionViewFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewFriends.swift; sourceTree = "<group>"; };
+		1D96B51E1EC354820001B6C0 /* ViewController_NewsFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_NewsFeed.swift; sourceTree = "<group>"; };
+		1D96B5221EC36A7B0001B6C0 /* CollectionViewMovies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewMovies.swift; path = ../CollectionViewMovies.swift; sourceTree = "<group>"; };
+		1D96B5241EC39E9B0001B6C0 /* TableViewCellMovies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellMovies.swift; sourceTree = "<group>"; };
+		1DF2918A1EC096C600AD4574 /* ViewControllerCreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCreateAccount.swift; sourceTree = "<group>"; };
+		1DF2918C1EC229A800AD4574 /* ViewControllerNavigationExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNavigationExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +115,17 @@
 		1D21B64D1EC0780800E5D482 /* TheMovieCritiqueV2 */ = {
 			isa = PBXGroup;
 			children = (
+				1D96B5221EC36A7B0001B6C0 /* CollectionViewMovies.swift */,
+				1D8687131EC4F4C400CF4C74 /* CollectionViewFriends.swift */,
+				1D96B5241EC39E9B0001B6C0 /* TableViewCellMovies.swift */,
 				1D21B64E1EC0780800E5D482 /* AppDelegate.swift */,
 				1D21B6501EC0780800E5D482 /* ViewController.swift */,
+				1DF2918A1EC096C600AD4574 /* ViewControllerCreateAccount.swift */,
 				1D21B6521EC0780800E5D482 /* Main.storyboard */,
+				1D2215671EC4E951007EE363 /* ViewControllerFriends.swift */,
+				1D11070A1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift */,
+				1D96B51E1EC354820001B6C0 /* ViewController_NewsFeed.swift */,
+				1DF2918C1EC229A800AD4574 /* ViewControllerNavigationExample.swift */,
 				1D21B6581EC0780800E5D482 /* Assets.xcassets */,
 				1D21B65A1EC0780800E5D482 /* LaunchScreen.storyboard */,
 				1D21B65D1EC0780800E5D482 /* Info.plist */,
@@ -196,6 +220,7 @@
 				TargetAttributes = {
 					1D21B64A1EC0780800E5D482 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 372GQ373L5;
 						ProvisioningStyle = Automatic;
 					};
 					1D21B6611EC0780800E5D482 = {
@@ -262,6 +287,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DF2918D1EC229A800AD4574 /* ViewControllerNavigationExample.swift in Sources */,
+				1D96B5231EC36A7B0001B6C0 /* CollectionViewMovies.swift in Sources */,
+				1D8687141EC4F4C400CF4C74 /* CollectionViewFriends.swift in Sources */,
+				1D2215681EC4E951007EE363 /* ViewControllerFriends.swift in Sources */,
+				1D96B5251EC39E9B0001B6C0 /* TableViewCellMovies.swift in Sources */,
+				1D96B51F1EC354820001B6C0 /* ViewController_NewsFeed.swift in Sources */,
+				1DF2918B1EC096C600AD4574 /* ViewControllerCreateAccount.swift in Sources */,
+				1D11070B1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift in Sources */,
 				1D21B6571EC0780800E5D482 /* TheMovieCritiqueV2.xcdatamodeld in Sources */,
 				1D21B6511EC0780800E5D482 /* ViewController.swift in Sources */,
 				1D21B64F1EC0780800E5D482 /* AppDelegate.swift in Sources */,
@@ -416,9 +449,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 372GQ373L5;
 				INFOPLIST_FILE = TheMovieCritiqueV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueV2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueVersion2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -428,9 +462,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 372GQ373L5;
 				INFOPLIST_FILE = TheMovieCritiqueV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueV2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueVersion2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -509,6 +544,7 @@
 				1D21B6781EC0780800E5D482 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D21B6791EC0780800E5D482 /* Build configuration list for PBXNativeTarget "TheMovieCritiqueV2Tests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +553,7 @@
 				1D21B67B1EC0780800E5D482 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D21B67C1EC0780800E5D482 /* Build configuration list for PBXNativeTarget "TheMovieCritiqueV2UITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +562,7 @@
 				1D21B67E1EC0780800E5D482 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
