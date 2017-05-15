@@ -36,12 +36,10 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
             let cellFriend = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCellFriend, for: indexPath as IndexPath) as! CollectionViewFriends
-            cellFriend.buttonCellFriend.setImage(UIImage(named: "ContactsYellow"), for: .normal)
+            cellFriend.imageCellFriend.image = UIImage(named: "ContactsYellow")
        
             cellFriend.labelCellFriend.text = items[indexPath.row]
 
-        
-        
             return cellFriend
     }
 
@@ -50,21 +48,25 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
-        //Code here
-     //  let cellFriend = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCellFriend, for: indexPath as IndexPath) as! CollectionViewFriends
+        
         let cellFriend = collectionView.cellForItem(at: indexPath) as! CollectionViewFriends
-        print(cellFriend.labelCellFriend.text)
-        
-        
+        print(cellFriend.labelCellFriend.text!)
+
         let friend = self.storyboard?.instantiateViewController(withIdentifier: "friend") as! ViewControllerFriendProfile
         
         friend.navigationTitleExternal  = cellFriend.labelCellFriend.text
-        friend.externalLabel = "hello"
+        friend.externalLabel = cellFriend.labelCellFriend.text
         
+        //
+        cellFriend.externalFriends = self
+        cellFriend.externalFriend = friend
+        //
         navigationController?.pushViewController(friend, animated: true)
 
         
     }
+    
+    
 
     /*
     // MARK: - Navigation

@@ -22,6 +22,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     //Table View
     let tableCellIdentifier = "tableActivity"
     
+    var currentCellExternal = CollectionViewMovies()
+    
     
     var items = ["beauty", "startrek", "guardians"]
     
@@ -99,6 +101,15 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
+        
+        //let indexPath = collectionView.indexPathForSelectedRow() //optional, to get from any UIButton for example
+        
+        let currentCell = collectionView.cellForItem(at: indexPath) as! CollectionViewMovies
+        currentCellExternal = currentCell
+        
+        performSegue(withIdentifier: "FromHomeToMovie", sender: nil)
+     
+      //  print(currentCell.textLabel!.text)
         //Code here
 //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "movie") as! MovieDetailsViewController
 //        vc.titleMovieExternal = "Beauty and the Beast"
@@ -109,6 +120,21 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
         //
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromHomeToMovie"{
+
+        let vc = segue.destination as! ViewControllerMovie
+      
+            vc.externalMovieImage = currentCellExternal.moviePoster.image
+            vc.externalMovieDescription = "_____"
+            vc.externalMovieTitle = "----"
+            vc.externalMovieDescription = "1234"
+            vc.externalMovieActors = "12345678"
+            vc.externalMovieGenre = ""
+         
+        }
     }
 
     /*
@@ -124,12 +150,12 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     //MARK: Table views
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("about to enter")
+      //  print("about to enter")
         return 1
     }
     
     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("I got at the beginning of the feed thig")
+        //print("I got at the beginning of the feed thig")
         let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovies
         //cellTable.tableLabelTime.text = "5 minutes ago"
         tableActivity.imageProfile.image = UIImage(named: "Account")
@@ -137,7 +163,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         tableActivity.labelTitle.text = "Star Trek"
         tableActivity.labelUserActivity.text = "John C. made a review:"
         tableActivity.textView.text = "Good film. Worth watching"
-        print("I got at the end of the feed thing")
+       // print("I got at the end of the feed thing")
         return tableActivity
         
     }
