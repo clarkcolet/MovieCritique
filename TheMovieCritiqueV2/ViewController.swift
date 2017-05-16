@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var buttonLogin: UIButton!
+    
+    @IBOutlet weak var TxtUserName: UITextField!
+    
+    @IBOutlet weak var txtPassword: UITextField!
+    
+    let validator = Validator()
+    let sessionM = SessionManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +34,26 @@ class ViewController: UIViewController {
         
        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        
+        let sessionID:String = sessionM.RetriveSession()
+        if sessionID != ""
+        {
+            print("yes session \(sessionID)")
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+            self.present(vc!, animated: true, completion: nil)
+        }
+        else
+        {
+            print("NO SESSION")
+        }
+        
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
@@ -79,6 +108,68 @@ class ViewController: UIViewController {
             
         })
         super.viewWillTransition(to: size, with: coordinator)
+        
+    }
+    
+    @IBAction func LoginClick(_ sender: Any) {
+        
+        let isValidEmail = validator.validateEmail(email: TxtUserName.text!)
+        
+        var valid : Bool = false
+        
+        
+        if !isValidEmail
+        {
+            validator.AnimationShakeTextField(textField: TxtUserName)
+        }
+        
+        if((txtPassword.text?.characters.count)! < 6 || txtPassword.text == "" || (txtPassword.text?.isEmpty)!)
+        {
+            validator.AnimationShakeTextField(textField: txtPassword)
+            valid = false
+        }
+        else
+        {
+            valid = true
+        }
+        
+        if(isValidEmail && valid)
+        {
+            //print("valid")
+            
+            // let vc = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuView")
+            // self.present(vc!, animated: true, completion: nil)
+            let loginDetails:Dictionary<String,String> = ["Email" : self.TxtUserName.text! as String, "Password" : self.txtPassword.text! as String]
+            
+            //let rest = Rest();
+            Rest.sharedInstance.getLogin(body: loginDetails as [String : AnyObject]) { (json: JSON) in
+                if(json["Status"] == "Success")
+                {
+                    if let results = json["Data"].array {
+                        for entry in results {
+                            
+                            let user = User(json: entry)
+                            self.sessionM.StartSession(user: user)
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                            self.present(vc!, animated: true, completion: nil)
+                            
+                        }
+                        DispatchQueue.main.async(execute: {
+                            
+                            
+                            
+                        })
+                    }
+                }
+                else
+                {
+                    print("No DATA")
+                }
+            }
+            
+        }
+        
+        
         
     }
     
