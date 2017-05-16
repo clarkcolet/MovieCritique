@@ -8,15 +8,19 @@
 
 import UIKit
 
-class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate
+class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate
 {
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
+    
+
 
     @IBOutlet weak var collectionMovies: UICollectionView!
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
+    
+    
     //CollectionView
     let reuseIdentifier = "cellPosterTop"
     //Table View
@@ -24,11 +28,19 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     var currentCellExternal = CollectionViewMovies()
     
+    var searchBar = UISearchBar()
+    //var customDelegate: CustomSearchControllerDelegate! ///
+     let searchController = UISearchController(searchResultsController: nil)
+    //let oldTitleView:UINavigationController.titleview
+    var formerNavigation = UINavigationController()
     
     var items = ["beauty", "startrek", "guardians"]
     
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        //var buttonSearchInternal = buttonSearch
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
@@ -44,20 +56,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         collectionMovies.setCollectionViewLayout(layout, animated: true)
         
         collectionMovies.reloadData()
-        
-       // let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-       // layout.itemSize = CGSize(width: screenWidth/3, height: screenWidth/3)
-      //  layout.minimumInteritemSpacing = 0
-      //  layout.minimumLineSpacing = 0
-       // collectionMovies!.collectionViewLayout = layout
-    //    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-     //   let width = UIScreen.main.bounds.width
-      //  layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-     //   layout.itemSize = CGSize(width: width / 3, height: width / 3)
-       // layout.minimumInteritemSpacing = 0
-       // layout.minimumLineSpacing = 0
-     //   collectionMovies!.collectionViewLayout = layout
+
         
     }
     
@@ -109,16 +108,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
         performSegue(withIdentifier: "FromHomeToMovie", sender: nil)
      
-      //  print(currentCell.textLabel!.text)
-        //Code here
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "movie") as! MovieDetailsViewController
-//        vc.titleMovieExternal = "Beauty and the Beast"
-//        vc.actorsExternal = "Emma Watson"
-//        vc.moviePosterExternal = UIImage(named: "beauty")
-//        
-//        self.present(vc, animated: true, completion: nil)
-        
-        //
         
     }
     
@@ -168,6 +157,121 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("I was selected: #\(indexPath.item)!")
+       
+      //  let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellReviews
+     //   currentRowExternal = currentRow
+        
+    //    performSegue(withIdentifier: "FromMyProfileToReview", sender: nil)
+        
+    }
     
+    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
+
+
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.showsCancelButton = true
+        searchController.searchBar.delegate = self       // searchController.searchBar.scopeButtonTitles = ["All", "Movies", "Friends"]
+       // searchController.searchBar.showsScopeBar = true
+      //  searchBar.delegate = self as? UISearchBarDelegate
+        formerNavigation = navigationController!
+        let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
+        let titleView = UIView(frame: frame)
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.frame = frame
+        titleView.addSubview(searchController.searchBar)
+        navigationItem.titleView = titleView
+
+    }
+
+    
+   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+       print("tryout")
+    searchBar.endEditing(true)
+    navigationItem.titleView = nil
+  //  self.navigationItem.rightBarButtonItem = buttonSearch
+   // self.navigationItem.setRightBarButtonItems([buttonSearch], animated: true)
+   // buttonSea.tintColor = UIColor.white
+   // self.navigationController?.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+
+    //buttonSearch.isEnabled = true
+       //    navigationController.remov
+   }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchText \(String(describing: searchBar.text))")
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            
+            let orient = UIApplication.shared.statusBarOrientation
+            
+            switch orient {
+                
+            case .portrait:
+                
+                print("Portrait")
+               // self.collectionMovies.removeFromSuperview()
+                let cellSize = CGSize(width:300 , height:400)
+                
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .vertical //.horizontal
+                layout.itemSize = cellSize
+                layout.sectionInset = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
+                layout.minimumLineSpacing = 0.5
+                layout.minimumInteritemSpacing = 0.5
+                self.collectionMovies.setCollectionViewLayout(layout, animated: true)
+                
+                self.collectionMovies.reloadData()
+                
+            case .landscapeLeft,.landscapeRight :
+                
+                print("Landscape")
+
+               
+                let cellSize = CGSize(width:self.collectionMovies.frame.width / 8,  height: self.collectionMovies.frame.height/1.5)
+                
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .vertical //.horizontal
+                layout.itemSize = cellSize
+                layout.sectionInset = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
+                layout.minimumLineSpacing = 0.5
+                layout.minimumInteritemSpacing = 0.5
+                self.collectionMovies.setCollectionViewLayout(layout, animated: true)
+                
+                self.collectionMovies.reloadData()
+                
+            default:
+                print("Anything But Portrait")
+              //  self.collectionMovies.removeFromSuperview()
+                let cellSize = CGSize(width:self.collectionMovies.frame.width / 4,  height: self.collectionMovies.frame.height/2)
+                
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .vertical //.horizontal
+                layout.itemSize = cellSize
+                layout.sectionInset = UIEdgeInsets(top: 0.5, left: 0.5, bottom: 0.5, right: 0.5)
+                layout.minimumLineSpacing = 0.5
+                layout.minimumInteritemSpacing = 0.5
+                self.collectionMovies.setCollectionViewLayout(layout, animated: true)
+                
+                self.collectionMovies.reloadData()
+            }
+            
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            //refresh view once rotation is completed not in will transition as it returns incorrect frame size.Refresh here
+            
+        })
+        super.viewWillTransition(to: size, with: coordinator)
+        
+    }
+
 
 }
