@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllerFriendProfile.swift"
-            timestampString = "516542224.828555"
+            timestampString = "516656474.042466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "ViewControllerFriendProfile"
             landmarkType = "3">
          </BreakpointContent>

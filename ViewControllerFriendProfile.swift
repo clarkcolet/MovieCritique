@@ -215,6 +215,8 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     }
     
     @IBAction func showFavourites(_ sender: UIButton) {
+        
+        
         print("favourites pressed")
         reviews = false
         buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
@@ -223,6 +225,12 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
         labelReview.textColor = UIColor.lightGray
         loadCollectionView()
+        
+//        
+//        UIView.animate(withDuration: 0.5) {
+//            self.buttonFavourites.center.x += self.buttonFavourites.bounds.width
+//        }
+//        
     }
     
     
