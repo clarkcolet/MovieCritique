@@ -44,7 +44,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
 
     
     override func viewDidLoad() {
-        
+      //  assignbackground()
         super.viewDidLoad()
         //var buttonSearchInternal = buttonSearch
         screenSize = UIScreen.main.bounds
@@ -119,6 +119,19 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
     }
     
+    func assignbackground(){
+        let background = UIImage(named: "Background")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+    }
+    
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(self.movies.count)
@@ -188,6 +201,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             vc.externaltextViewDescription = "Description goes here"
             vc.externalLabelTitle = "Title goes here"
             vc.title = "Review"
+            vc.externalImageFriend = currentRowExternal.imageProfile.image
+            vc.externalLabelNameFriend = "Name of friend goes here"
         }
        
 

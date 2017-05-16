@@ -17,6 +17,9 @@ class ViewControllerFriendReview: UIViewController {
     @IBOutlet weak var textViewReview: UITextView!
     @IBOutlet weak var textViewDescription: UITextView!
 
+    @IBOutlet weak var buttonFriend: UIButton!
+    @IBOutlet weak var labelNameFriend: UILabel!
+    
     
     var externalImageMovie:UIImage!
     var externalLabelTitle:String!
@@ -24,6 +27,10 @@ class ViewControllerFriendReview: UIViewController {
     var externalLabelGenre:String!
     var externaltextViewReview:String!
     var externaltextViewDescription:String!
+    var externalLabelNameFriend:String!
+    var externalImageFriend:UIImage!
+    
+    
     
     
 
@@ -35,7 +42,13 @@ class ViewControllerFriendReview: UIViewController {
         labelActors.text = externalLabelActors
         textViewReview.text = externaltextViewReview
         textViewDescription.text = externaltextViewDescription
+        labelNameFriend.text = externalLabelNameFriend
+        buttonFriend.imageView?.image = externalImageFriend
         
+        buttonFriend.backgroundColor = UIColor.black
+        buttonFriend.layer.cornerRadius = 5
+        buttonFriend.layer.borderWidth = 2
+        buttonFriend.layer.borderColor = UIColor.black.cgColor
 
         // Do any additional setup after loading the view.
     }
