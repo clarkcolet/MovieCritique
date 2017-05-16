@@ -1,0 +1,6 @@
+framework module Pods_TheMovieCritiqueV2 {
+  umbrella header "Pods-TheMovieCritiqueV2-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -20,6 +20,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
     
+    var currentRowExternal:TableViewCellMovies!
     
     //CollectionView
     let reuseIdentifier = "cellPosterTop"
@@ -29,10 +30,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var currentCellExternal = CollectionViewMovies()
     
     var searchBar = UISearchBar()
-    //var customDelegate: CustomSearchControllerDelegate! ///
-     let searchController = UISearchController(searchResultsController: nil)
-    //let oldTitleView:UINavigationController.titleview
-    var formerNavigation = UINavigationController()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     var items = ["beauty", "startrek", "guardians"]
     
@@ -79,16 +78,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     }
     
     
-   // func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-   //     let totalCellWidth = Int(collectionView.layer.frame.size.width) / 3 * collectionView.numberOfItems(inSection: 0)
-     //   let totalSpacingWidth = (collectionView.numberOfItems(inSection: 0) - 1)
-        
-      //  let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-    //    let rightInset = leftInset
-        
-     //   return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
-  //  }
     
 
 
@@ -112,6 +101,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "FromHomeToMovie"{
 
         let vc = segue.destination as! ViewControllerMovie
@@ -124,6 +114,17 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             vc.externalMovieGenre = ""
          
         }
+        if segue.identifier == "FromHomeToFriendReview"{
+            print("I got inside the segue to get to review")
+            let vc = segue.destination as! ViewControllerFriendReview
+            vc.externalImageMovie = currentRowExternal.imagePoster.image
+            vc.externaltextViewReview = "My review goes here"
+            vc.externaltextViewDescription = "Description goes here"
+            vc.externalLabelTitle = "Title goes here"
+            vc.title = "Review"
+        }
+       
+
     }
 
     /*
@@ -160,23 +161,20 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("I was selected: #\(indexPath.item)!")
        
-      //  let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellReviews
-     //   currentRowExternal = currentRow
+        let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellMovies
+        currentRowExternal = currentRow
         
-    //    performSegue(withIdentifier: "FromMyProfileToReview", sender: nil)
+        performSegue(withIdentifier: "FromHomeToFriendReview", sender: nil)
         
     }
     
-    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
 
+    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
 
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.showsCancelButton = true
-        searchController.searchBar.delegate = self       // searchController.searchBar.scopeButtonTitles = ["All", "Movies", "Friends"]
-       // searchController.searchBar.showsScopeBar = true
-      //  searchBar.delegate = self as? UISearchBarDelegate
-        formerNavigation = navigationController!
+        searchController.searchBar.delegate = self       //
         let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
         let titleView = UIView(frame: frame)
         searchController.searchBar.backgroundImage = UIImage()
@@ -191,13 +189,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
        print("tryout")
     searchBar.endEditing(true)
     navigationItem.titleView = nil
-  //  self.navigationItem.rightBarButtonItem = buttonSearch
-   // self.navigationItem.setRightBarButtonItems([buttonSearch], animated: true)
-   // buttonSea.tintColor = UIColor.white
-   // self.navigationController?.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
 
-    //buttonSearch.isEnabled = true
-       //    navigationController.remov
    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

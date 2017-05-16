@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,  UISearchBarDelegate{
     
     var screenSize: CGRect!
     var screenWidth: CGFloat!
@@ -17,11 +17,16 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     @IBOutlet weak var buttonGenres: UIBarButtonItem!
     @IBOutlet weak var collectionMovies: UICollectionView!
     
+    
     let reuseIdentifier = "cellMovie"
     var itemsImage = ["beauty", "startrek", "guardians"]
     var itemsTitle = ["Beauty and the Beast", "Startrek", "Guardians of the Galaxy"]
     
     var currentCellExternal = CollectionViewCellMovieList()
+    
+    var searchBar = UISearchBar()
+    let searchController = UISearchController(searchResultsController: nil)
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,6 +144,35 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             vc.externalMovieGenre = "Genre"
             
         }
+    }
+    
+    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.showsCancelButton = true
+        searchController.searchBar.delegate = self       //
+        let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
+        let titleView = UIView(frame: frame)
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.frame = frame
+        titleView.addSubview(searchController.searchBar)
+        navigationItem.titleView = titleView
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("tryout")
+        searchBar.endEditing(true)
+        navigationItem.titleView = nil
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchText \(String(describing: searchBar.text))")
     }
 
     /*
