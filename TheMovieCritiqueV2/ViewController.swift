@@ -135,13 +135,8 @@ class ViewController: UIViewController {
         
         if(isValidEmail && valid)
         {
-            //print("valid")
-            
-            // let vc = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuView")
-            // self.present(vc!, animated: true, completion: nil)
             let loginDetails:Dictionary<String,String> = ["Email" : self.TxtUserName.text! as String, "Password" : self.txtPassword.text! as String]
             
-            //let rest = Rest();
             Rest.sharedInstance.getLogin(body: loginDetails as [String : AnyObject]) { (json: JSON) in
                 if(json["Status"] == "Success")
                 {
@@ -149,6 +144,7 @@ class ViewController: UIViewController {
                         for entry in results {
                             
                             let user = User(json: entry)
+                            
                             self.sessionM.StartSession(user: user)
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
                             self.present(vc!, animated: true, completion: nil)

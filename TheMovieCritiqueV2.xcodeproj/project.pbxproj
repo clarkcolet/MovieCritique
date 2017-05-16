@@ -42,6 +42,7 @@
 		21E5A8C31ECB433000B41F2E /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BD1ECB433000B41F2E /* SessionManager.swift */; };
 		21E5A8C41ECB433000B41F2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BE1ECB433000B41F2E /* User.swift */; };
 		21E5A8C51ECB433000B41F2E /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BF1ECB433000B41F2E /* Validator.swift */; };
+		21E5A8C71ECBB1E600B41F2E /* FeedRecentReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8C61ECBB1E600B41F2E /* FeedRecentReview.swift */; };
 		6062DAA61E8777D09BC05ED8 /* Pods_TheMovieCritiqueV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE352D56B0D60E7139CBD780 /* Pods_TheMovieCritiqueV2.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		21E5A8BD1ECB433000B41F2E /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		21E5A8BE1ECB433000B41F2E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		21E5A8BF1ECB433000B41F2E /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		21E5A8C61ECBB1E600B41F2E /* FeedRecentReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedRecentReview.swift; sourceTree = "<group>"; };
 		9A8FF09F267159613EC306EA /* Pods-TheMovieCritiqueV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieCritiqueV2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheMovieCritiqueV2/Pods-TheMovieCritiqueV2.debug.xcconfig"; sourceTree = "<group>"; };
 		CE352D56B0D60E7139CBD780 /* Pods_TheMovieCritiqueV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheMovieCritiqueV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFDB5310C62CAD85C401669 /* Pods-TheMovieCritiqueV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieCritiqueV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheMovieCritiqueV2/Pods-TheMovieCritiqueV2.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				21E5A8BD1ECB433000B41F2E /* SessionManager.swift */,
 				21E5A8BE1ECB433000B41F2E /* User.swift */,
 				21E5A8BF1ECB433000B41F2E /* Validator.swift */,
+				21E5A8C61ECBB1E600B41F2E /* FeedRecentReview.swift */,
 			);
 			name = utilities;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				21E5A8C41ECB433000B41F2E /* User.swift in Sources */,
 				1D11070B1EC5B77A00FC9E94 /* ViewControllerFriendProfile.swift in Sources */,
 				1D0BE6B01EC9BBEA00F694A2 /* ViewControllerMyProfile.swift in Sources */,
+				21E5A8C71ECBB1E600B41F2E /* FeedRecentReview.swift in Sources */,
 				1D21B6571EC0780800E5D482 /* TheMovieCritiqueV2.xcdatamodeld in Sources */,
 				1D6033761EC61E8D00E5069A /* CollectionViewCellReviews.swift in Sources */,
 				1D21B6511EC0780800E5D482 /* ViewController.swift in Sources */,
