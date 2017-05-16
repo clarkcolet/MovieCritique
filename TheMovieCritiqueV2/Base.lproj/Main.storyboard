@@ -1756,7 +1756,7 @@
             </objects>
             <point key="canvasLocation" x="1494.140625" y="944.36310395314786"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainNav-->
         <scene sceneID="mkR-5Y-udK">
             <objects>
                 <tabBarController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-Dm-Uy8" sceneMemberID="viewController">

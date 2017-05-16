@@ -312,7 +312,7 @@
 				TargetAttributes = {
 					1D21B64A1EC0780800E5D482 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 372GQ373L5;
+						DevelopmentTeam = 5LUSXR328T;
 						ProvisioningStyle = Automatic;
 					};
 					1D21B6611EC0780800E5D482 = {
@@ -609,10 +609,11 @@
 			baseConfigurationReference = 9A8FF09F267159613EC306EA /* Pods-TheMovieCritiqueV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 372GQ373L5;
+				DEVELOPMENT_TEAM = 5LUSXR328T;
 				INFOPLIST_FILE = TheMovieCritiqueV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueVersion2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theMovieCritiqueVersion2.nish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -623,10 +624,11 @@
 			baseConfigurationReference = CFFDB5310C62CAD85C401669 /* Pods-TheMovieCritiqueV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 372GQ373L5;
+				DEVELOPMENT_TEAM = 5LUSXR328T;
 				INFOPLIST_FILE = TheMovieCritiqueV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ccnn.TheMovieCritiqueVersion2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.theMovieCritiqueVersion2.nish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
