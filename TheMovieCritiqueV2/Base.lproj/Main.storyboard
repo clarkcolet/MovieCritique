@@ -673,7 +673,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tM6-Ek-9fT">
-                                                    <rect key="frame" x="8" y="0.0" width="276" height="192"/>
+                                                    <rect key="frame" x="8" y="0.0" width="276" height="191"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1288,9 +1288,6 @@
                             </view>
                             <containerView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSm-dm-H2f">
                                 <rect key="frame" x="54" y="384" width="908" height="893"/>
-                                <connections>
-                                    <segue destination="5qF-ux-S3V" kind="embed" id="3Lf-4Q-LMj"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.85590636730194092" green="0.28471124172210693" blue="0.2873789370059967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1813,7 +1810,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2K5-im-QaB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="weB-NP-FhL">
-                        <rect key="frame" x="0.0" y="0.0" width="908" height="893"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
