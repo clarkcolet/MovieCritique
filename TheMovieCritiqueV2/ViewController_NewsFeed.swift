@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate
 {
@@ -34,7 +35,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     let searchController = UISearchController(searchResultsController: nil)
     
     var items = ["beauty", "startrek", "guardians"]
-    
+    var movies = [Movie]()
+
     
     override func viewDidLoad() {
         
@@ -54,15 +56,37 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         layout.minimumInteritemSpacing = 0.5
         collectionMovies.setCollectionViewLayout(layout, animated: true)
         
-        collectionMovies.reloadData()
+        
+        Rest.sharedInstance.getMovies{ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        self.movies.append(Movie(json: entry))
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionMovies.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
 
         
     }
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.items.count)
-        return self.items.count
+        print(self.movies.count)
+        return self.movies.count
     }
     
     // make a cell for each cell index path
@@ -71,8 +95,14 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         // get a reference to our storyboard cell
         let cellPosterTop = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewMovies
         
-        cellPosterTop.moviePoster.image = UIImage(named: items[indexPath.row])
-        // cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        
+        if let url = NSURL(string: movies[indexPath.row].imgSrc){
+            if let data = NSData(contentsOf: url as URL){
+                cellPosterTop.moviePoster.image = UIImage(data: data as Data)
+            }
+        }
+        
+        
         print("I got here")
         return cellPosterTop
     }

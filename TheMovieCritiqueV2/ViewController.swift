@@ -150,7 +150,7 @@ class ViewController: UIViewController {
                             
                             let user = User(json: entry)
                             self.sessionM.StartSession(user: user)
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
                             self.present(vc!, animated: true, completion: nil)
                             
                         }

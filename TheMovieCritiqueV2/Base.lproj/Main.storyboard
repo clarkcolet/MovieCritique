@@ -1707,10 +1707,10 @@
             </objects>
             <point key="canvasLocation" x="1494.140625" y="944.36310395314786"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainNav-->
         <scene sceneID="mkR-5Y-udK">
             <objects>
-                <tabBarController id="Pt9-Dm-Uy8" sceneMemberID="viewController">
+                <tabBarController title="MainNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-Dm-Uy8" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xPL-9u-b53">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
