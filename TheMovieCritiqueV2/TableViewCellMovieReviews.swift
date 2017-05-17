@@ -11,11 +11,13 @@ import UIKit
 class TableViewCellMovieReviews: UITableViewCell {
     
     @IBOutlet weak var imageProfile: UIImageView!
-    @IBOutlet weak var labelActivity: UILabel!
-    @IBOutlet weak var labelMovieTitle: UILabel!
+   // @IBOutlet weak var labelActivity: UILabel!
+   // @IBOutlet weak var labelMovieTitle: UILabel!
     @IBOutlet weak var textViewReview: UITextView!
     @IBOutlet weak var labelReviewDate: UILabel!
     @IBOutlet weak var imagePoster: UIImageView!
+    
+    @IBOutlet weak var labelUserName: UILabel!
     
 
     override func awakeFromNib() {

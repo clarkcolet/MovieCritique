@@ -48,13 +48,8 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("I got at....")
         let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovieReviews
-        //cellTable.tableLabelTime.text = "5 minutes ago"
-        //tableActivity.imageProfile.image = UIImage(named: "Account")
-        tableActivity.imagePoster.image = UIImage(named: "startrek")
-    //    tableActivity.imag
-       // tableActivity.labelTitle.text = "Star Trek"
-       // tableActivity.labelUserActivity.text = "John C. made a review:"
-       // tableActivity.textView.text = "Good film. Worth watching"
+
+        tableActivity.labelUserName.text = "Random name"
          print("I got at the end of the feed thing")
         return tableActivity
         

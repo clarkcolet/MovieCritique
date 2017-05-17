@@ -14,6 +14,9 @@ class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout
 
     var collectionView: UICollectionView!
     
+    @IBOutlet weak var labelLL: UILabel!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,71 @@ class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout
         subView.addSubview(collectionView)
 
         // Do any additional setup after loading the view.
+        
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: Selector("respondToSwipeGesture:"))
+//        swipeRight.direction = .right
+//        view.addGestureRecognizer(swipeRight)
+//        
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: Selector("respondToSwipeGesture:"))
+//        swipeRight.direction = .left
+//        view.addGestureRecognizer(swipeLeft)
+//
+//        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+//        swipeDown.direction = .Down
+//        view.addGestureRecognizer(swipeDown)
+//        
+//        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+//        swipeDown.direction = .Up
+//        view.addGestureRecognizer(swipeUp)
+        
+            }
+    
+    
+    
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        print("swiping right")
     }
+//    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+//        
+//        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+//            
+//            
+//            switch swipeGesture.direction {
+//            case UISwipeGestureRecognizerDirection.right:
+//                print("Swiped right")
+//            case UISwipeGestureRecognizerDirection.down:
+//                print("Swiped down")
+//            case UISwipeGestureRecognizerDirection.left:
+//                print("Swiped left")
+//            case UISwipeGestureRecognizerDirection.up:
+//                print("Swiped up")
+//            default:
+//                break
+//            }
+//        }
+//    }
+    
+//    func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
+//        
+//        switch swipeGesture.direction {
+//        case .Right:
+//            
+//            // Move Label to the right
+//            yourLabel.frame.origin.x += 100
+//            
+////        case .Down:
+////            // Move Label down
+////            yourLabel.frame.origin.y += 100
+//            
+//        case .Left:
+//            // Move Label to the left
+//            yourLabel.frame.origin.x -= 100
+//            
+////        case .Up:
+////            // Move Label up
+////            yourLabel.frame.origin.y -= 100
+//        }
+//    }
     
     func assignbackground(){
         collectionView.removeFromSuperview()
