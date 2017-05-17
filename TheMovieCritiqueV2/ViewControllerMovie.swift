@@ -19,8 +19,6 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var textViewDescription: UITextView!
     @IBOutlet weak var textMovieID: UILabel!
     
-    
-    
     @IBOutlet weak var subViewInfo: UIView!
     
     
