@@ -16,6 +16,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var screenHeight: CGFloat!
     
 
+    @IBOutlet weak var FeedTable: UITableView!
 
     @IBOutlet weak var collectionMovies: UICollectionView!
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
@@ -30,12 +31,16 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     var currentCellExternal = CollectionViewMovies()
     
+
+    
     var searchBar = UISearchBar()
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var items = ["beauty", "startrek", "guardians"]
     var movies = [Movie]()
+    var recentReviewFeed = [FeedRecentReview]()
+
 
     
     override func viewDidLoad() {
@@ -70,6 +75,37 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                     DispatchQueue.main.async(execute: {
                         
                         self.collectionMovies.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+        
+        
+        
+        let session = SessionManager()
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                      
+                        self.recentReviewFeed.append(FeedRecentReview(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                       self.FeedTable.reloadData()
                         
                     })
                 }
@@ -186,20 +222,33 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       //  print("about to enter")
-        return 1
+        return self.recentReviewFeed.count
     }
     
     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print("I got at the beginning of the feed thig")
-        let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovies
-        //cellTable.tableLabelTime.text = "5 minutes ago"
-        tableActivity.imageProfile.image = UIImage(named: "Account")
-        tableActivity.imagePoster.image = UIImage(named: "startrek")
-        tableActivity.labelTitle.text = "Star Trek"
-        tableActivity.labelUserActivity.text = "John C. made a review:"
-        tableActivity.textView.text = "Good film. Worth watching"
+        
+        
+//        //print("I got at the beginning of the feed thig")
+      let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovies
+//        //cellTable.tableLabelTime.text = "5 minutes ago"
+//        tableActivity.imageProfile.image = UIImage(named: "Account")
+//        tableActivity.imagePoster.image = UIImage(named: "startrek")
+        if let url = NSURL(string: recentReviewFeed[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                tableActivity.imagePoster.image  = UIImage(data: data as Data)
+            }
+        }
+        
+        tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
+        tableActivity.labelUserActivity.text = "\(recentReviewFeed[indexPath.row].firstName) made a review:"
+       tableActivity.textView.text = recentReviewFeed[indexPath.row].review
+        
+       
+        
+        
+        
        // print("I got at the end of the feed thing")
-        return tableActivity
+       return tableActivity
         
     }
     
