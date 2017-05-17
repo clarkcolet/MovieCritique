@@ -12,6 +12,8 @@ public class User {
 	public var email : String!
 	public var password : String!
 	public var favouriteGenre : String!
+    public var favouriteMovie : String!
+    public var imgSrc : String!
 	public var createdOn : String!
 	public var updatedOn : String!
 
@@ -25,6 +27,8 @@ public class User {
         email = json["Email"].stringValue
         password = json["Password"].stringValue
         favouriteGenre = json["FavouriteGenre"].stringValue
+        favouriteMovie = json["FavouriteMovie"].stringValue
+        imgSrc = json["ImgSrc"].stringValue
         createdOn = json["CreatedOn"].stringValue
         updatedOn = json["UpdatedOn"].stringValue
     }
