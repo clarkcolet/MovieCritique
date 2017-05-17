@@ -15,6 +15,7 @@ class Movie
     public var movieID : String!
     public var title : String!
     public var subtitle : String!
+    public var desc : String!
     public var cast : String!
     public var genre : String!
     public var released : String!
@@ -27,6 +28,7 @@ class Movie
         movieID = json["MovieID"].stringValue
         title = json["Title"].stringValue
         subtitle = json["Subtitle"].stringValue
+        desc = json["Desc"].stringValue
         cast = json["Cast"].stringValue
         genre = json["Genre"].stringValue
         released = json["Released"].stringValue

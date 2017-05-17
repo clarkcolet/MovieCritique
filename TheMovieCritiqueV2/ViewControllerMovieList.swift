@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,  UISearchBarDelegate{
     
@@ -20,13 +21,21 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     
     let reuseIdentifier = "cellMovie"
     var itemsImage = ["beauty", "startrek", "guardians"]
-    var itemsTitle = ["Beauty and the Beast", "Startrek", "Guardians of the Galaxy"]
+    var itemsTitle = ["Beautjy and the Beast", "Startrek", "Guardians of the Galaxy"]
+    
+    var movies = [Movie]()
     
     var currentCellExternal = CollectionViewCellMovieList()
     
     var searchBar = UISearchBar()
     let searchController = UISearchController(searchResultsController: nil)
 
+    let movieTitle:String = ""
+    let movieDesc:String = ""
+    let movieCast:String = ""
+    let releaseYear:String = ""
+    var movieGenre:String = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +55,36 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         layout.minimumInteritemSpacing = 0.5
 
         collectionMovies.setCollectionViewLayout(layout, animated: true)
+        Rest.sharedInstance.getMovies{ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        self.movies.append(Movie(json: entry))
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionMovies.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
         
-        collectionMovies.reloadData()
 
         // Do any additional setup after loading the view.
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.itemsImage.count)
-        return self.itemsImage.count
+        print(self.movies.count)
+        return self.movies.count
     }
     
     // make a cell for each cell index path
@@ -63,9 +93,19 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         // get a reference to our storyboard cell
         let cellMovie = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewCellMovieList
         
-        cellMovie.imageMovie.image = UIImage(named: itemsImage[indexPath.row])
         
-        cellMovie.labelMovie.text = itemsTitle[indexPath.row]
+        if let url = NSURL(string: movies[indexPath.row].imgSrc){
+            if let data = NSData(contentsOf: url as URL){
+              //  cellPosterTop.moviePoster.image = UIImage(data: data as Data)
+                cellMovie.imageMovie.image = UIImage(data: data as Data)
+
+            }
+        }
+        
+        movieGenre = movies[indexPath.row].genre
+        
+        
+        cellMovie.labelMovie.text = movies[indexPath.row].title
         
         cellMovie.labelMovie.numberOfLines = 1
         cellMovie.labelMovie.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -136,12 +176,19 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         if segue.identifier == "FromMoviesToMovie"{
             
             let vc = segue.destination as! ViewControllerMovie
-            
+            for movie in movies
+            {
+                if(movie.title == currentCellExternal.labelMovie.text)
+                {
+                  
             vc.externalMovieImage = currentCellExternal.imageMovie.image
-            vc.externalMovieTitle = "Title: " + currentCellExternal.labelMovie.text!
-            vc.externalMovieDescription = "1234"
-            vc.externalMovieActors = "Actors"
-            vc.externalMovieGenre = "Genre"
+            vc.externalMovieTitle = currentCellExternal.labelMovie.text!
+            vc.externalMovieDescription = movie.desc!
+            vc.externalMovieActors = movie.cast!
+            vc.externalMovieGenre = movie.genre!
+                    vc.externalMovieID = movie.movieID!
+                }
+            }
             
         }
     }
