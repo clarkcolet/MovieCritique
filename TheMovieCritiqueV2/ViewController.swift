@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         {
             print("yes session \(sessionID)")
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
             self.present(vc!, animated: true, completion: nil)
         }
         else

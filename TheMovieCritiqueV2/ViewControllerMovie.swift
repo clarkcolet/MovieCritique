@@ -17,6 +17,9 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var textViewDescription: UITextView!
     
+    @IBOutlet weak var subViewInfo: UIView!
+    
+    
     var externalMovieTitle:String = ""
     var externalMovieImage:UIImage!
     var externalMovieActors:String = ""
@@ -24,6 +27,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieDescription:String = ""
     
     let tableCellIdentifier = "tableReviews"
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,41 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            
+            let orient = UIApplication.shared.statusBarOrientation
+            
+            switch orient {
+                
+            case .portrait:
+                
+                print("Portrait")
+                // self.collectionMovies.removeFromSuperview()
+              //  self.imageMovie.frame = CGRect(x: 0, y: 64, width: 349, height: 521)
+                
+            case .landscapeLeft,.landscapeRight :
+                
+                print("Landscape")
+            //    self.imageMovie.frame = CGRect(x: 0, y: 64, width: 150, height: self.subViewInfo.frame.height)
+               
+           //     self.subViewInfo.sizeThatFits(200)
+             //   self.subViewInfo.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+               // self.subViewInfo.reloadInputViews()
+             //   self.subViewInfo.frame = CGRect(x: 349, y: 64, width: 200, height: self.subViewInfo.frame.height)
+              //  self.subViewInfo.frame = CGRect(x: , y: 177, width: self.view.bounds.width-200, height: self.subViewInfo.frame.height)
+            default:
+                print("Anything But Portrait")
+   
+            }
+            
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            //refresh view once rotation is completed not in will transition as it returns incorrect frame size.Refresh here
+            
+        })
+        super.viewWillTransition(to: size, with: coordinator)
+    
 
     /*
     // MARK: - Navigation
@@ -71,5 +110,5 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
-
+    }
 }
