@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     @IBOutlet weak var scrollView: UIScrollView!
@@ -14,7 +15,23 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var buttonSubmit: UIButton!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
+    @IBOutlet weak var EmailTxt: UITextField!
+    
+    @IBOutlet weak var PasswordTxt: UITextField!
+    
+    @IBOutlet weak var ConfirmPasswordTxt: UITextField!
+    
+    @IBOutlet weak var FirstNameTxt: UITextField!
+    
+    @IBOutlet weak var LastNameTxt: UITextField!
+    
+    @IBOutlet weak var FavouriteMovie: UITextField!
+    
     var pickerData: [String] = [String]()
+    
+    let validator = Validator()
+    let sessionM = SessionManager()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +42,7 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         buttonSubmit.layer.shadowRadius = 4
 
         // Input data into the Array:
-        pickerData = ["Action", "Comedy", "Documentary", "Drama", "Family",  "Horror", "Thriller"]
+        pickerData = ["Action", "Comedy", "Documentary", "Drama", "Family",  "Horror", "Thriller","Sci-Fi"]
         
         
        // let center = NotificationCenter.default
@@ -58,9 +75,113 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         return pickerData[row]
     }
     
+    @IBAction func CreateAccountBtn(_ sender: Any) {
+        
+        let emailValid = validator.validateEmail(email: EmailTxt.text!)
+        if !emailValid {
+            validator.AnimationShakeTextField(textField: EmailTxt)
+        }
+        
+        var passwordValid:Bool = false;
+        if((PasswordTxt.text?.characters.count)! < 6 || PasswordTxt.text == "" || (PasswordTxt.text?.isEmpty)!)
+        {
+            validator.AnimationShakeTextField(textField: PasswordTxt)
+            passwordValid = false
+        }
+        else
+        {
+            passwordValid = true
+        }
+        
+        var confirmPasswordValid:Bool = false
+        if((ConfirmPasswordTxt.text?.characters.count)! < 6 || ConfirmPasswordTxt.text == "" || (ConfirmPasswordTxt.text?.isEmpty)!)
+        {
+            validator.AnimationShakeTextField(textField: ConfirmPasswordTxt)
+            confirmPasswordValid = false
+        }
+        else if ConfirmPasswordTxt.text == PasswordTxt.text
+        {
+            validator.AnimationShakeTextField(textField: ConfirmPasswordTxt)
+            confirmPasswordValid = false
+        }
+        else
+        {
+            confirmPasswordValid = true
+        }
+        
+        var firstNameValid:Bool = false
+        if((FirstNameTxt.text?.characters.count)! < 3)
+        {
+            validator.AnimationShakeTextField(textField: FirstNameTxt)
+            firstNameValid = false
+        } else { firstNameValid = true }
+        
+        var lastNameValid:Bool = false
+        if((LastNameTxt.text?.characters.count)! < 3)
+        {
+            validator.AnimationShakeTextField(textField: LastNameTxt)
+            lastNameValid = false
+        } else { lastNameValid = true }
+        
+        var validFavouriteMovie:Bool = false;
+        if((FavouriteMovie.text?.characters.count)! < 3)
+        {
+            validator.AnimationShakeTextField(textField: FavouriteMovie)
+            validFavouriteMovie = false
+        } else { validFavouriteMovie = true }
+
+        if(emailValid && passwordValid && firstNameValid
+            && lastNameValid && validFavouriteMovie && confirmPasswordValid)
+        {
+            
+        }
+        
+    }
+    
+    func startCreating(email:String,password:String,firstname:String,lastname:String,favouritegenre:String,favouritemovie:String,mobileno:String)
+    {
+        let param:Dictionary<String,String> = ["Email" : self.EmailTxt.text! as String, "Password" : self.PasswordTxt.text! as String,
+            "FirstName" : self.FirstNameTxt.text! as String,
+            "LastName" : self.LastNameTxt.text! as String,
+            "MobileNo" : "" as String, //not implemented
+            "FavouriteGenre" : "" as String,
+            "FavouriteMovie" : self.FavouriteMovie.text! as String,
+            "ImgSrc" : "" as String,//not implemented
+            "DOB" : "" as String // not implemented]
+                                               
+                                               ]
+        
+        Rest.sharedInstance.signup(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        let user = User(json: entry)
+                        self.sessionM.StartSession(user: user)
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
+                        self.present(vc!, animated: true, completion: nil)
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+
+    }
+    
+    
 //    func assignbackground(){
 //        let background = UIImage(named: "Background")
-//        
+//
 //        var imageView : UIImageView!
 //        imageView = UIImageView(frame: view.bounds)
 //        imageView.contentMode =  UIViewContentMode.scaleAspectFill
