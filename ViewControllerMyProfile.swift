@@ -44,7 +44,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         self.title = "My Profile"
      
          self.navigationController?.navigationBar.tintColor = UIColor.black;
-        buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
+        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
 
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
         labelUnderline.textColor = UIColor.black
@@ -252,7 +252,8 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
-        
+        var session = SessionManager()
+        session.DestroySession()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login")
         self.present(vc!, animated: true, completion: nil)
     }

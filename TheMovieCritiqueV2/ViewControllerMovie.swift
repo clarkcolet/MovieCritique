@@ -49,7 +49,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         textViewDescription.text = externalMovieDescription
         textMovieID.text = externalMovieID
         
-        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text! as String]
+        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -89,9 +89,6 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         print("I got at....")
         let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovieReviews
 
-        
-        
-        
         tableActivity.labelUserName.text = reviews[indexPath.row].firstName
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
