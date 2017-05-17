@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TheMovieCritiqueV2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="TheMovieCritiqueV2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -255,14 +255,14 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXM-4Y-r30" userLabel="pickerGenre">
-                                        <rect key="frame" x="154" y="749" width="742" height="94.5"/>
+                                        <rect key="frame" x="154" y="748" width="742" height="94.5"/>
                                         <accessibility key="accessibilityConfiguration" identifier="pickerGenre"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hXM-4Y-r30" secondAttribute="height" multiplier="243:31" id="ht5-ag-oaL"/>
                                         </constraints>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67Y-P9-Wr6">
-                                        <rect key="frame" x="475" y="851.5" width="127" height="45"/>
+                                        <rect key="frame" x="475" y="850.5" width="127" height="45"/>
                                         <color key="backgroundColor" red="0.98876947164535522" green="0.82853102684020996" blue="0.31058147549629211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="67Y-P9-Wr6" secondAttribute="height" multiplier="127:45" id="Xv5-Jm-bwk"/>
@@ -453,7 +453,7 @@
                                         <rect key="frame" x="0.0" y="1" width="1024" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSR-jL-SNc" id="PFS-lV-FQy">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="155"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="154.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-6o-KWO">
@@ -729,7 +729,7 @@
             </objects>
             <point key="canvasLocation" x="2064" y="1555"/>
         </scene>
-        <!--View Controller My Profile-->
+        <!--Title-->
         <scene sceneID="41E-Bg-r0n">
             <objects>
                 <viewController id="7ba-Da-ScX" customClass="ViewControllerMyProfile" customModule="TheMovieCritiqueV2" customModuleProvider="target" sceneMemberID="viewController">
@@ -892,6 +892,14 @@
                             <outletCollection property="gestureRecognizers" destination="W01-da-Zxg" appends="YES" id="fss-sH-tyA"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="VNP-Mw-1jc">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="L0c-Qg-xgf">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logOut:" destination="7ba-Da-ScX" id="c51-uA-Ncl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonFavourites" destination="Szw-zp-RCr" id="TPC-dT-Mm6"/>
                         <outlet property="buttonReviews" destination="TWi-ij-izX" id="Pdg-rg-a9P"/>
@@ -1617,7 +1625,7 @@
                                         <rect key="frame" x="0.0" y="55.5" width="1024" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fG-tO-Nua" id="n69-wo-Y4O">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-ol-3Op">
@@ -1669,7 +1677,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD">
-                                                    <rect key="frame" x="527" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="783" y="0.0" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1785,7 +1793,7 @@
             </objects>
             <point key="canvasLocation" x="1494.140625" y="944.36310395314786"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainNav-->
         <scene sceneID="mkR-5Y-udK">
             <objects>
                 <tabBarController storyboardIdentifier="MainNav" title="MainNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-Dm-Uy8" sceneMemberID="viewController">
