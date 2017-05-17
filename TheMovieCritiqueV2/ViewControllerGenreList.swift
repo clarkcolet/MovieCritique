@@ -54,10 +54,10 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
         let currentCell = tableView.cellForRow(at: indexPath) as! TableViewCellGenres
 
 
-        let tmpController :UIViewController! = self.presentingViewController;
+        let tmpController :UIViewController! = self
 
-        self.dismiss(animated: false, completion: {()->Void in
-            print("done");
+       self.dismiss(animated: false, completion: {()->Void in
+           print("done");
             tmpController.dismiss(animated: false, completion: nil);
         });
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pt9-Dm-Uy8">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -444,8 +444,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="144" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Axy-5M-LPa">
-                                <rect key="frame" x="0.0" y="667" width="1024" height="650"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbY-Pt-QEZ">
+                                <rect key="frame" x="349" y="64" width="675" height="521"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UB6-Vb-lo0">
+                                        <rect key="frame" x="8" y="16" width="204" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="204" id="5lV-aV-AEm"/>
+                                            <constraint firstAttribute="height" constant="41" id="rIE-P1-493"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-zh-juW">
+                                        <rect key="frame" x="8" y="65" width="204" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="L0h-c3-qwF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkV-kj-6w9">
+                                        <rect key="frame" x="8" y="110" width="116" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="86g-da-KdH"/>
+                                            <constraint firstAttribute="width" constant="116" id="PaV-5X-54g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UcI-L5-fLS">
+                                        <rect key="frame" x="8" y="177" width="659" height="336"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1i-MH-77C">
+                                        <rect key="frame" x="8" y="152" width="144" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="iYJ-A4-5d1"/>
+                                            <constraint firstAttribute="width" constant="144" id="qxh-pf-hzZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MovieID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGj-gG-Dcp">
+                                        <rect key="frame" x="466" y="47" width="92" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gkV-kj-6w9" firstAttribute="leading" secondItem="k1i-MH-77C" secondAttribute="leading" id="3Cj-nd-03Z"/>
+                                    <constraint firstItem="UB6-Vb-lo0" firstAttribute="leading" secondItem="jbY-Pt-QEZ" secondAttribute="leadingMargin" id="3it-6Z-1dv"/>
+                                    <constraint firstItem="UcI-L5-fLS" firstAttribute="bottom" secondItem="jbY-Pt-QEZ" secondAttribute="bottomMargin" id="5Ug-mc-15o"/>
+                                    <constraint firstItem="gkV-kj-6w9" firstAttribute="top" secondItem="80Z-zh-juW" secondAttribute="bottom" constant="4" id="9HR-1f-WXQ"/>
+                                    <constraint firstItem="UB6-Vb-lo0" firstAttribute="top" secondItem="jbY-Pt-QEZ" secondAttribute="top" constant="16" id="Qmy-D8-c9p"/>
+                                    <constraint firstItem="UB6-Vb-lo0" firstAttribute="trailing" secondItem="80Z-zh-juW" secondAttribute="trailing" id="RyS-nM-aQT"/>
+                                    <constraint firstItem="80Z-zh-juW" firstAttribute="top" secondItem="UB6-Vb-lo0" secondAttribute="bottom" constant="8" symbolic="YES" id="TLo-BY-1aZ"/>
+                                    <constraint firstItem="UB6-Vb-lo0" firstAttribute="leading" secondItem="80Z-zh-juW" secondAttribute="leading" id="Xju-M6-Xr6"/>
+                                    <constraint firstItem="UcI-L5-fLS" firstAttribute="top" secondItem="gkV-kj-6w9" secondAttribute="bottom" constant="29" id="ZM1-bD-X8p"/>
+                                    <constraint firstItem="UcI-L5-fLS" firstAttribute="trailing" secondItem="jbY-Pt-QEZ" secondAttribute="trailingMargin" id="l8z-2i-Fqt"/>
+                                    <constraint firstItem="k1i-MH-77C" firstAttribute="leading" secondItem="UcI-L5-fLS" secondAttribute="leading" id="p1q-ez-nhB"/>
+                                    <constraint firstItem="80Z-zh-juW" firstAttribute="leading" secondItem="gkV-kj-6w9" secondAttribute="leading" id="q0f-SX-kkO"/>
+                                    <constraint firstItem="k1i-MH-77C" firstAttribute="top" secondItem="gkV-kj-6w9" secondAttribute="bottom" constant="4" id="zxj-YM-WnW"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="144" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Axy-5M-LPa">
+                                <rect key="frame" x="0.0" y="658" width="1024" height="659"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -610,13 +683,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MovieID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjq-as-PMN">
-                                        <rect key="frame" x="198" y="156" width="112" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -661,7 +727,8 @@
                         <outlet property="labelDescription" destination="k1i-MH-77C" id="6dJ-J8-hRt"/>
                         <outlet property="labelGenre" destination="gkV-kj-6w9" id="uJU-u8-NiB"/>
                         <outlet property="labelTitle" destination="UB6-Vb-lo0" id="3h9-bJ-f9G"/>
-                        <outlet property="subViewInfo" destination="jbY-Pt-QEZ" id="RJA-x1-N03"/>
+                        <outlet property="tableReviewFeed" destination="Axy-5M-LPa" id="S6B-aV-pMk"/>
+                        <outlet property="textMovieID" destination="BGj-gG-Dcp" id="FpO-Ms-I1h"/>
                         <outlet property="textViewDescription" destination="UcI-L5-fLS" id="59A-Ed-GKc"/>
                     </connections>
                 </viewController>
@@ -683,7 +750,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E7p-Ip-I1j">
                                 <rect key="frame" x="0.0" y="20" width="300" height="361"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.97632890939999994" green="0.80706769229999997" blue="0.80963146689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellGenre" rowHeight="200" id="SAw-dw-raP" customClass="TableViewCellGenres" customModule="TheMovieCritiqueV2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="300" height="200"/>
@@ -699,7 +766,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="tM6-Ek-9fT" firstAttribute="top" secondItem="scb-vZ-YWe" secondAttribute="topMargin" constant="-8" id="47J-6w-5sd"/>
                                                 <constraint firstItem="tM6-Ek-9fT" firstAttribute="leading" secondItem="scb-vZ-YWe" secondAttribute="leadingMargin" id="8GF-7E-DLw"/>
@@ -719,7 +785,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.97632890939712524" green="0.80706769227981567" blue="0.80963146686553955" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E7p-Ip-I1j" firstAttribute="top" secondItem="gkL-A9-qBt" secondAttribute="bottom" id="OWM-Xz-SA2"/>
                             <constraint firstItem="QLF-7s-kYB" firstAttribute="top" secondItem="E7p-Ip-I1j" secondAttribute="bottom" constant="19" id="Ue5-PT-oBD"/>
@@ -1926,6 +1992,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="y51-bi-jfF"/>
-        <segue reference="3qa-Oe-MTD"/>
+        <segue reference="Xfv-5d-K9s"/>
     </inferredMetricsTieBreakers>
 </document>

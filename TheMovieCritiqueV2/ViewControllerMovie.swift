@@ -87,9 +87,6 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         print("I got at....")
         let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovieReviews
 
-        
-        
-        
         tableActivity.labelUserName.text = reviews[indexPath.row].firstName
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
