@@ -137,13 +137,9 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
             case .landscapeLeft,.landscapeRight :
                 
                 print("Landscape")
-            //    self.imageMovie.frame = CGRect(x: 0, y: 64, width: 150, height: self.subViewInfo.frame.height)
+
                
-           //     self.subViewInfo.sizeThatFits(200)
-             //   self.subViewInfo.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-               // self.subViewInfo.reloadInputViews()
-             //   self.subViewInfo.frame = CGRect(x: 349, y: 64, width: 200, height: self.subViewInfo.frame.height)
-              //  self.subViewInfo.frame = CGRect(x: , y: 177, width: self.view.bounds.width-200, height: self.subViewInfo.frame.height)
+    
             default:
                 print("Anything But Portrait")
    
