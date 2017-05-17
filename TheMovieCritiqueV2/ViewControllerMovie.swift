@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,12 +17,20 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var textViewDescription: UITextView!
+    @IBOutlet weak var textMovieID: UILabel!
+    
+    
     
     var externalMovieTitle:String = ""
     var externalMovieImage:UIImage!
     var externalMovieActors:String = ""
     var externalMovieGenre:String = ""
     var externalMovieDescription:String = ""
+    var externalMovieID:String = ""
+    
+    var reviews = [FeedRecentReview]()
+    
+    @IBOutlet weak var tableReviewFeed: UITableView!
     
     let tableCellIdentifier = "tableReviews"
 
@@ -34,6 +43,33 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         labelGenre.text = externalMovieGenre
         labelActors.text = externalMovieActors
         textViewDescription.text = externalMovieDescription
+        textMovieID.text = externalMovieID
+        
+        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text! as String]
+        
+        Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.reviews.append(FeedRecentReview(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        self.tableReviewFeed.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+
         
         // Do any additional setup after loading the view.
     }
@@ -42,15 +78,36 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("about to enter")
-        return 1
+        return reviews.count
     }
     
     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("I got at....")
         let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovieReviews
 
-        tableActivity.labelUserName.text = "Random name"
-         print("I got at the end of the feed thing")
+        
+        
+        
+        tableActivity.labelUserName.text = reviews[indexPath.row].firstName
+        tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
+        tableActivity.textViewReview.text = reviews[indexPath.row].review
+
+        if let url = NSURL(string: reviews[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                tableActivity.imagePoster.image = UIImage(data: data as Data)
+            }
+        }
+        
+        if let url = NSURL(string: reviews[indexPath.row].userImgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                tableActivity.imageProfile.image = UIImage(data: data as Data)
+            }
+        }
+        
+        
+        
+        
+        
         return tableActivity
         
     }

@@ -33,6 +33,9 @@ class FeedRecentReview
     public var password : String?
     public var favouriteGenre : String?
     public var friendID : String?
+    public var userImgSrc : String?
+
+    
   
     required public init(json: JSON) {
         
@@ -57,6 +60,7 @@ class FeedRecentReview
         email = json["Email"].stringValue
         password = json["Password"] .stringValue
         favouriteGenre = json["FavouriteGenre"] .stringValue
+        userImgSrc = json["ImgSrc"] .stringValue
         friendID = json["FriendID"] .stringValue
     }
     

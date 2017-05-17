@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pt9-Dm-Uy8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pt9-Dm-Uy8">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -492,6 +492,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MovieID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGj-gG-Dcp">
+                                        <rect key="frame" x="466" y="47" width="92" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.60000002379999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -518,7 +525,7 @@
                                         <rect key="frame" x="0.0" y="28" width="1024" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSR-jL-SNc" id="PFS-lV-FQy">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="154.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-6o-KWO">
@@ -639,6 +646,8 @@
                         <outlet property="labelDescription" destination="k1i-MH-77C" id="6dJ-J8-hRt"/>
                         <outlet property="labelGenre" destination="gkV-kj-6w9" id="uJU-u8-NiB"/>
                         <outlet property="labelTitle" destination="UB6-Vb-lo0" id="3h9-bJ-f9G"/>
+                        <outlet property="tableReviewFeed" destination="Axy-5M-LPa" id="S6B-aV-pMk"/>
+                        <outlet property="textMovieID" destination="BGj-gG-Dcp" id="FpO-Ms-I1h"/>
                         <outlet property="textViewDescription" destination="UcI-L5-fLS" id="59A-Ed-GKc"/>
                     </connections>
                 </viewController>
@@ -1648,7 +1657,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD">
-                                                    <rect key="frame" x="527" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="783" y="0.0" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1764,7 +1773,7 @@
             </objects>
             <point key="canvasLocation" x="1494.140625" y="944.36310395314786"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainNav-->
         <scene sceneID="mkR-5Y-udK">
             <objects>
                 <tabBarController title="MainNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-Dm-Uy8" sceneMemberID="viewController">
@@ -1889,6 +1898,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="y51-bi-jfF"/>
-        <segue reference="3qa-Oe-MTD"/>
+        <segue reference="Xfv-5d-K9s"/>
     </inferredMetricsTieBreakers>
 </document>

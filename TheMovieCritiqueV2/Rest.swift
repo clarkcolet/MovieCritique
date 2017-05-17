@@ -43,6 +43,13 @@ class Rest:NSObject
     }
     
     
+    
+    func getReviewPerMovie(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "getReviewPerMovie",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
     public func makeHTTPPostRequest(path: String, body: [String: AnyObject], onCompletion: @escaping ServiceResponse) {
         let request = NSMutableURLRequest(url: NSURL(string: BaseURL + path)! as URL)
         

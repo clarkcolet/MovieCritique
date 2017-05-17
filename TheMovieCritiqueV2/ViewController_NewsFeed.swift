@@ -69,6 +69,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                     for entry in results {
                         
                         // let user = User(json: entry)
+                        
                         self.movies.append(Movie(json: entry))
                         
                     }
