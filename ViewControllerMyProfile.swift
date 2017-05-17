@@ -1,43 +1,4 @@
-//
-//  ViewControllerMyProfile.swift
-//  TheMovieCritiqueV2
-//
-//  Created by Claudio Coletta on 15/05/2017.
-//  Copyright © 2017 CCNN. All rights reserved.
-//
 
-//import UIKit
-//
-//class ViewControllerMyProfile: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
-
-//
-//  ViewControllerFriendProfile.swift
-//  TheMovieCritiqueV2
-//
 //  Created by Claudio Coletta on 12/05/2017.
 //  Copyright © 2017 CCNN. All rights reserved.
 //
@@ -49,8 +10,9 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     @IBOutlet weak var buttonReviews: UIButton!
     @IBOutlet weak var buttonFavourites: UIButton!
     
-    @IBOutlet weak var labelFavourites: UILabel!
-    @IBOutlet weak var labelReview: UILabel!
+    @IBOutlet weak var labelUnderline: UILabel!
+
+    
     
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelMovie: UILabel!
@@ -71,20 +33,21 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     
     var boolRow:Bool = false
     
+    var boolRight:Bool = true
+    
   //  @IBOutlet weak var innerLabel: UILabel!
     
     override func viewDidLoad() {
-        
+     
         super.viewDidLoad()
-      //  self.title = navigationTitleExternal
+     
         self.title = "My Profile"
-     //   innerLabel.text = externalLabel
+     
          self.navigationController?.navigationBar.tintColor = UIColor.black;
         buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
-        labelFavourites.textColor = UIColor.red
-        
+
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-        labelReview.textColor = UIColor.lightGray
+        labelUnderline.textColor = UIColor.black
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -297,26 +260,53 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     @IBAction func showReviews(_ sender: UIButton) {
         print("reviews pressed")
         reviews = true
-        buttonReviews.setTitleColor(UIColor.red, for: UIControlState.normal)
-        labelReview.textColor = UIColor.red
-        
+        buttonReviews.setTitleColor(UIColor.black, for: UIControlState.normal)
+
         buttonFavourites.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-        labelFavourites.textColor = UIColor.lightGray
+   
         loadTableView()
+        if(boolRight){
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                self.labelUnderline.frame.origin.x -= 512
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        boolRight = false
     }
     
     @IBAction func showFavourites(_ sender: UIButton) {
         print("favourites pressed")
+      
         reviews = false
-        buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
-        labelFavourites.textColor = UIColor.red
+        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
         
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-        labelReview.textColor = UIColor.lightGray
+        
+        if(!boolRight) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                self.labelUnderline.frame.origin.x += 512
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+
+        boolRight = true
         loadCollectionView()
     }
     
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+         print ("Right")
+        if(!boolRight){
+        showFavourites(buttonFavourites)
+        }
+    }
     
+    
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        if(boolRight){
+            showReviews(buttonReviews)
+        }
+        
+    }
     
     
     
