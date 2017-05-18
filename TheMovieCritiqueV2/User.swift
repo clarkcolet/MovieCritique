@@ -28,7 +28,7 @@ public class User {
         password = json["Password"].stringValue
         favouriteGenre = json["FavouriteGenre"].stringValue
         favouriteMovie = json["FavouriteMovie"].stringValue
-        imgSrc = json["ImgSrc"].stringValue
+        imgSrc = json["UserImg"].stringValue
         createdOn = json["CreatedOn"].stringValue
         updatedOn = json["UpdatedOn"].stringValue
     }

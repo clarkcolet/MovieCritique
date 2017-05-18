@@ -93,15 +93,15 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
 
-        if let url = NSURL(string: reviews[indexPath.row].imgSrc!){
-            if let data = NSData(contentsOf: url as URL){
-                tableActivity.imagePoster.image = UIImage(data: data as Data)
+        if let posterUrl = NSURL(string: reviews[indexPath.row].imgSrc!){
+            if let d = NSData(contentsOf: posterUrl as URL){
+                tableActivity.imagePoster.image = UIImage(data: d as Data)
             }
         }
         
-        if let url = NSURL(string: reviews[indexPath.row].userImgSrc!){
-            if let data = NSData(contentsOf: url as URL){
-                tableActivity.imageProfile.image = UIImage(data: data as Data)
+        if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
+            if let data2 = NSData(contentsOf: url2 as URL){
+                tableActivity.imageProfile.image = UIImage(data: data2 as Data)
             }
         }
         
