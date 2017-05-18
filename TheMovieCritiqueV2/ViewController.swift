@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var txtPassword: UITextField!
     
+    
+    
     let validator = Validator()
     let sessionM = SessionManager()
     

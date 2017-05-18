@@ -31,6 +31,11 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     
      var boolRight:Bool = true
     
+    var currentCellExternal = CollectionViewCellReviews()
+    var currentRowExternal = TableViewCellReviews()
+    
+    var boolRow:Bool = false
+    
     
     @IBOutlet weak var innerLabel: UILabel!
     
@@ -117,7 +122,11 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("I was selected: #\(indexPath.item)!")
+        boolRow = true
+        let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellReviews
+        currentRowExternal = currentRow
         
+        performSegue(withIdentifier: "FromFriendProfileToReview", sender: nil)
         
     }
     
@@ -128,8 +137,8 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath as IndexPath) as! TableViewCellReviews
-        cell.imageUser.image = UIImage(named: "beauty")
-        cell.reviewTitle.text = "hello, mate"
+        cell.imageMovie.image = UIImage(named: "beauty")
+        cell.movieTitle.text = "Title of the film"
         cell.time.text = "2:00"
         cell.nameUser.text = "mark"
         cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
@@ -195,6 +204,47 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
 
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("You selected cell #\(indexPath.item)!")
+        boolRow = false
+        
+        let currentCell = collectionView.cellForItem(at: indexPath) as! CollectionViewCellReviews
+        currentCellExternal = currentCell
+        
+        performSegue(withIdentifier: "FromFriendProfileToMovie", sender: nil)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromFriendProfileToReview"{
+            
+            let vc = segue.destination as! ViewControllerFriendReview
+
+                vc.externalImageMovie = currentRowExternal.imageMovie.image
+                vc.externaltextViewReview = currentRowExternal.review.text
+                vc.externalLabelTitle = currentRowExternal.movieTitle.text
+                vc.externaltextViewDescription = currentRowExternal.description
+            
+
+                vc.title = "Review"
+   
+        }
+        if segue.identifier == "FromFriendProfileToMovie"{
+            
+            let vc = segue.destination as! ViewControllerMovie
+            
+            vc.externalMovieTitle = currentCellExternal.textLabel.text!
+            vc.externalMovieImage = currentCellExternal.imageView.image
+
+            vc.title = currentCellExternal.textLabel.text
+            
+        }
+    }
+    
+    
     
 
     override func didReceiveMemoryWarning() {

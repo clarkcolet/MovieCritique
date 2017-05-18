@@ -11,7 +11,9 @@ import UIKit
 class ViewControllerPhoto: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var externalMyProfile = ViewControllerMyProfile()
+    var externalCreateAccount = ViewControllerCreateAccount()
     let imagePicker = UIImagePickerController()
+    var boolExternalCreateAccount = Bool()
 
 
     override func viewDidLoad() {
@@ -25,6 +27,8 @@ class ViewControllerPhoto: UIViewController, UIImagePickerControllerDelegate, UI
     {
         print("Image Pick Controller")
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        
+        if(!boolExternalCreateAccount) {
         externalMyProfile.buttonProfile.setImage(chosenImage, for: .normal)
         externalMyProfile.buttonProfile.contentMode = .scaleAspectFit
         //
@@ -32,7 +36,13 @@ class ViewControllerPhoto: UIViewController, UIImagePickerControllerDelegate, UI
         externalMyProfile.storeProfilePhoto()
         //
         
-      
+        } else {
+            externalCreateAccount.buttonProfile.setImage(chosenImage, for: .normal)
+            externalCreateAccount.buttonProfile.contentMode = .scaleAspectFit
+            //
+            externalCreateAccount.externalProfilePhoto = chosenImage
+            externalCreateAccount.storeProfilePhoto()
+        }
         dismiss(animated:true, completion: nil)
         
         let tmpController :UIViewController! = self

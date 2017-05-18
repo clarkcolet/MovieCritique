@@ -26,6 +26,14 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var LastNameTxt: UITextField!
     
     @IBOutlet weak var FavouriteMovie: UITextField!
+
+    @IBOutlet weak var phoneNumber: UITextField!
+    
+     @IBOutlet weak var buttonProfile: UIButton!
+    
+    var externalProfilePhoto:UIImage!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var tasks: [UserImage] = []
     
     var pickerData: [String] = [String]()
     
@@ -35,6 +43,13 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonProfile.setImage(UIImage(named: "Account") , for: .normal)
+       // let task = UserImage(context: context) // Link Task & Context
+       // task.imageData = UIImagePNGRepresentation(externalProfilePhoto) as NSData?//externalProfilePhoto
+        
+       // (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        //
              // assignbackground()
         navigationBar.topItem?.title = "Create Account"
         buttonSubmit.layer.cornerRadius = 7
@@ -52,6 +67,81 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         self.pickerGenre.delegate = self;
         
    
+        buttonProfile.layer.cornerRadius = 0.5 * buttonProfile.bounds.size.width
+        buttonProfile.layer.borderColor = UIColor.black.cgColor//UIColor(red:0.0/255.0, green:122.0/255.0, blue:255.0/255.0, alpha:1).cgColor as CGColor
+        buttonProfile.layer.borderWidth = 4
+        buttonProfile.clipsToBounds = true
+        
+       // getData()
+
+        
+    }
+    
+    func getData() {
+        print("Attempt to try to enter tasks count \(tasks.count)")
+        
+        do {
+            tasks = try context.fetch(UserImage.fetchRequest())
+            
+            print(tasks.count)
+        } catch {
+            print("Fetching Failed")
+        }
+        
+        if(tasks.count > 0) {
+            let task = tasks[0]
+            
+            buttonProfile.setImage(UIImage(data: task.imageData! as Data), for: .normal)
+            
+            
+            
+            print("I'm here inside tasks count")
+        }
+        
+    }
+    
+    func storeProfilePhoto() {
+        
+        print("Photo stored")
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        //
+        for taskDelete in tasks {
+            print("Deleting)!")
+            context.delete(taskDelete)
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            do {
+                tasks = try context.fetch(UserImage.fetchRequest())
+            } catch {
+                print("Fetching Failed")
+            }
+        }
+        let task = UserImage(context: context) // Link Task & Context
+        task.imageData = UIImagePNGRepresentation(externalProfilePhoto) as NSData?//externalProfilePhoto
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        getData()
+        
+    }
+    
+    @IBAction func changePhoto(_ sender: UIButton) {
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionPhoto = self.storyboard?.instantiateViewController(withIdentifier: "Photo") as! ViewControllerPhoto
+        
+        optionPhoto.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        let popoverMenuViewController = optionPhoto.popoverPresentationController
+        popoverMenuViewController!.permittedArrowDirections = .up
+        popoverMenuViewController!.delegate = self as? UIPopoverPresentationControllerDelegate
+        popoverMenuViewController!.sourceView = self.view
+        popoverMenuViewController?.sourceRect = CGRect(x:buttonProfile.frame.origin.x + 3, y: buttonProfile.frame.origin.y + 110,width: 100, height: 50)
+        
+        optionPhoto.preferredContentSize = CGSize(width: 200, height: 120)
+        optionPhoto.externalCreateAccount = self
+        optionPhoto.boolExternalCreateAccount = true
+        self.present(optionPhoto, animated: true, completion: nil)
+        
         
     }
 

@@ -12,9 +12,9 @@ class TableViewCellReviews: UITableViewCell {
 
 
     
-    let imageUser = UIImageView()
+    let imageMovie = UIImageView()
     let nameUser = UILabel()
-    let reviewTitle = UILabel()
+    let movieTitle = UILabel()
     let time = UILabel()
     let review = UILabel()
   // let review = UITextView()
@@ -22,9 +22,9 @@ class TableViewCellReviews: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        imageUser.translatesAutoresizingMaskIntoConstraints = false
+        imageMovie.translatesAutoresizingMaskIntoConstraints = false
         nameUser.translatesAutoresizingMaskIntoConstraints = false
-        reviewTitle.translatesAutoresizingMaskIntoConstraints = false
+        movieTitle.translatesAutoresizingMaskIntoConstraints = false
         time.translatesAutoresizingMaskIntoConstraints = false
         review.translatesAutoresizingMaskIntoConstraints = false
 
@@ -32,20 +32,20 @@ class TableViewCellReviews: UITableViewCell {
        review.lineBreakMode = NSLineBreakMode.byWordWrapping
         
        nameUser.font = UIFont.boldSystemFont(ofSize: 20)
-       reviewTitle.font = UIFont.boldSystemFont(ofSize: 20)
+       movieTitle.font = UIFont.boldSystemFont(ofSize: 20)
        time.font = UIFont.boldSystemFont(ofSize: 18)
        review.font = UIFont.systemFont(ofSize: 18)
         
-        contentView.addSubview(imageUser)
+        contentView.addSubview(imageMovie)
         contentView.addSubview(nameUser)
-        contentView.addSubview(reviewTitle)
+        contentView.addSubview(movieTitle)
         contentView.addSubview(time)
         contentView.addSubview(review)
         
         let viewsDict = [
-            "image" : imageUser,
+            "image" : imageMovie,
             "username" : nameUser,
-            "message" : reviewTitle,
+            "message" : movieTitle,
             "labTime" : time,
             "review"  : review,
             ] as [String : Any]
