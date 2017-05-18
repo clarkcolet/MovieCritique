@@ -1094,6 +1094,9 @@
                     <navigationItem key="navigationItem" title="Your Review" id="EMd-bo-kNn">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="XjV-to-a5M">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="SaveReview:" destination="5uT-dh-gmC" id="153-VA-sbi"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -2132,8 +2135,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3qa-Oe-MTD"/>
-        <segue reference="ekc-GB-TKS"/>
         <segue reference="y51-bi-jfF"/>
-        <segue reference="dKy-St-Oso"/>
+        <segue reference="idY-cC-GHI"/>
+        <segue reference="krU-22-V1K"/>
     </inferredMetricsTieBreakers>
 </document>

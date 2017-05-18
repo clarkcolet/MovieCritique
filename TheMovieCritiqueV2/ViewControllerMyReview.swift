@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerMyReview: UIViewController {
     
@@ -35,8 +36,6 @@ class ViewControllerMyReview: UIViewController {
         labelDescription.text = externalDescription
         
         self.navigationController?.navigationBar.tintColor = UIColor.black;
-       // self.navigationController.
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +43,40 @@ class ViewControllerMyReview: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func SaveReview(_ sender: Any) {
+        
+        let validator = Validator()
+        var validReview:Bool = textViewReview.text.characters.count > 20
+        
+        if(validReview)
+        {
+            var session = SessionManager()
+            let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String, "MovieID" :  self.externalActors as String]
+            
+            Rest.sharedInstance.saveReview(body: param as [String : AnyObject]) { (json: JSON) in
+                if(json["Status"] == "Success")
+                {
+                    if let results = json["Data"].array {
+                        for entry in results {
+                            
+                        }
+                        DispatchQueue.main.async(execute: {
+                            
+                            
+                        })
+                    }
+                }
+                else
+                {
+                    print("No DATA")
+                }
+            }
+
+        }
+        
+        
+    }
 
     /*
     // MARK: - Navigation

@@ -29,6 +29,12 @@ class Rest:NSObject
         })
     }
     
+    func saveReview(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "saveReview",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
     
     func getMovies(onCompletion: @escaping (JSON) -> Void) {
         makeHTTPGetRequest(path: "getMovies", onCompletion: { json, err in
