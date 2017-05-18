@@ -37,10 +37,9 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     var externalProfilePhoto:UIImage!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-   // var coreUserImage:UserImage!
-    //var task:UserImage!
+
     var tasks: [UserImage] = []
-   // var changedPhoto:Bool = false
+
     
     override func viewDidLoad() {
      
@@ -351,11 +350,8 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     func storeProfilePhoto() {
         
         print("Photo stored")
-
-      
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        
+
         //
         for taskDelete in tasks {
             print("Deleting)!")
@@ -403,6 +399,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         
         optionPhoto.preferredContentSize = CGSize(width: 200, height: 120)
         optionPhoto.externalMyProfile = self
+        optionPhoto.boolExternalCreateAccount = false
         self.present(optionPhoto, animated: true, completion: nil)
       //  getData()
         
