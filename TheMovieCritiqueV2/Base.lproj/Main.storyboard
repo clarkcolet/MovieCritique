@@ -966,6 +966,7 @@
                         <outlet property="labelUnderline" destination="kUd-lm-mgF" id="zAz-IN-9eu"/>
                         <outlet property="subView" destination="Kyv-9O-m2z" id="Fz7-jg-Ccv"/>
                         <segue destination="5uT-dh-gmC" kind="show" identifier="FromMyProfileToReview" id="dKy-St-Oso"/>
+                        <segue destination="TTw-vb-p0b" kind="show" identifier="FromMyProfileToMovie" id="3dy-2f-gUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2r-93-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1012,17 +1013,17 @@
                                 <rect key="frame" x="393" y="64" width="631" height="491"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzY-NN-YY5">
-                                        <rect key="frame" x="8" y="16" width="204" height="41"/>
+                                        <rect key="frame" x="8" y="16" width="583" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="NWG-Bp-Vcg"/>
-                                            <constraint firstAttribute="width" constant="204" id="TAS-Nq-PBU"/>
+                                            <constraint firstAttribute="width" constant="583" id="TAS-Nq-PBU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPU-9a-Nrx">
-                                        <rect key="frame" x="8" y="65" width="204" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Actors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPU-9a-Nrx">
+                                        <rect key="frame" x="8" y="65" width="583" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="QKK-hY-1rN"/>
                                         </constraints>
@@ -1030,8 +1031,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-cW-un2">
-                                        <rect key="frame" x="8" y="114" width="116" height="38"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-cW-un2">
+                                        <rect key="frame" x="8" y="114" width="583" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="116" id="hyC-hM-LjK"/>
                                             <constraint firstAttribute="height" constant="38" id="kHj-DY-Z01"/>
@@ -1050,7 +1051,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Vk-HE-iNz">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="8Vk-HE-iNz">
                                         <rect key="frame" x="8" y="189" width="615" height="274"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -1067,7 +1068,7 @@
                                     <constraint firstItem="v0F-ND-V6d" firstAttribute="top" secondItem="ceQ-cW-un2" secondAttribute="bottom" id="CiZ-Il-d5M"/>
                                     <constraint firstItem="hzY-NN-YY5" firstAttribute="leading" secondItem="bPU-9a-Nrx" secondAttribute="leading" id="T2f-9S-522"/>
                                     <constraint firstItem="8Vk-HE-iNz" firstAttribute="top" secondItem="v0F-ND-V6d" secondAttribute="bottom" constant="8" symbolic="YES" id="VVG-iQ-pCa"/>
-                                    <constraint firstItem="hzY-NN-YY5" firstAttribute="trailing" secondItem="bPU-9a-Nrx" secondAttribute="trailing" id="dSq-YI-QUn"/>
+                                    <constraint firstItem="hzY-NN-YY5" firstAttribute="trailing" secondItem="bPU-9a-Nrx" secondAttribute="trailing" constant="379" id="dSq-YI-QUn"/>
                                     <constraint firstItem="hzY-NN-YY5" firstAttribute="leading" secondItem="hNL-US-WX0" secondAttribute="leadingMargin" id="fJE-k6-Zds"/>
                                     <constraint firstItem="bPU-9a-Nrx" firstAttribute="top" secondItem="hzY-NN-YY5" secondAttribute="bottom" constant="8" symbolic="YES" id="pIH-d4-hmb"/>
                                     <constraint firstItem="v0F-ND-V6d" firstAttribute="leading" secondItem="8Vk-HE-iNz" secondAttribute="leading" id="vvz-Ri-g1y"/>
@@ -2130,9 +2131,9 @@
         <image name="account_icon" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dKy-St-Oso"/>
+        <segue reference="krU-22-V1K"/>
+        <segue reference="3dy-2f-gUr"/>
         <segue reference="hoF-rx-d7q"/>
-        <segue reference="pKL-9j-tGb"/>
-        <segue reference="ZVS-wa-RfL"/>
+        <segue reference="idY-cC-GHI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -229,8 +229,9 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
                 vc.externalImageMovie = currentRowExternal.imageMovie.image
                 vc.externaltextViewReview = currentRowExternal.review.text
                 vc.externalLabelTitle = currentRowExternal.movieTitle.text
-                vc.externaltextViewDescription = currentRowExternal.description
-            
+                vc.externaltextViewDescription = "Description of the film goes here"
+                vc.externalLabelGenre = "Genre goes here"
+                vc.externalLabelActors = "Actors go here"
 
                 vc.title = "Review"
    
@@ -241,6 +242,9 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
             
             vc.externalMovieTitle = currentCellExternal.textLabel.text!
             vc.externalMovieImage = currentCellExternal.imageView.image
+            vc.externalMovieDescription = "Description of the film goes here"
+            vc.externalMovieGenre = "Genre goes here"
+            vc.externalMovieActors = "Actors go here"
 
             vc.title = currentCellExternal.textLabel.text
             

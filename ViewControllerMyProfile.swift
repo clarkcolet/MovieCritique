@@ -181,7 +181,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath as IndexPath) as! TableViewCellReviews
         cell.imageMovie.image = UIImage(named: "beauty")
-        cell.movieTitle.text = "hello, mate"
+        cell.movieTitle.text = "Title of the film goes here"
         cell.time.text = "2:00"
         cell.nameUser.text = "mark"
         cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
@@ -256,7 +256,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         let currentCell = collectionView.cellForItem(at: indexPath) as! CollectionViewCellReviews
         currentCellExternal = currentCell
         
-        performSegue(withIdentifier: "FromMyProfileToReview", sender: nil)
+        performSegue(withIdentifier: "FromMyProfileToMovie", sender: nil)
         
         
     }
@@ -266,19 +266,38 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             
             let vc = segue.destination as! ViewControllerMyReview
             
-            if(!boolRow) {
+          //  if(!boolRow) {
                 vc.externalImage = currentCellExternal.imageView.image
                 vc.externalReview = "My review goes here - collection"
                 vc.externalDescription = "Description goes here"
                 vc.externalTitle = "Title goes here"
-            } else {
-                vc.externalImage = currentRowExternal.imageMovie.image
-                vc.externalReview = "My review goes here - table"
-                vc.externalDescription = "Description goes here"
-                vc.externalTitle = "Title goes here"
-            }
+            vc.externalGenre = "Genre goes here"
+            vc.externalActors = "External actors"
+            
+          //  } else {
+            
+            
+//                vc.externalImage = currentRowExternal.imageMovie.image
+//                vc.externalReview = "My review goes here - table"
+//                vc.externalDescription = "Description goes here"
+//                vc.externalTitle = "Title goes here"
+          //  }
             vc.title = "Review"
             
+            
+        }
+        
+        if segue.identifier == "FromMyProfileToMovie"{
+            
+            let vc = segue.destination as! ViewControllerMovie
+            
+            vc.externalMovieTitle = currentCellExternal.textLabel.text!
+            vc.externalMovieImage = currentCellExternal.imageView.image
+            vc.externalMovieDescription = "Description of the film goes here"
+            vc.externalMovieGenre = "Genre goes here"
+            vc.externalMovieActors = "Actors go here"
+            
+            vc.title = currentCellExternal.textLabel.text
             
         }
     }
