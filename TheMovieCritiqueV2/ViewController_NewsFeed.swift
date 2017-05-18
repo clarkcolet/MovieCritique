@@ -149,7 +149,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         if let url = NSURL(string: movies[indexPath.row].imgSrc){
             if let data = NSData(contentsOf: url as URL){
                 cellPosterTop.moviePoster.image = UIImage(data: data as Data)
-            }
+        }
+           cellPosterTop.movieName.text = movies[indexPath.row].title as! String
         }
         
         
@@ -186,25 +187,41 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
 
         let vc = segue.destination as! ViewControllerMovie
       
-            vc.externalMovieImage = currentCellExternal.moviePoster.image
-            vc.externalMovieDescription = "_____"
-            vc.externalMovieTitle = "----"
-            vc.externalMovieDescription = "1234"
-            vc.externalMovieActors = "12345678"
-            vc.externalMovieGenre = ""
+            for movie in movies
+            {
+                if(movie.title == currentCellExternal.movieName.text)
+                {
+                    
+                    vc.externalMovieImage = currentCellExternal.moviePoster.image
+                    vc.externalMovieTitle = currentCellExternal.movieName.text!
+                    vc.externalMovieDescription = movie.desc!
+                    vc.externalMovieActors = movie.cast!
+                    vc.externalMovieGenre = movie.genre!
+                    vc.externalMovieID = movie.movieID!
+                }
+            }
+            
+            
+            
+//            vc.externalMovieImage = currentCellExternal.moviePoster.image
+//            vc.externalMovieDescription = currentCellExternal.
+//            vc.externalMovieTitle = "----"
+//            vc.externalMovieDescription = "1234"
+//            vc.externalMovieActors = "12345678"
+//            vc.externalMovieGenre = ""
          
         }
-        if segue.identifier == "FromHomeToFriendReview"{
-            print("I got inside the segue to get to review")
-            let vc = segue.destination as! ViewControllerFriendReview
-            vc.externalImageMovie = currentRowExternal.imagePoster.image
-            vc.externaltextViewReview = "My review goes here"
-            vc.externaltextViewDescription = "Description goes here"
-            vc.externalLabelTitle = "Title goes here"
-            vc.title = "Review"
-            vc.externalImageFriend = currentRowExternal.imageProfile.image
-            vc.externalLabelNameFriend = "Name of friend goes here"
-        }
+//        if segue.identifier == "FromHomeToFriendReview"{
+//            print("I got inside the segue to get to review")
+//            let vc = segue.destination as! ViewControllerFriendReview
+//            vc.externalImageMovie = currentRowExternal.imagePoster.image
+//            vc.externaltextViewReview = "My review goes here"
+//            vc.externaltextViewDescription = "Description goes here"
+//            vc.externalLabelTitle = "Title goes here"
+//            vc.title = "Review"
+//            vc.externalImageFriend = currentRowExternal.imageProfile.image
+//            vc.externalLabelNameFriend = "Name of friend goes here"
+//        }
        
 
     }
@@ -228,21 +245,17 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     func tableView(_ tableView:UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-//        //print("I got at the beginning of the feed thig")
       let tableActivity = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! TableViewCellMovies
-//        //cellTable.tableLabelTime.text = "5 minutes ago"
-//        tableActivity.imageProfile.image = UIImage(named: "Account")
-//        tableActivity.imagePoster.image = UIImage(named: "startrek")
+
         if let url = NSURL(string: recentReviewFeed[indexPath.row].imgSrc!){
             if let data = NSData(contentsOf: url as URL){
                 tableActivity.imagePoster.image  = UIImage(data: data as Data)
             }
         }
         
-        tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
-        tableActivity.labelUserActivity.text = "\(recentReviewFeed[indexPath.row].firstName) made a review:"
-       tableActivity.textView.text = recentReviewFeed[indexPath.row].review
+      //  tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
+     //   tableActivity.labelUserActivity.text = "\(recentReviewFeed[indexPath.row].firstName) made a review:"
+     //  tableActivity.textView.text = recentReviewFeed[indexPath.row].review
         
        
         

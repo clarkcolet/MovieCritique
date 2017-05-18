@@ -21,7 +21,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     
     let reuseIdentifier = "cellMovie"
     var itemsImage = ["beauty", "startrek", "guardians"]
-    var itemsTitle = ["Beautjy and the Beast", "Startrek", "Guardians of the Galaxy"]
+    var itemsTitle = ["Beauty and the Beast", "Startrek", "Guardians of the Galaxy"]
     
     var movies = [Movie]()
     var filteredMovie = [Movie]()
@@ -144,16 +144,16 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     
   
         func assignbackground(){
-        let background = UIImage(named: "Background")
-        
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIViewContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubview(toBack: imageView)
+//        let background = UIImage(named: "Background")
+//        
+//        var imageView : UIImageView!
+//        imageView = UIImageView(frame: view.bounds)
+//        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+//        imageView.clipsToBounds = true
+//        imageView.image = background
+//        imageView.center = view.center
+//        view.addSubview(imageView)
+//        self.view.sendSubview(toBack: imageView)
         
         
         print("Dance, mate")
@@ -223,7 +223,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             vc.externalMovieDescription = movie.desc!
             vc.externalMovieActors = movie.cast!
             vc.externalMovieGenre = movie.genre!
-                    vc.externalMovieID = movie.movieID!
+            vc.externalMovieID = movie.movieID!
                 }
             }
             

@@ -13,13 +13,12 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     @IBOutlet weak var buttonReviews: UIButton!
     @IBOutlet weak var buttonFavourites: UIButton!
     
-    @IBOutlet weak var labelFavourites: UILabel!
-    @IBOutlet weak var labelReview: UILabel!
-    
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelMovie: UILabel!
     
     @IBOutlet weak var labelName: UILabel!
+    
+    @IBOutlet weak var labelUnderline: UILabel!
     
     @IBOutlet weak var subView: UIView!
     var collectionView: UICollectionView!
@@ -30,6 +29,8 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     var reviews:Bool = false
     var tableViewFirstTime:Bool = true
     
+     var boolRight:Bool = true
+    
     
     @IBOutlet weak var innerLabel: UILabel!
     
@@ -39,11 +40,10 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         self.title = navigationTitleExternal
         innerLabel.text = externalLabel
         
-       buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
-       labelFavourites.textColor = UIColor.red
+       buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
+       labelUnderline.textColor = UIColor.black
         
        buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-       labelReview.textColor = UIColor.lightGray
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -206,33 +206,54 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     @IBAction func showReviews(_ sender: UIButton) {
         print("reviews pressed")
         reviews = true
-        buttonReviews.setTitleColor(UIColor.red, for: UIControlState.normal)
-        labelReview.textColor = UIColor.red
+        buttonReviews.setTitleColor(UIColor.black, for: UIControlState.normal)
         
         buttonFavourites.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-        labelFavourites.textColor = UIColor.lightGray
+        
         loadTableView()
+        if(boolRight){
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                self.labelUnderline.frame.origin.x -= 512
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        boolRight = false
     }
     
     @IBAction func showFavourites(_ sender: UIButton) {
-        
-        
+
         print("favourites pressed")
+        
         reviews = false
-        buttonFavourites.setTitleColor(UIColor.red, for: UIControlState.normal)
-        labelFavourites.textColor = UIColor.red
+        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
         
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
-        labelReview.textColor = UIColor.lightGray
-        loadCollectionView()
         
-//        
-//        UIView.animate(withDuration: 0.5) {
-//            self.buttonFavourites.center.x += self.buttonFavourites.bounds.width
-//        }
-//        
+        if(!boolRight) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                self.labelUnderline.frame.origin.x += 512
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        
+        boolRight = true
+        loadCollectionView()
     }
     
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        print ("Right")
+        if(!boolRight){
+            showFavourites(buttonFavourites)
+        }
+    }
+    
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+       print("Left")
+        if(boolRight){
+            showReviews(buttonReviews)
+        }
+        
+    }
     
     
     
