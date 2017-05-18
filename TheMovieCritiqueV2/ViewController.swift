@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     
     let validator = Validator()
     let sessionM = SessionManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignbackground()

@@ -17,7 +17,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var textViewDescription: UITextView!
-   // @IBOutlet weak var textMovieID: UILabel!
+    @IBOutlet weak var textMovieID: UILabel!
     
     @IBOutlet weak var subViewInfo: UIView!
     
@@ -45,9 +45,9 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         labelGenre.text = externalMovieGenre
         labelActors.text = externalMovieActors
         textViewDescription.text = externalMovieDescription
-       // textMovieID.text = externalMovieID
+        textMovieID.text = externalMovieID
         
-        let param:Dictionary<String,String> = ["MovieID" :externalMovieID as String]
+        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -61,7 +61,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
                         
                     }
                     DispatchQueue.main.async(execute: {
-                        self.tableReviewFeed.reloadData()
+                      self.tableReviewFeed.reloadData()
                         
                     })
                 }

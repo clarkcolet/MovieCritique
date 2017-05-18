@@ -35,7 +35,7 @@
 		1DED44701EC8B8E8000D24AB /* TableViewCellGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED446F1EC8B8E8000D24AB /* TableViewCellGenres.swift */; };
 		1DF2918B1EC096C600AD4574 /* ViewControllerCreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2918A1EC096C600AD4574 /* ViewControllerCreateAccount.swift */; };
 		1DF2918D1EC229A800AD4574 /* ViewControllerNavigationExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2918C1EC229A800AD4574 /* ViewControllerNavigationExample.swift */; };
-		21B9431E1ECC7A17006F7018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B9431C1ECC7A17006F7018 /* Main.storyboard */; };
+		1DFB8CC71ECC762B00F24BAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB8CC51ECC762B00F24BAE /* Main.storyboard */; };
 		21E5A8C01ECB433000B41F2E /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BA1ECB433000B41F2E /* Json4Swift_Base.swift */; };
 		21E5A8C11ECB433000B41F2E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BB1ECB433000B41F2E /* Movie.swift */; };
 		21E5A8C21ECB433000B41F2E /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5A8BC1ECB433000B41F2E /* Rest.swift */; };
@@ -98,7 +98,7 @@
 		1DED446F1EC8B8E8000D24AB /* TableViewCellGenres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCellGenres.swift; path = ../TableViewCellGenres.swift; sourceTree = "<group>"; };
 		1DF2918A1EC096C600AD4574 /* ViewControllerCreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCreateAccount.swift; sourceTree = "<group>"; };
 		1DF2918C1EC229A800AD4574 /* ViewControllerNavigationExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNavigationExample.swift; sourceTree = "<group>"; };
-		21B9431D1ECC7A17006F7018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1DFB8CC61ECC762B00F24BAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21E5A8BA1ECB433000B41F2E /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json4Swift_Base.swift; sourceTree = "<group>"; };
 		21E5A8BB1ECB433000B41F2E /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		21E5A8BC1ECB433000B41F2E /* Rest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 				1D21B65C1EC0780800E5D482 /* LaunchScreen.storyboard in Resources */,
 				1D21B6591EC0780800E5D482 /* Assets.xcassets in Resources */,
 				1D8837731ECB3C28002FEFFF /* PodFile in Resources */,
-				21B9431E1ECC7A17006F7018 /* Main.storyboard in Resources */,
+				1DFB8CC71ECC762B00F24BAE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,10 +505,10 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		21B9431C1ECC7A17006F7018 /* Main.storyboard */ = {
+		1DFB8CC51ECC762B00F24BAE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				21B9431D1ECC7A17006F7018 /* Base */,
+				1DFB8CC61ECC762B00F24BAE /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
