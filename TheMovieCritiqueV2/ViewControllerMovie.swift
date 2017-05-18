@@ -92,12 +92,6 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.labelUserName.text = reviews[indexPath.row].firstName
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
-
-        if let posterUrl = NSURL(string: reviews[indexPath.row].imgSrc!){
-            if let d = NSData(contentsOf: posterUrl as URL){
-                tableActivity.imagePoster.image = UIImage(data: d as Data)
-            }
-        }
         
         if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
             if let data2 = NSData(contentsOf: url2 as URL){

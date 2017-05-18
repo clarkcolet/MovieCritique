@@ -2131,9 +2131,9 @@
         <image name="account_icon" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="y51-bi-jfF"/>
         <segue reference="3qa-Oe-MTD"/>
         <segue reference="ekc-GB-TKS"/>
-        <segue reference="krU-22-V1K"/>
+        <segue reference="y51-bi-jfF"/>
+        <segue reference="dKy-St-Oso"/>
     </inferredMetricsTieBreakers>
 </document>

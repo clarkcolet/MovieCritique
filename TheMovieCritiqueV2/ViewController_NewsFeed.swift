@@ -151,8 +151,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             if let data = NSData(contentsOf: url as URL){
                 cellPosterTop.moviePoster.image = UIImage(data: data as Data)
         }
-           cellPosterTop.movieName.text = movies[indexPath.row].title as! String
         }
+        cellPosterTop.movieName.text = movies[indexPath.row].title!
         
         
         print("I got here")
