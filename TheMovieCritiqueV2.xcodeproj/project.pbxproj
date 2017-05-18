@@ -165,6 +165,7 @@
 		1D21B64D1EC0780800E5D482 /* TheMovieCritiqueV2 */ = {
 			isa = PBXGroup;
 			children = (
+				21B9431C1ECC7A17006F7018 /* Main.storyboard */,
 				1DE618281ECB400D00685DDC /* utilities */,
 				1D96B5221EC36A7B0001B6C0 /* CollectionViewMovies.swift */,
 				1DFB8CC51ECC762B00F24BAE /* Main.storyboard */,

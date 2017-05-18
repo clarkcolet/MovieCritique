@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -479,7 +479,7 @@
                                         <rect key="frame" x="0.0" y="1" width="1024" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSR-jL-SNc" id="PFS-lV-FQy">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="154.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-6o-KWO">
@@ -696,8 +696,8 @@
                         <outlet property="labelGenre" destination="gkV-kj-6w9" id="uJU-u8-NiB"/>
                         <outlet property="labelTitle" destination="UB6-Vb-lo0" id="3h9-bJ-f9G"/>
                         <outlet property="subViewInfo" destination="jbY-Pt-QEZ" id="RJA-x1-N03"/>
-                        <outlet property="tableReviewFeed" destination="Axy-5M-LPa" id="f96-gS-jZr"/>
-                        <outlet property="textMovieID" destination="bjq-as-PMN" id="nl4-RO-LVE"/>
+                        <outlet property="tableReviewFeed" destination="Axy-5M-LPa" id="T6E-8f-faa"/>
+                        <outlet property="textMovieID" destination="bjq-as-PMN" id="okS-C2-fGc"/>
                         <outlet property="textViewDescription" destination="UcI-L5-fLS" id="59A-Ed-GKc"/>
                         <segue destination="j5e-48-hxr" kind="show" identifier="FromMovieToReview" id="idY-cC-GHI"/>
                     </connections>
@@ -726,7 +726,7 @@
                                         <rect key="frame" x="0.0" y="28" width="300" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SAw-dw-raP" id="scb-vZ-YWe">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tM6-Ek-9fT">
@@ -1838,10 +1838,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableActivity" rowHeight="180" id="8fG-tO-Nua" customClass="TableViewCellMovies" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="1024" height="180"/>
+                                        <rect key="frame" x="0.0" y="56" width="1024" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fG-tO-Nua" id="n69-wo-Y4O">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="179.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-ol-3Op">
@@ -1889,8 +1889,9 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD" userLabel="Date Posted">
                                                     <rect key="frame" x="783" y="0.0" width="42" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="datePosted"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

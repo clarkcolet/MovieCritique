@@ -22,6 +22,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
     
+    
+    
     var currentRowExternal:TableViewCellMovies!
     
     //CollectionView
@@ -31,7 +33,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     var currentCellExternal = CollectionViewMovies()
     
-
     
     var searchBar = UISearchBar()
     
@@ -150,8 +151,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             if let data = NSData(contentsOf: url as URL){
                 cellPosterTop.moviePoster.image = UIImage(data: data as Data)
         }
-           cellPosterTop.movieName.text = movies[indexPath.row].title as! String
         }
+        cellPosterTop.movieName.text = movies[indexPath.row].title!
         
         
         print("I got here")
@@ -253,9 +254,16 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             }
         }
         
-      //  tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
-     //   tableActivity.labelUserActivity.text = "\(recentReviewFeed[indexPath.row].firstName) made a review:"
-     //  tableActivity.textView.text = recentReviewFeed[indexPath.row].review
+        if let url2 = NSURL(string: recentReviewFeed[indexPath.row].userImgSrc!){
+            if let data = NSData(contentsOf: url2 as URL){
+                tableActivity.imageProfile.image  = UIImage(data: data as Data)
+            }
+        }
+        
+        
+        tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
+       tableActivity.labelUserActivity.text = recentReviewFeed[indexPath.row].firstName! +  " made a review "
+       tableActivity.textView.text = recentReviewFeed[indexPath.row].review
         
        
         

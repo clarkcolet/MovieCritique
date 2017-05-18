@@ -24,6 +24,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     var itemsTitle = ["Beauty and the Beast", "Startrek", "Guardians of the Galaxy"]
     
     var movies = [Movie]()
+    var filteredMovie = [Movie]()
     
     var currentCellExternal = CollectionViewCellMovieList()
     
@@ -63,7 +64,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
                         
                         // let user = User(json: entry)
                         self.movies.append(Movie(json: entry))
-                        
+                        self.filteredMovie.append(Movie(json:entry))
                     }
                     DispatchQueue.main.async(execute: {
                         
@@ -83,8 +84,8 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.movies.count)
-        return self.movies.count
+        print(self.filteredMovie.count)
+        return self.filteredMovie.count
     }
     
     // make a cell for each cell index path
@@ -94,7 +95,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         let cellMovie = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewCellMovieList
         
         
-        if let url = NSURL(string: movies[indexPath.row].imgSrc){
+        if let url = NSURL(string: filteredMovie[indexPath.row].imgSrc){
             if let data = NSData(contentsOf: url as URL){
               //  cellPosterTop.moviePoster.image = UIImage(data: data as Data)
                 cellMovie.imageMovie.image = UIImage(data: data as Data)
@@ -102,10 +103,10 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             }
         }
         
-        movieGenre = movies[indexPath.row].genre
+        movieGenre = filteredMovie[indexPath.row].genre
         
         
-        cellMovie.labelMovie.text = movies[indexPath.row].title
+        cellMovie.labelMovie.text = filteredMovie[indexPath.row].title
         
         cellMovie.labelMovie.numberOfLines = 1
         cellMovie.labelMovie.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -156,7 +157,43 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         
         
         print("Dance, mate")
+            
+            
+            
         }
+    
+//    func setFilteredData(genre:String)
+//    {
+//        self.filteredMovie.removeAll()
+//          self.filteredMovie = movies.filter { movie in
+//             movie.genre.contains(genre)
+//        }
+//        print(filteredMovie)
+//        self.collectionMovies.reloadData()
+//        
+//    }
+    
+        
+        
+        func filterContentForSearchText(searchText: String) {
+            //var results = [Movie]()
+            print(filteredMovie)
+            filteredMovie.removeAll()
+            for publication in movies {
+                if let fullTitle = publication.genre {
+                    if (fullTitle).contains(searchText) {
+                        filteredMovie.append(publication)
+                    }
+                }
+            }
+        
+
+        print(filteredMovie)
+        self.collectionMovies.reloadData()
+
+    }
+    
+    
    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -176,7 +213,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         if segue.identifier == "FromMoviesToMovie"{
             
             let vc = segue.destination as! ViewControllerMovie
-            for movie in movies
+            for movie in filteredMovie
             {
                 if(movie.title == currentCellExternal.labelMovie.text)
                 {

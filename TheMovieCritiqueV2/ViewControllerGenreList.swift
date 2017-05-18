@@ -17,7 +17,7 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
     var genres = ["Action", "Comedy", "Documentary", "Drama", "Family",  "Horror", "Thriller"]
     
     var externalMovieList = ViewControllerMovieList()
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +63,25 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
         
         externalMovieList.assignbackground()
         externalMovieList.navigationItem.title = currentCell.labelGenre.text
-
-    }
+        externalMovieList.filterContentForSearchText(searchText: currentCell.labelGenre.text!)
+        
+     //   let filteredArray = externalMovieList.movies.filter() {contains(($0 as Movie).genre, currentCell.labelGenre.text)}
+       
+       
     
+    
+    func filterContentForSearchText(searchText: String) -> [Movie] {
+        var results = [Movie]()
+        for publication in externalMovieList.movies {
+            if let fullTitle = publication.genre {
+                if (fullTitle).contains(searchText) {
+                    results.append(publication)
+                }
+            }
+        }
+        return results
+    }
+
     
     
     /*
@@ -78,4 +94,5 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
     }
     */
 
+}
 }

@@ -19,8 +19,6 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var textViewDescription: UITextView!
     @IBOutlet weak var textMovieID: UILabel!
     
-    
-    
     @IBOutlet weak var subViewInfo: UIView!
     
     
@@ -65,7 +63,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
                         
                     }
                     DispatchQueue.main.async(execute: {
-                        self.tableReviewFeed.reloadData()
+                      self.tableReviewFeed.reloadData()
                         
                     })
                 }
@@ -94,16 +92,10 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.labelUserName.text = reviews[indexPath.row].firstName
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
-
-        if let url = NSURL(string: reviews[indexPath.row].imgSrc!){
-            if let data = NSData(contentsOf: url as URL){
-                tableActivity.imagePoster.image = UIImage(data: data as Data)
-            }
-        }
         
-        if let url = NSURL(string: reviews[indexPath.row].userImgSrc!){
-            if let data = NSData(contentsOf: url as URL){
-                tableActivity.imageProfile.image = UIImage(data: data as Data)
+        if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
+            if let data2 = NSData(contentsOf: url2 as URL){
+                tableActivity.imageProfile.image = UIImage(data: data2 as Data)
             }
         }
         

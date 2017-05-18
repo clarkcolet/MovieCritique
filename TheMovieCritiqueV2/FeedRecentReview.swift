@@ -60,7 +60,7 @@ class FeedRecentReview
         email = json["Email"].stringValue
         password = json["Password"] .stringValue
         favouriteGenre = json["FavouriteGenre"] .stringValue
-        userImgSrc = json["ImgSrc"] .stringValue
+        userImgSrc = json["UserImg"] .stringValue
         friendID = json["FriendID"] .stringValue
     }
     
