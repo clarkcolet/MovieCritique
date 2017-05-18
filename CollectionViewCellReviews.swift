@@ -28,9 +28,9 @@ class CollectionViewCellReviews: UICollectionViewCell {
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(imageView)
         
-        textLabel = UILabel(frame: CGRect(x: 0, y: imageView.frame.size.height/1.8 - 10, width: frame.size.width, height: frame.size.height))
+        textLabel = UILabel(frame: CGRect(x: 0, y: imageView.frame.size.height/1.8 - 15, width: frame.size.width, height: frame.size.height))
        
-        textLabel.font = UIFont.boldSystemFont(ofSize: 10)
+        textLabel.font = UIFont.boldSystemFont(ofSize: 20)
         textLabel.textAlignment = .center
         
 //        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
