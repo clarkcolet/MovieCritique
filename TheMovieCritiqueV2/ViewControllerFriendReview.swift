@@ -45,10 +45,14 @@ class ViewControllerFriendReview: UIViewController {
         labelNameFriend.text = externalLabelNameFriend
         buttonFriend.imageView?.image = externalImageFriend
         
-        buttonFriend.backgroundColor = UIColor.gray
-        buttonFriend.layer.cornerRadius = 5
-        buttonFriend.layer.borderWidth = 2
-        buttonFriend.layer.borderColor = UIColor.black.cgColor
+//        buttonFriend.backgroundColor = UIColor.gray
+//        buttonFriend.layer.cornerRadius = 5
+//        buttonFriend.layer.borderWidth = 2
+//        buttonFriend.layer.borderColor = UIColor.black.cgColor
+        buttonFriend.layer.cornerRadius = 0.5 * buttonFriend.bounds.size.width
+        buttonFriend.layer.borderColor = UIColor.black.cgColor//UIColor(red:0.0/255.0, green:122.0/255.0, blue:255.0/255.0, alpha:1).cgColor as CGColor
+        buttonFriend.layer.borderWidth = 4
+        buttonFriend.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }

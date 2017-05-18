@@ -180,8 +180,8 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath as IndexPath) as! TableViewCellReviews
-        cell.imageUser.image = UIImage(named: "beauty")
-        cell.reviewTitle.text = "hello, mate"
+        cell.imageMovie.image = UIImage(named: "beauty")
+        cell.movieTitle.text = "hello, mate"
         cell.time.text = "2:00"
         cell.nameUser.text = "mark"
         cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
@@ -272,7 +272,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
                 vc.externalDescription = "Description goes here"
                 vc.externalTitle = "Title goes here"
             } else {
-                vc.externalImage = currentRowExternal.imageUser.image
+                vc.externalImage = currentRowExternal.imageMovie.image
                 vc.externalReview = "My review goes here - table"
                 vc.externalDescription = "Description goes here"
                 vc.externalTitle = "Title goes here"
