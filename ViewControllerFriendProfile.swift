@@ -52,8 +52,11 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-        layout.itemSize = CGSize(width: 200, height: 300)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+       // layout.minimumInteritemSpacing = 10
+        //layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: 200, height: 310)
+        
         
       //  print(subView.frame.width)
         
@@ -80,8 +83,8 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
        
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-        layout.itemSize = CGSize(width: 200, height: 300)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 200, height: 310)
         
       //  print(subView.frame.width)
         
