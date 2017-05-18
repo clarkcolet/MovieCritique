@@ -45,7 +45,7 @@ class ViewControllerFriendReview: UIViewController {
         labelNameFriend.text = externalLabelNameFriend
         buttonFriend.imageView?.image = externalImageFriend
         
-        buttonFriend.backgroundColor = UIColor.black
+        buttonFriend.backgroundColor = UIColor.gray
         buttonFriend.layer.cornerRadius = 5
         buttonFriend.layer.borderWidth = 2
         buttonFriend.layer.borderColor = UIColor.black.cgColor

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreData
+import MobileCoreServices
+import Foundation
 
-class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var subView: UIView!
 
@@ -16,17 +19,24 @@ class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout
     
     @IBOutlet weak var labelLL: UILabel!
     
+    var imagePicker = UIImagePickerController()
     
+    @IBOutlet weak var imageView: UIImageView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //image.image: UIImage!
+
+        imagePicker.delegate = self
+  
+       
+        
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         layout.itemSize = CGSize(width: 90, height: 90)
         
-        print(subView.frame.width)
-        
-       
          collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: subView.frame.width, height: subView.frame.height), collectionViewLayout: layout)
 
         collectionView.dataSource = self
@@ -35,72 +45,63 @@ class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout
 
         subView.addSubview(collectionView)
 
-        // Do any additional setup after loading the view.
+                   }
+    
+ 
+    
+    /**
+     Setup imagePicker and display Alert if it is not possible
+     
+     - parameter source: The Source for the imagePicker
+     */
+    func imagePickerSetup(forSource source : UIImagePickerControllerSourceType) {
         
-//        let swipeRight = UISwipeGestureRecognizer(target: self, action: Selector("respondToSwipeGesture:"))
-//        swipeRight.direction = .right
-//        view.addGestureRecognizer(swipeRight)
-//        
-//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: Selector("respondToSwipeGesture:"))
-//        swipeRight.direction = .left
-//        view.addGestureRecognizer(swipeLeft)
-//
-//        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-//        swipeDown.direction = .Down
-//        view.addGestureRecognizer(swipeDown)
-//        
-//        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-//        swipeDown.direction = .Up
-//        view.addGestureRecognizer(swipeUp)
         
-            }
-    
-    
-    
-    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        print("swiping right")
     }
-//    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-//        
-//        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-//            
-//            
-//            switch swipeGesture.direction {
-//            case UISwipeGestureRecognizerDirection.right:
-//                print("Swiped right")
-//            case UISwipeGestureRecognizerDirection.down:
-//                print("Swiped down")
-//            case UISwipeGestureRecognizerDirection.left:
-//                print("Swiped left")
-//            case UISwipeGestureRecognizerDirection.up:
-//                print("Swiped up")
-//            default:
-//                break
-//            }
+    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+//        if let pickedImage = init;[UIImagePickerControllerOriginalImage] as? UIImage; {
+//            self.imageView.contentMode = .scaleAspectFit
+//            imageView.image = imagePicker
 //        }
+//        
+//       // dismissViewControllerAnimated(true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+//        
+//    }
+
+    
+    
+//    func importPicture() {
+//        let picker = UIImagePickerController()
+//        picker.allowsEditing = true
+//        picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
+//        present(picker, animated: true)
 //    }
     
-//    func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
 //        
-//        switch swipeGesture.direction {
-//        case .Right:
-//            
-//            // Move Label to the right
-//            yourLabel.frame.origin.x += 100
-//            
-////        case .Down:
-////            // Move Label down
-////            yourLabel.frame.origin.y += 100
-//            
-//        case .Left:
-//            // Move Label to the left
-//            yourLabel.frame.origin.x -= 100
-//            
-////        case .Up:
-////            // Move Label up
-////            yourLabel.frame.origin.y -= 100
-//        }
+//        dismiss(animated: true)
+//        
+//        imageView.image = image
 //    }
+//    
+//    
+//    @IBAction func addPhoto(_ sender: UIButton) {
+//        imagePicker.allowsEditing = false
+//        imagePicker.sourceType = .photoLibrary
+//        
+//        present(imagePicker, animated: true, completion: nil)
+//    }
+//
+//
+//    
+//    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+//        print("swiping right")
+//    }
+
+
     
     func assignbackground(){
         collectionView.removeFromSuperview()
@@ -171,6 +172,41 @@ class ViewControllerTRYOUT: UIViewController, UICollectionViewDelegateFlowLayout
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /**
+     Convert Image to JPEG and generate a thumbnail
+     
+     - parameter image: a captured image
+     */
+    
+    /**
+     Display Alert when loadImages had no results
+     */
+//    func noImagesFound() {
+//        
+//        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        
+//        let alertVC = UIAlertController(title: "No Images Found", message: "There were no images saved in Core Data", preferredStyle: .alert)
+//        
+//        alertVC.addAction(alertAction)
+//        
+//        self.present(alertVC, animated: true, completion: nil)
+//    }
+//
+//    func startActivity() {
+//        Run.main {
+//            self.activityIndicator.isHidden = false
+//            self.activityIndicator.startAnimating()
+//        }
+//    }
+//    
+//    func stopActivity() {
+//        Run.main {
+//            self.activityIndicator.isHidden = true
+//            self.activityIndicator.stopAnimating()
+//        }
+//    }
+
 
     /*
     // MARK: - Navigation

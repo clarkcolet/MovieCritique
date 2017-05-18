@@ -31,6 +31,8 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieDescription:String = ""
     var externalMovieID:String = ""
     
+    var currentRowExternal:TableViewCellMovieReviews!
+    
     var reviews = [FeedRecentReview]()
     
     @IBOutlet weak var tableReviewFeed: UITableView!
@@ -110,6 +112,50 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         
         
         return tableActivity
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("I was selected: #\(indexPath.item)!")
+        
+        let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellMovieReviews
+        currentRowExternal = currentRow
+        
+        performSegue(withIdentifier: "FromMovieToReview", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "FromMovieToReview"{
+            
+            let vc = segue.destination as! ViewControllerFriendReview
+            
+            vc.externalImageMovie = imageMovie.image
+            vc.externaltextViewDescription =  textViewDescription.text
+            vc.externalLabelTitle = labelTitle.text!
+           // vc.externalMovieDescription = "1234"
+            vc.externalLabelActors = labelActors.text!
+            vc.externalLabelGenre = labelGenre.text!
+            vc.externalImageFriend = currentRowExternal.imageProfile.image
+            vc.externalLabelNameFriend = currentRowExternal.labelUserName.text
+            
+         
+        }
+        if segue.identifier == "FromMovieToMyReview"{
+            print("I got inside the segue to get to my review")
+            let vc = segue.destination as! ViewControllerMyReview
+            vc.externalImage = imageMovie.image
+            vc.externalReview = "My review goes here"
+            vc.externalDescription = textViewDescription.text
+            vc.externalTitle = labelTitle.text
+            vc.externalGenre = labelGenre.text
+            vc.externalActors = labelActors.text
+            vc.title = "Write Review"
+          //  vc.externalImageFriend = currentRowExternal.imageProfile.image
+          //  vc.externalLabelNameFriend = "Name of friend goes here"
+        }
+        
         
     }
     

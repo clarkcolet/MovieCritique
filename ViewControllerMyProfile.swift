@@ -11,15 +11,15 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     @IBOutlet weak var buttonFavourites: UIButton!
     
     @IBOutlet weak var labelUnderline: UILabel!
-
-    
-    
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelMovie: UILabel!
     
     @IBOutlet weak var labelName: UILabel!
     
     @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var buttonProfile: UIButton!
+    
+    
     var collectionView: UICollectionView!
     var tableView: UITableView!
     
@@ -32,13 +32,20 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     var currentRowExternal = TableViewCellReviews()
     
     var boolRow:Bool = false
-    
     var boolRight:Bool = true
     
-  //  @IBOutlet weak var innerLabel: UILabel!
+    var externalProfilePhoto:UIImage!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+   // var coreUserImage:UserImage!
+    //var task:UserImage!
+    var tasks: [UserImage] = []
+   // var changedPhoto:Bool = false
     
     override func viewDidLoad() {
      
+        
+        
         super.viewDidLoad()
      
         self.title = "My Profile"
@@ -65,10 +72,44 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         collectionView.backgroundColor = UIColor.lightGray
         subView.addSubview(collectionView)
        
+
         
+        buttonProfile.layer.cornerRadius = 0.5 * buttonProfile.bounds.size.width
+        buttonProfile.layer.borderColor = UIColor.black.cgColor//UIColor(red:0.0/255.0, green:122.0/255.0, blue:255.0/255.0, alpha:1).cgColor as CGColor
+        buttonProfile.layer.borderWidth = 4
+        buttonProfile.clipsToBounds = true
+    
+        getData()
+
         
-        // Do any additional setup after loading the view.
     }
+  
+
+    
+    func getData() {
+        print("Attempt to try to enter tasks count \(tasks.count)")
+        
+                do {
+                    tasks = try context.fetch(UserImage.fetchRequest())
+               
+                    print(tasks.count)
+                } catch {
+                    print("Fetching Failed")
+                }
+        
+        if(tasks.count > 0) {
+            let task = tasks[0]
+            
+            buttonProfile.setImage(UIImage(data: task.imageData! as Data), for: .normal)
+            
+            
+            
+            print("I'm here inside tasks count")
+        }
+
+    }
+    
+
     
     func loadCollectionView(){
         
@@ -239,13 +280,6 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             }
             vc.title = "Review"
             
-           
-            
-//            vc.externalMovieImage = currentCellExternal.imageMovie.image
-//            vc.externalMovieTitle = "Title: " + currentCellExternal.labelMovie.text!
-//            vc.externalMovieDescription = "1234"
-//            vc.externalMovieActors = "Actors"
-//            vc.externalMovieGenre = "Genre"
             
         }
     }
@@ -314,8 +348,65 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         
     }
     
-    
-    
+    func storeProfilePhoto() {
+        
+        print("Photo stored")
+
+      
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        
+        //
+        for taskDelete in tasks {
+            print("Deleting)!")
+            context.delete(taskDelete)
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            do {
+                tasks = try context.fetch(UserImage.fetchRequest())
+            } catch {
+                print("Fetching Failed")
+            }
+        }
+        //
+        
+//        let taskDelete = tasks[0]
+//        context.delete(taskDelete)
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//        
+//        do {
+//            tasks = try context.fetch(UserImage.fetchRequest())
+//        } catch {
+//            print("Fetching Failed")
+//        }
+        
+        
+        let task = UserImage(context: context) // Link Task & Context
+        task.imageData = UIImagePNGRepresentation(externalProfilePhoto) as NSData?//externalProfilePhoto
+
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        getData()
+        
+    }
+
+    @IBAction func changePhoto(_ sender: UIButton) {
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let optionPhoto = self.storyboard?.instantiateViewController(withIdentifier: "Photo") as! ViewControllerPhoto
+        
+        optionPhoto.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        let popoverMenuViewController = optionPhoto.popoverPresentationController
+        popoverMenuViewController!.permittedArrowDirections = .up
+        popoverMenuViewController!.delegate = self as? UIPopoverPresentationControllerDelegate
+        popoverMenuViewController!.sourceView = self.view
+        popoverMenuViewController?.sourceRect = CGRect(x:buttonProfile.frame.origin.x + 3, y: buttonProfile.frame.origin.y + 110,width: 100, height: 50)
+        
+        optionPhoto.preferredContentSize = CGSize(width: 200, height: 120)
+        optionPhoto.externalMyProfile = self
+        self.present(optionPhoto, animated: true, completion: nil)
+      //  getData()
+        
+    }
     
     /*
      // MARK: - Navigation
