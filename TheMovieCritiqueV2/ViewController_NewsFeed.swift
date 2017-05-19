@@ -158,6 +158,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         }
         cellPosterTop.movieName.text = movies[indexPath.row].title!
         
+        
         //
         
         //
@@ -283,8 +284,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         tableActivity.labelUserActivity.text = recentReviewFeed[indexPath.row].firstName! +  " made a review "
         tableActivity.textView.text = recentReviewFeed[indexPath.row].review
         
+        let starString:String = recentReviewFeed[indexPath.row].star!
+        
         //
-        tableActivity.rating.rating = 3 //HERE GOES RATING
+        tableActivity.rating.rating = Int(starString)! //HERE GOES RATING
         //
        
         

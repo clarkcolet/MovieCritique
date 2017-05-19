@@ -50,7 +50,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         textViewDescription.text = externalMovieDescription
         textMovieID.text = externalMovieID
         
-        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
+        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text!]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -95,8 +95,13 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.textViewReview.text = reviews[indexPath.row].review
         
         //REVIEW
-        tableActivity.friendRating.rating = 3
+       // tableActivity.friendRating.rating = 3
         //
+        
+        let starString:String = reviews[indexPath.row].star! 
+        
+        //
+        tableActivity.friendRating.rating = Int(starString)!
         
         if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
             if let data2 = NSData(contentsOf: url2 as URL){
@@ -147,6 +152,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
             vc.externalTitle = labelTitle.text
             vc.externalGenre = labelGenre.text
             vc.externalActors = labelActors.text
+            vc.externalMovieID = textMovieID.text
             vc.title = "Write Review"
           //  vc.externalImageFriend = currentRowExternal.imageProfile.image
           //  vc.externalLabelNameFriend = "Name of friend goes here"

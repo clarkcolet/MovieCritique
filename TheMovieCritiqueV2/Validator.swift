@@ -99,6 +99,23 @@ class Validator
        // textField.layer.borderWidth = 1
     }
     
+    func AnimationShakeTextFieldTextView(textField:UITextView){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint.init(x: textField.center.x - 5, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint.init(x:textField.center.x + 5, y:textField.center.y))
+        
+      //  textField.backgroundColor = UIColor.red
+        
+        textField.layer.add(animation, forKey: "position")
+        
+        // textField.layer.borderColor = UIColor.red.cgColor
+        // textField.layer.borderWidth = 1
+    }
+
+    
     func validatePhoneNumb(phoneNumb:String) -> Bool
     {
         var valid:Bool = true
