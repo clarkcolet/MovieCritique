@@ -21,6 +21,9 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     @IBOutlet weak var labelUnderline: UILabel!
     
     @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var imageUser: UIImageView!
+    
+    @IBOutlet weak var labelFriendName: UILabel!
     var collectionView: UICollectionView!
     var tableView: UITableView!
 
@@ -233,6 +236,9 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
                 vc.externaltextViewDescription = "Description of the film goes here"
                 vc.externalLabelGenre = "Genre goes here"
                 vc.externalLabelActors = "Actors go here"
+                vc.externalFriendRating = currentRowExternal.rating
+                vc.externalImageFriend = imageUser.image
+                vc.externalLabelNameFriend = labelFriendName.text
 
                 vc.title = "Review"
    
@@ -246,7 +252,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
             vc.externalMovieDescription = "Description of the film goes here"
             vc.externalMovieGenre = "Genre goes here"
             vc.externalMovieActors = "Actors go here"
-
+            //vc.externalRating = currentRowExternal.rating
             vc.title = currentCellExternal.textLabel.text
             
         }
