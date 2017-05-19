@@ -15,6 +15,8 @@ class TableViewCellMovies: UITableViewCell {
     @IBOutlet weak var labelUserActivity: UILabel!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var rating: RatingControl!
+    
     
 
     override func awakeFromNib() {

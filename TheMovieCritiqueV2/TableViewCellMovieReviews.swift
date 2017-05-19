@@ -15,9 +15,9 @@ class TableViewCellMovieReviews: UITableViewCell {
    // @IBOutlet weak var labelMovieTitle: UILabel!
     @IBOutlet weak var textViewReview: UITextView!
     @IBOutlet weak var labelReviewDate: UILabel!
-    @IBOutlet weak var imagePoster: UIImageView!
-    
+
     @IBOutlet weak var labelUserName: UILabel!
+    @IBOutlet weak var friendRating: RatingControl!
     
 
     override func awakeFromNib() {

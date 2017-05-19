@@ -21,6 +21,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var collectionMovies: UICollectionView!
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
+    @IBOutlet weak var friendRating: RatingControl!
     
     
     
@@ -47,6 +48,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
       //  assignbackground()
         super.viewDidLoad()
+        
+     //  print( UIDevice.current.orientation)
+    
         //var buttonSearchInternal = buttonSearch
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
@@ -154,6 +158,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         }
         cellPosterTop.movieName.text = movies[indexPath.row].title!
         
+        //
+        
+        //
+        
         
         print("I got here")
         return cellPosterTop
@@ -212,17 +220,27 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
 //            vc.externalMovieGenre = ""
          
         }
-//        if segue.identifier == "FromHomeToFriendReview"{
-//            print("I got inside the segue to get to review")
-//            let vc = segue.destination as! ViewControllerFriendReview
-//            vc.externalImageMovie = currentRowExternal.imagePoster.image
-//            vc.externaltextViewReview = "My review goes here"
-//            vc.externaltextViewDescription = "Description goes here"
-//            vc.externalLabelTitle = "Title goes here"
-//            vc.title = "Review"
-//            vc.externalImageFriend = currentRowExternal.imageProfile.image
-//            vc.externalLabelNameFriend = "Name of friend goes here"
-//        }
+        if segue.identifier == "FromHomeToFriendReview"{
+            print("I got inside the segue to get to review")
+            let vc = segue.destination as! ViewControllerFriendReview
+            vc.externalImageMovie = currentRowExternal.imagePoster.image
+            vc.externaltextViewReview = currentRowExternal.textView.text
+            vc.externaltextViewDescription = "Description goes here"
+            vc.externalLabelTitle = currentRowExternal.labelTitle.text
+            vc.title = "Review"
+            vc.externalImageFriend = currentRowExternal.imageProfile.image
+            
+            
+            //
+            let delimiter = " "
+            
+            let userActivity = currentRowExternal.labelUserActivity.text
+            var username = userActivity?.components(separatedBy: delimiter)
+
+            vc.externalLabelNameFriend = username?[0]
+        //
+            vc.externalFriendRating = currentRowExternal.rating
+        }
        
 
     }
@@ -262,9 +280,12 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
         
         tableActivity.labelTitle.text = recentReviewFeed[indexPath.row].title
-       tableActivity.labelUserActivity.text = recentReviewFeed[indexPath.row].firstName! +  " made a review "
-       tableActivity.textView.text = recentReviewFeed[indexPath.row].review
+        tableActivity.labelUserActivity.text = recentReviewFeed[indexPath.row].firstName! +  " made a review "
+        tableActivity.textView.text = recentReviewFeed[indexPath.row].review
         
+        //
+        tableActivity.rating.rating = 3 //HERE GOES RATING
+        //
        
         
         
@@ -345,7 +366,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                 print("Landscape")
 
                
-                let cellSize = CGSize(width:self.collectionMovies.frame.width / 8,  height: self.collectionMovies.frame.height/1.5)
+                let cellSize = CGSize(width:self.collectionMovies.frame.width / 10,  height: self.collectionMovies.frame.height/1.2)
                 
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = .vertical //.horizontal

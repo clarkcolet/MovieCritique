@@ -25,7 +25,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     
     var navigationTitleExternal:String!
     var externalLabel:String!
-    var reviews:Bool = false
+    var reviewsPressed:Bool = false
     var tableViewFirstTime:Bool = true
     
     var currentCellExternal = CollectionViewCellReviews()
@@ -111,7 +111,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
 
     
     func loadCollectionView(){
-        
+
         collectionView.removeFromSuperview()
         if(!tableViewFirstTime) {
             tableView.removeFromSuperview()
@@ -141,6 +141,8 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     // MARK: - TableView
     func loadTableView() {
         
+      
+        
         collectionView.removeFromSuperview()
         
         if(!tableViewFirstTime) {
@@ -152,7 +154,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.white
-        tableView.rowHeight = 300
+        tableView.rowHeight = 350
         
         tableView.register(TableViewCellReviews.self, forCellReuseIdentifier: "ReviewCell")
         
@@ -185,6 +187,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         cell.time.text = "2:00"
         cell.nameUser.text = "mark"
         cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
+        cell.rating.rating = 5
         
         return cell
     }
@@ -202,27 +205,68 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             case .portrait:
                 
                 print("Portrait")
-                if(!self.reviews)
-                {
-                    self.loadCollectionView()
-                } else
-                {
-                    self.loadTableView()
+    //            labelUnderline.tintColor = UIColor.black
+                if(!self.reviewsPressed) {
+                //self.labelUnderline.frame.origin.x += self.subView.frame.width / 2
+                    self.showFavourites(self.buttonFavourites)
+                    
+                } else {
+                   // self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2
+                    self.showReviews(self.buttonReviews)
+                    // self.loadTableView()
+                    
                 }
                 
             case .landscapeLeft,.landscapeRight :
                 
                 print("Landscape")
-                if(!self.reviews) {
-                    self.loadCollectionView()
+                if(!self.reviewsPressed) {
+                  //  self.labelUnderline.frame.origin.x += self.subView.frame.width / 2
+                    self.showFavourites(self.buttonFavourites)
+                    
                 } else {
-                    self.loadTableView()
+                  //  self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2
+                    self.showReviews(self.buttonReviews)
+                    // self.loadTableView()
+                    
                 }
+//              //  labelUnderline.UIColor = Color.white
+//                if(!self.reviewsPressed) {
+//                    if(self.labelUnderline.frame.origin.x != self.subView.frame.width / 2) {
+//                    self.labelUnderline.frame.origin.x += self.subView.frame.width / 2
+//                    }
+//                   
+//                    self.showFavourites(self.buttonFavourites)
+//                    
+//                } else {
+//                    if(self.labelUnderline.frame.origin.x == self.subView.frame.width / 2) {
+//                    self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2
+//                    }
+//                    
+//                 //  self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2
+//                   self.showReviews(self.buttonReviews)
+//                    // self.loadTableView()
+//                    
+//                }
                 
             default:
-                
-                print("Anything But Portrait")
-                self.loadCollectionView()
+                if(!self.reviewsPressed) {
+                  //  self.labelUnderline.frame.origin.x += self.subView.frame.width / 2
+                    self.showFavourites(self.buttonFavourites)
+                    
+                } else {
+                   // self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2
+                    self.showReviews(self.buttonReviews)
+                    // self.loadTableView()
+                    
+                }
+//                if(!self.reviewsPressed) {
+//                    self.showFavourites(self.buttonFavourites)
+//                    
+//                } else {
+//                    self.showReviews(self.buttonReviews)
+//                    // self.loadTableView()
+//                }
             }
             
         }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
@@ -267,13 +311,14 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             let vc = segue.destination as! ViewControllerMyReview
             
           //  if(!boolRow) {
-                vc.externalImage = currentCellExternal.imageView.image
+                vc.externalImage = currentRowExternal.imageMovie.image
                 vc.externalReview = "My review goes here - collection"
                 vc.externalDescription = "Description goes here"
-                vc.externalTitle = "Title goes here"
-            vc.externalGenre = "Genre goes here"
-            vc.externalActors = "External actors"
-            
+                vc.externalTitle = currentRowExternal.movieTitle.text
+                vc.externalGenre = "Genre goes here"
+                vc.externalActors = "External actors"
+                vc.externalRating = currentRowExternal.rating
+            print("External current row rating: \(currentRowExternal.rating.rating)")
           //  } else {
             
             
@@ -317,7 +362,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     
     @IBAction func showReviews(_ sender: UIButton) {
         print("reviews pressed")
-        reviews = true
+        reviewsPressed = true
         buttonReviews.setTitleColor(UIColor.black, for: UIControlState.normal)
 
         buttonFavourites.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
@@ -325,7 +370,16 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         loadTableView()
         if(boolRight){
             UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-                self.labelUnderline.frame.origin.x -= 512
+                //
+                if(self.labelUnderline.frame.origin.x == self.subView.frame.width - self.labelUnderline.frame.width) {
+                self.labelUnderline.frame.origin.x -= self.subView.frame.width - self.labelUnderline.frame.width
+                } else {
+                     self.labelUnderline.frame.origin.x = 0
+                }
+                //
+               // self.labelUnderline.frame.origin.x -= self.subView.frame.width / 2//512
+                
+                
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
@@ -335,14 +389,21 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     @IBAction func showFavourites(_ sender: UIButton) {
         print("favourites pressed")
       
-        reviews = false
+        reviewsPressed = false
         buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
         
         buttonReviews.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
         
         if(!boolRight) {
             UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-                self.labelUnderline.frame.origin.x += 512
+                //
+                 if(self.labelUnderline.frame.origin.x != self.subView.frame.width - self.labelUnderline.frame.width) {
+                self.labelUnderline.frame.origin.x += self.subView.frame.width - self.labelUnderline.frame.width
+                 } else {
+                    self.labelUnderline.frame.origin.x = self.subView.frame.width - self.labelUnderline.frame.width
+                }
+                //
+              //  self.labelUnderline.frame.origin.x += self.subView.frame.width / 2 //512
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
@@ -383,17 +444,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
                 print("Fetching Failed")
             }
         }
-        //
-        
-//        let taskDelete = tasks[0]
-//        context.delete(taskDelete)
-//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//        
-//        do {
-//            tasks = try context.fetch(UserImage.fetchRequest())
-//        } catch {
-//            print("Fetching Failed")
-//        }
+
         
         
         let task = UserImage(context: context) // Link Task & Context

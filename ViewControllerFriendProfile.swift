@@ -40,10 +40,11 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     @IBOutlet weak var innerLabel: UILabel!
     
     override func viewDidLoad() {
-         self.navigationController?.navigationBar.tintColor = UIColor.black;
+       
         super.viewDidLoad()
         self.title = navigationTitleExternal
         innerLabel.text = externalLabel
+         self.navigationController?.navigationBar.tintColor = UIColor.black;
         
        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
        labelUnderline.textColor = UIColor.black
@@ -115,7 +116,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.white
-        tableView.rowHeight = 300
+        tableView.rowHeight = 350
       
         tableView.register(TableViewCellReviews.self, forCellReuseIdentifier: "ReviewCell")
 

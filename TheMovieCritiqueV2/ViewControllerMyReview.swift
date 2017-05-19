@@ -16,6 +16,10 @@ class ViewControllerMyReview: UIViewController {
     @IBOutlet weak var labelActors: UILabel!
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelDescription: UITextView!
+    @IBOutlet weak var movieID: UILabel!
+    @IBOutlet weak var myRating: RatingControl!
+    
+    
 
     var externalImage:UIImage!
     var externalReview:String!
@@ -23,6 +27,9 @@ class ViewControllerMyReview: UIViewController {
     var externalActors:String!
     var externalGenre:String!
     var externalDescription:String!
+    var externalMovieID:String!
+    var externalRating:RatingControl!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +40,8 @@ class ViewControllerMyReview: UIViewController {
         labelActors.text = externalActors
         labelGenre.text = externalGenre
         labelDescription.text = externalDescription
+        movieID.text = externalMovieID
+        myRating.rating = externalRating.rating
         
         self.navigationController?.navigationBar.tintColor = UIColor.black;
        // self.navigationController.

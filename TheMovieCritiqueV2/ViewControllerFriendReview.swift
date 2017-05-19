@@ -20,6 +20,9 @@ class ViewControllerFriendReview: UIViewController {
     @IBOutlet weak var buttonFriend: UIButton!
     @IBOutlet weak var labelNameFriend: UILabel!
     
+    @IBOutlet weak var friendRating: RatingControl!
+    
+    
     
     var externalImageMovie:UIImage!
     var externalLabelTitle:String!
@@ -29,6 +32,7 @@ class ViewControllerFriendReview: UIViewController {
     var externaltextViewDescription:String!
     var externalLabelNameFriend:String!
     var externalImageFriend:UIImage!
+    var externalFriendRating:RatingControl!
     
     
     
@@ -36,6 +40,7 @@ class ViewControllerFriendReview: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.navigationController?.navigationBar.tintColor = UIColor.black;
         imageMovie.image = externalImageMovie
         labelTitle.text  = externalLabelTitle
         labelGenre.text  = externalLabelGenre
@@ -43,16 +48,9 @@ class ViewControllerFriendReview: UIViewController {
         textViewReview.text = externaltextViewReview
         textViewDescription.text = externaltextViewDescription
         labelNameFriend.text = externalLabelNameFriend
-        buttonFriend.imageView?.image = externalImageFriend
-        
-//        buttonFriend.backgroundColor = UIColor.gray
-//        buttonFriend.layer.cornerRadius = 5
-//        buttonFriend.layer.borderWidth = 2
-//        buttonFriend.layer.borderColor = UIColor.black.cgColor
-       // buttonFriend.layer.cornerRadius = 0.5 * buttonFriend.bounds.size.width
-      //  buttonFriend.layer.borderColor = UIColor.black.cgColor//UIColor(red:0.0/255.0, green:122.0/255.0, blue:255.0/255.0, alpha:1).cgColor as CGColor
-      //  buttonFriend.layer.borderWidth = 4
-      //  buttonFriend.clipsToBounds = true
+        buttonFriend.setImage(externalImageFriend, for: .normal) 
+        friendRating.rating = externalFriendRating.rating
+
 
         // Do any additional setup after loading the view.
     }

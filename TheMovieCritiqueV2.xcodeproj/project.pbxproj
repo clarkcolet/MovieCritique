@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0538921ECEEE74000A1F4C /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0538911ECEEE74000A1F4C /* RatingControl.swift */; };
 		1D0BE6AE1EC9B08000F694A2 /* ViewControllerMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0BE6AD1EC9B08000F694A2 /* ViewControllerMovie.swift */; };
 		1D0BE6B01EC9BBEA00F694A2 /* ViewControllerMyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0BE6AF1EC9BBEA00F694A2 /* ViewControllerMyProfile.swift */; };
 		1D0BE6B21EC9C53700F694A2 /* ViewControllerMyReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0BE6B11EC9C53700F694A2 /* ViewControllerMyReview.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D0538911ECEEE74000A1F4C /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		1D0BE6AD1EC9B08000F694A2 /* ViewControllerMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMovie.swift; sourceTree = "<group>"; };
 		1D0BE6AF1EC9BBEA00F694A2 /* ViewControllerMyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerMyProfile.swift; path = ../ViewControllerMyProfile.swift; sourceTree = "<group>"; };
 		1D0BE6B11EC9C53700F694A2 /* ViewControllerMyReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMyReview.swift; sourceTree = "<group>"; };
@@ -165,7 +167,6 @@
 		1D21B64D1EC0780800E5D482 /* TheMovieCritiqueV2 */ = {
 			isa = PBXGroup;
 			children = (
-				21B9431C1ECC7A17006F7018 /* Main.storyboard */,
 				1DE618281ECB400D00685DDC /* utilities */,
 				1D96B5221EC36A7B0001B6C0 /* CollectionViewMovies.swift */,
 				1DFB8CC51ECC762B00F24BAE /* Main.storyboard */,
@@ -227,6 +228,7 @@
 				21E5A8BE1ECB433000B41F2E /* User.swift */,
 				21E5A8BF1ECB433000B41F2E /* Validator.swift */,
 				21E5A8C61ECBB1E600B41F2E /* FeedRecentReview.swift */,
+				1D0538911ECEEE74000A1F4C /* RatingControl.swift */,
 			);
 			name = utilities;
 			sourceTree = "<group>";
@@ -455,6 +457,7 @@
 				1D0BE6AE1EC9B08000F694A2 /* ViewControllerMovie.swift in Sources */,
 				1D96B5251EC39E9B0001B6C0 /* TableViewCellMovies.swift in Sources */,
 				1DC525071EC9DAE300FA81F0 /* TableViewCellMovieReviews.swift in Sources */,
+				1D0538921ECEEE74000A1F4C /* RatingControl.swift in Sources */,
 				1D96B51F1EC354820001B6C0 /* ViewController_NewsFeed.swift in Sources */,
 				1DF2918B1EC096C600AD4574 /* ViewControllerCreateAccount.swift in Sources */,
 				21E5A8C41ECB433000B41F2E /* User.swift in Sources */,

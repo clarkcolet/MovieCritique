@@ -22,6 +22,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var subViewInfo: UIView!
     
     
+    
     var externalMovieTitle:String = ""
     var externalMovieImage:UIImage!
     var externalMovieActors:String = ""
@@ -93,6 +94,10 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.labelReviewDate.text = reviews[indexPath.row].createdOn
         tableActivity.textViewReview.text = reviews[indexPath.row].review
         
+        //REVIEW
+        tableActivity.friendRating.rating = 3
+        //
+        
         if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
             if let data2 = NSData(contentsOf: url2 as URL){
                 tableActivity.imageProfile.image = UIImage(data: data2 as Data)
@@ -131,6 +136,8 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
             vc.externalLabelGenre = labelGenre.text!
             vc.externalImageFriend = currentRowExternal.imageProfile.image
             vc.externalLabelNameFriend = currentRowExternal.labelUserName.text
+           //REVIEW
+            vc.externalFriendRating = currentRowExternal.friendRating
             
          
         }

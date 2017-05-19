@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FullRes+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:FullRes+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Thumbnail+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Thumbnail+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:TheMovieCritiqueV2.xcodeproj">
    </FileRef>
    <FileRef
