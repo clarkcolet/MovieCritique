@@ -1151,6 +1151,9 @@
                     <navigationItem key="navigationItem" title="Your Review" id="EMd-bo-kNn">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="XjV-to-a5M">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="SaveReview:" destination="5uT-dh-gmC" id="153-VA-sbi"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
