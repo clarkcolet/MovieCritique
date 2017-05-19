@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        assignbackground()
+       // assignbackground()
         
         //
         buttonLogin.layer.cornerRadius = 7
@@ -92,17 +92,17 @@ class ViewController: UIViewController {
             case .portrait:
                 
                 print("Portrait")
-                self.assignbackground()
+             //   self.assignbackground()
                 
             case .landscapeLeft,.landscapeRight :
                 
                 print("Landscape")
-                self.assignbackground()
+             //   self.assignbackground()
                 
             default:
                 
                 print("Anything But Portrait")
-                self.assignbackground()
+             //   self.assignbackground()
             }
             
         }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
