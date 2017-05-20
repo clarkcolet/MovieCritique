@@ -1321,18 +1321,24 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3Jd-2q-ZIR">
-                                                <rect key="frame" x="0.0" y="-6.5" width="122" height="115"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellNewFriend" id="3Jd-2q-ZIR" customClass="CollectionViewCellNewFriends" customModule="TheMovieCritiqueV2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="-7" width="122" height="115"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="115"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-29-tcq">
-                                                            <rect key="frame" x="0.0" y="9" width="122" height="77"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-29-tcq">
+                                                            <rect key="frame" x="25" y="9" width="77" height="78"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="78" id="flv-N2-0B3"/>
+                                                            </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-3z-J3o">
-                                                            <rect key="frame" x="40" y="87" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-3z-J3o">
+                                                            <rect key="frame" x="10" y="87" width="105" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="fdL-3z-J3o" secondAttribute="height" multiplier="5:1" id="kdH-gt-yFU"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1340,17 +1346,25 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Rhk-29-tcq" secondAttribute="trailing" id="7vS-kh-iHH"/>
-                                                    <constraint firstItem="fdL-3z-J3o" firstAttribute="top" secondItem="Rhk-29-tcq" secondAttribute="bottom" constant="1" id="h4Y-bM-Uib"/>
+                                                    <constraint firstItem="Rhk-29-tcq" firstAttribute="leading" secondItem="3Jd-2q-ZIR" secondAttribute="leadingMargin" constant="17" id="Bj0-Dh-iP9"/>
+                                                    <constraint firstItem="fdL-3z-J3o" firstAttribute="top" secondItem="Rhk-29-tcq" secondAttribute="bottom" id="QS6-U8-dTr"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="Rhk-29-tcq" secondAttribute="trailing" constant="12" id="Ti9-t4-ZpU"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="fdL-3z-J3o" secondAttribute="bottom" constant="-1" id="kIk-LT-sg4"/>
-                                                    <constraint firstItem="Rhk-29-tcq" firstAttribute="top" secondItem="3Jd-2q-ZIR" secondAttribute="topMargin" constant="1" id="n0Q-Sg-RkP"/>
-                                                    <constraint firstItem="Rhk-29-tcq" firstAttribute="leading" secondItem="3Jd-2q-ZIR" secondAttribute="leading" id="pGO-z5-uqb"/>
-                                                    <constraint firstItem="Rhk-29-tcq" firstAttribute="centerX" secondItem="fdL-3z-J3o" secondAttribute="centerX" id="pXr-41-rb6"/>
+                                                    <constraint firstItem="fdL-3z-J3o" firstAttribute="centerX" secondItem="3Jd-2q-ZIR" secondAttribute="centerX" id="w3u-pK-akn"/>
+                                                    <constraint firstItem="Rhk-29-tcq" firstAttribute="top" secondItem="3Jd-2q-ZIR" secondAttribute="topMargin" constant="1" id="yxl-7D-vHY"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outlet property="imageNewFriend" destination="Rhk-29-tcq" id="oo7-06-Z9i"/>
+                                                    <outlet property="labelNewFriend" destination="fdL-3z-J3o" id="yaH-Xe-yM4"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="XKG-Xj-SIs" id="59D-rm-KM0"/>
+                                            <outlet property="delegate" destination="XKG-Xj-SIs" id="yUW-56-rM2"/>
+                                        </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKb-my-Q0v">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKb-my-Q0v">
                                         <rect key="frame" x="8" y="9" width="128" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="128" id="ojq-Yq-UeJ"/>
@@ -1397,12 +1411,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionViewFriendList" destination="x4x-L2-Pct" id="G0z-6e-Ngn"/>
+                        <outlet property="collectionViewNewFriends" destination="NGp-bQ-F1f" id="DQW-KU-7WK"/>
                         <segue destination="Dh0-1L-B6r" kind="show" identifier="ToFriend" id="Sze-Xn-cSq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdt-ry-RS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-435" y="3318"/>
+            <point key="canvasLocation" x="-435.3515625" y="3317.5695461200585"/>
         </scene>
         <!--View Controller Friend Profile-->
         <scene sceneID="Dib-S5-18N">
@@ -2266,9 +2281,9 @@
         <image name="account_icon" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="hoF-rx-d7q"/>
         <segue reference="3qa-Oe-MTD"/>
-        <segue reference="y51-bi-jfF"/>
-        <segue reference="idY-cC-GHI"/>
         <segue reference="krU-22-V1K"/>
+        <segue reference="idY-cC-GHI"/>
     </inferredMetricsTieBreakers>
 </document>

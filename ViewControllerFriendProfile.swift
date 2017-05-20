@@ -31,6 +31,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     var externalLabel:String!
     var reviews:Bool = false
     var tableViewFirstTime:Bool = true
+    var externalImage:UIImage!
     
      var boolRight:Bool = true
     
@@ -47,6 +48,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         self.title = navigationTitleExternal
         innerLabel.text = externalLabel
+        imageUser.image = externalImage
          self.navigationController?.navigationBar.tintColor = UIColor.black;
         
        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
