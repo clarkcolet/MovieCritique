@@ -42,7 +42,14 @@ class ViewControllerMyReview: UIViewController {
         labelGenre.text = externalGenre
         labelDescription.text = externalDescription
         movieID.text = externalMovieID
+        
+        if externalRating != nil {
         myRating.rating = externalRating.rating
+        } else {
+            myRating.rating = 0
+        }
+        
+      
         
         self.navigationController?.navigationBar.tintColor = UIColor.black;
     }
@@ -84,7 +91,17 @@ class ViewControllerMyReview: UIViewController {
 
         }
         
+        let refreshAlert = UIAlertController(title: "Saved", message: "Your review has been submitted", preferredStyle: UIAlertControllerStyle.alert)
         
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+        }))
+        
+//        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+//            print("Handle Cancel Logic here")
+//        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
     }
 
     /*
