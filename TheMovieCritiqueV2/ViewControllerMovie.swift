@@ -31,7 +31,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieGenre:String = ""
     var externalMovieDescription:String = ""
     var externalMovieID:String = ""
-    var externalHeartFilled:Bool!
+    var externalHeartFilled:Bool = false
     
     var currentRowExternal:TableViewCellMovieReviews!
     
@@ -52,7 +52,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         labelActors.text = externalMovieActors
         textViewDescription.text = externalMovieDescription
         textMovieID.text = externalMovieID
-        heartFilledBoolean = false
+        heartFilledBoolean = externalHeartFilled
         
         
         if (heartFilledBoolean) {
@@ -62,7 +62,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
            buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
         }
         
-        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text!]
+        let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")

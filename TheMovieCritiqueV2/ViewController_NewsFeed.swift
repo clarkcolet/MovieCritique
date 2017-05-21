@@ -17,6 +17,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     var session  = SessionManager()
     
+   // var refreshControl: UIRefreshControl!
+   // var customView: UIView!
+
     @IBOutlet weak var FeedTable: UITableView!
 
     @IBOutlet weak var collectionMovies: UICollectionView!
@@ -136,7 +139,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func doSomething() {
         print("START")
         movies.removeAll()
-        Rest.sharedInstance.getMovies{ (json: JSON) in
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {

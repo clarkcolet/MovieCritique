@@ -235,6 +235,15 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             vc.externalMovieActors = movie.cast!
             vc.externalMovieGenre = movie.genre!
             vc.externalMovieID = movie.movieID!
+                    
+                    if movie.favourite == "0" || movie.favourite == ""
+                    {
+                    vc.externalHeartFilled = false
+                    }
+                    else
+                    {
+                        vc.externalHeartFilled = true
+                    }
                 }
             }
             

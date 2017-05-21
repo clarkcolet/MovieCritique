@@ -14,7 +14,7 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     let reuseIdentifier = "cellGenre"
-    var genres = ["Action", "Comedy", "Documentary", "Drama", "Family",  "Horror", "Thriller","All"]
+    var genres = ["All", "Action", "Comedy", "Documentary", "Drama", "Family",  "Horror", "Thriller"]
     
     var externalMovieList = ViewControllerMovieList()
 
