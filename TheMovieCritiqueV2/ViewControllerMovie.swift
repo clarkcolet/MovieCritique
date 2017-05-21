@@ -21,6 +21,8 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var subViewInfo: UIView!
     
+    @IBOutlet weak var buttonHeart: UIButton!
+    var heartFilledBoolean:Bool = false
     
     
     var externalMovieTitle:String = ""
@@ -29,6 +31,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieGenre:String = ""
     var externalMovieDescription:String = ""
     var externalMovieID:String = ""
+    var externalHeartFilled:Bool!
     
     var currentRowExternal:TableViewCellMovieReviews!
     
@@ -49,6 +52,15 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         labelActors.text = externalMovieActors
         textViewDescription.text = externalMovieDescription
         textMovieID.text = externalMovieID
+        heartFilledBoolean = false
+        
+        
+        if (heartFilledBoolean) {
+            buttonHeart.setImage(UIImage(named: "heartFilled"), for: .normal)
+
+        } else {
+           buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
+        }
         
         let param:Dictionary<String,String> = ["MovieID" : textMovieID.text!]
         
@@ -78,6 +90,22 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    @IBAction func favouriteMovie(_ sender: UIButton) {
+        
+        if (heartFilledBoolean) {
+            buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
+            heartFilledBoolean = false
+        } else {
+            buttonHeart.setImage(UIImage(named: "heartFilled"), for: .normal)
+            heartFilledBoolean = true
+            
+        }
+        
+    }
+    
     
     //MARK: Table views
     
@@ -203,6 +231,8 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         super.viewWillTransition(to: size, with: coordinator)
     
 
+        
+        
     /*
     // MARK: - Navigation
 

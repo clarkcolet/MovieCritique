@@ -25,10 +25,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var topSubview: UIView!
     @IBOutlet weak var labelTopSubview: UILabel!
     
-   
-    
-    
-    
+
     var currentRowExternal:TableViewCellMovies!
     
     //CollectionView
@@ -47,15 +44,13 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var movies = [Movie]()
     var recentReviewFeed = [FeedRecentReview]()
 
-
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
       //  assignbackground()
         super.viewDidLoad()
         
-     //  print( UIDevice.current.orientation)
-    
-        //var buttonSearchInternal = buttonSearch
+
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
@@ -94,9 +89,18 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             {
                 print("No DATA")
             }
+  
         }
         
+        self.refreshControl = UIRefreshControl()
+        //refreshControl.backgroundColor = UIColor.clearColor()
+        //refreshControl.tintColor = UIColor.clearColor()
+        self.collectionMovies.addSubview(self.refreshControl)
+        // self.refreshControl.addTarget(self, action: #selector(loadCustomRefreshContents), for: .valueChanged)
+        //  loadCustomRefreshContents()
         
+        //tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action:#selector(doSomething), for: .valueChanged)
         
         
         let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
@@ -128,19 +132,49 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
     }
     
-    func assignbackground(){
-        let background = UIImage(named: "Background")
-        
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIViewContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubview(toBack: imageView)
-    }
     
+    func doSomething() {
+        print("START")
+        movies.removeAll()
+        Rest.sharedInstance.getMovies{ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        
+                        self.movies.append(Movie(json: entry))
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionMovies.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+        //self.FeedTable.reloadData()
+        //  self.collectionMovies.reloadData()
+        //   self.collectionMovie
+        
+        refreshControl.endRefreshing()
+        
+        //   self.collectionMovies!.refreshControl?.endRefreshing()
+        //s//elf.activityIndicatorView.stopAnimating()
+        // self.refreshControl.endRefreshing()
+        print("FINISH")
+        //            let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
+        //            customView = refreshContents?[0] as! UIView
+        //            customView.frame = refreshControl.bounds
+    }
+
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(self.movies.count)
@@ -165,13 +199,25 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         //
         
         //
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+       // refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        collectionView.refreshControl = refreshControl
         
         print("I got here")
         return cellPosterTop
     }
     
-    
+    func refreshData(sender: UIRefreshControl) {
+      //  fetchFixtures()
+        print("lalalalalalalalalal")
+        refreshControl.endRefreshing()
+    }
     
 
 
