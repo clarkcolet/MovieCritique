@@ -43,8 +43,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var items = ["beauty", "startrek", "guardians"]
-    var movies = [Movie]()
+    var movies = [Movie]() //create a movieList
     var recentReviewFeed = [FeedRecentReview]()
 
     var refreshControl: UIRefreshControl!
@@ -83,14 +82,14 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                     }
                     DispatchQueue.main.async(execute: {
                         
-                        self.collectionMovies.reloadData()
+                        self.collectionMovies.reloadData() //reload the data
                         
                     })
                 }
             }
             else
             {
-                print("No DATA")
+                print("No DATA") // no result
             }
   
         }
@@ -267,21 +266,23 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             }
             
             
-            
-//            vc.externalMovieImage = currentCellExternal.moviePoster.image
-//            vc.externalMovieDescription = currentCellExternal.
-//            vc.externalMovieTitle = "----"
-//            vc.externalMovieDescription = "1234"
-//            vc.externalMovieActors = "12345678"
-//            vc.externalMovieGenre = ""
          
         }
+        
+        //Recent Friend Review Feed
         if segue.identifier == "FromHomeToFriendReview"{
             print("I got inside the segue to get to review")
             let vc = segue.destination as! ViewControllerFriendReview
+            
+            for movie in movies
+            {
+                if(movie.title == currentRowExternal.labelTitle.text)
+                {
+                    ///passing current movie values to the next view
+            vc.externalLabelActors = movie.cast
             vc.externalImageMovie = currentRowExternal.imagePoster.image
             vc.externaltextViewReview = currentRowExternal.textView.text
-            vc.externaltextViewDescription = "Description goes here"
+            vc.externaltextViewDescription = movie.desc
             vc.externalLabelTitle = currentRowExternal.labelTitle.text
             vc.title = "Review"
             vc.externalImageFriend = currentRowExternal.imageProfile.image
@@ -297,7 +298,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         //
             vc.externalFriendRating = currentRowExternal.rating
         }
-       
+        
+            }
+        }
+        
 
     }
 

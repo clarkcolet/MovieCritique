@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 
 class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -18,11 +19,57 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
     
     var externalMovieList = ViewControllerMovieList()
 
+    var movies = [Movie]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 60
+      // externalMovieList.reloadData()
+      // externalMovieList = ViewControllerMovieList()
+        
+        
+        
+        reloadData()
 
+    }
+    
+    func reloadData()
+    {
+     
+        let session  = SessionManager()
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        self.movies.append(Movie(json: entry))
+                      //  self.filteredMovie.append(Movie(json:entry))
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                      //  self.collectionMovies.reloadData()
+                        self.tableView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+    }
+
+    
+    override func awakeFromNib() {
+        print("YAY IM AWAKE FATHER")
+     //   externalMovieList.reloadData()
+       // externalMovieList = ViewControllerMovieList()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,9 +108,9 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
             tmpController.dismiss(animated: false, completion: nil);
         });
         
-        externalMovieList.assignbackground()
-        externalMovieList.navigationItem.title = currentCell.labelGenre.text
-        externalMovieList.filterContentForSearchText(searchText: currentCell.labelGenre.text!)
+          externalMovieList.assignbackground()
+         externalMovieList.navigationItem.title = currentCell.labelGenre.text
+         externalMovieList.filterContentForSearchText(searchText: currentCell.labelGenre.text!)
         
      //   let filteredArray = externalMovieList.movies.filter() {contains(($0 as Movie).genre, currentCell.labelGenre.text)}
        
@@ -74,10 +121,11 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
         var results = [Movie]()
         if(searchText != "All")
         {
-            for publication in externalMovieList.movies {
-            if let fullTitle = publication.genre {
+            //externalMovieList.movies
+            for m in externalMovieList.movies {
+            if let fullTitle = m.genre {
                 if (fullTitle).contains(searchText) {
-                    results.append(publication)
+                    results.append(m)
                 }
             }
             }

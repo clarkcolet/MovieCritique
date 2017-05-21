@@ -38,7 +38,7 @@ class Movie
         deleted = json["Deleted"].stringValue
         createdOn = json["CreatedOn"].stringValue
         updatedOn = json["UpdatedOn"].stringValue
-        favourite = json["Favourite"].stringValue
+        favourite = json["FavouriteID"].stringValue
 
     }
 
