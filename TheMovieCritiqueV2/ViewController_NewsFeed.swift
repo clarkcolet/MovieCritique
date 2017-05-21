@@ -139,6 +139,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func doSomething() {
         print("START")
         movies.removeAll()
+       //
         Rest.sharedInstance.getMovies{ (json: JSON) in
             if(json["Status"] == "Success")
             {
@@ -161,7 +162,38 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             {
                 print("No DATA")
             }
+            
+            
         }
+        //
+        let session = SessionManager()
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.recentReviewFeed.append(FeedRecentReview(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.FeedTable.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+        
         
         //self.FeedTable.reloadData()
         //  self.collectionMovies.reloadData()
