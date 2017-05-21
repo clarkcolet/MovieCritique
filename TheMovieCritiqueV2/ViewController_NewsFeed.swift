@@ -15,6 +15,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
+    var session  = SessionManager()
     
    // var refreshControl: UIRefreshControl!
    // var customView: UIView!
@@ -67,8 +68,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         layout.minimumInteritemSpacing = 0.5
         collectionMovies.setCollectionViewLayout(layout, animated: true)
         
+         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
-        Rest.sharedInstance.getMovies{ (json: JSON) in
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -103,12 +105,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         //tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action:#selector(doSomething), for: .valueChanged)
         
-
-        let session = SessionManager()
         
-        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
-        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+        Rest.sharedInstance.getFriendsRecentReview(body: param2 as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -229,6 +229,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         }
         }
         cellPosterTop.movieName.text = movies[indexPath.row].title!
+        
         
         //
         
@@ -367,8 +368,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         tableActivity.labelUserActivity.text = recentReviewFeed[indexPath.row].firstName! +  " made a review "
         tableActivity.textView.text = recentReviewFeed[indexPath.row].review
         
+        let starString:String = recentReviewFeed[indexPath.row].star!
+        
         //
-        tableActivity.rating.rating = 3 //HERE GOES RATING
+        tableActivity.rating.rating = Int(starString)! //HERE GOES RATING
         //
        
         

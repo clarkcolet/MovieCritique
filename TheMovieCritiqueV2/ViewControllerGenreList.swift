@@ -72,12 +72,19 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
     
     func filterContentForSearchText(searchText: String) -> [Movie] {
         var results = [Movie]()
-        for publication in externalMovieList.movies {
+        if(searchText != "All")
+        {
+            for publication in externalMovieList.movies {
             if let fullTitle = publication.genre {
                 if (fullTitle).contains(searchText) {
                     results.append(publication)
                 }
             }
+            }
+        }
+        else
+        {
+            results = externalMovieList.movies
         }
         return results
     }

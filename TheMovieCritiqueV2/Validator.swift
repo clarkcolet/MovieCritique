@@ -99,6 +99,23 @@ class Validator
        // textField.layer.borderWidth = 1
     }
     
+    func AnimationShakeTextFieldTextView(textField:UITextView){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint.init(x: textField.center.x - 5, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint.init(x:textField.center.x + 5, y:textField.center.y))
+        
+      //  textField.backgroundColor = UIColor.red
+        
+        textField.layer.add(animation, forKey: "position")
+        
+        // textField.layer.borderColor = UIColor.red.cgColor
+        // textField.layer.borderWidth = 1
+    }
+
+    
     func validatePhoneNumb(phoneNumb:String) -> Bool
     {
         var valid:Bool = true
@@ -132,7 +149,24 @@ class Validator
     }
     
    
-    
+    func convertDateFormater(date: String) -> String {
+        print(date)
+        let dateFormatter = DateFormatter()
+       // dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as! TimeZone
+        
+        guard let date = dateFormatter.date(from: date) else {
+            //assert(false, "no date from string")
+            print("Neh")
+            return ""
+        }
+        
+        dateFormatter.dateFormat = "yyyy MMM EEEE HH:mm"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as! TimeZone
+        let timeStamp = dateFormatter.string(from: date)
+        
+        return timeStamp
+    }
     
     
 }

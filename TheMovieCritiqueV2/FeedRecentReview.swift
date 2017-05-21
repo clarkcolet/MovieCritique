@@ -34,6 +34,7 @@ class FeedRecentReview
     public var favouriteGenre : String?
     public var friendID : String?
     public var userImgSrc : String?
+    public var desc : String?
 
     
   
@@ -62,6 +63,8 @@ class FeedRecentReview
         favouriteGenre = json["FavouriteGenre"] .stringValue
         userImgSrc = json["UserImg"] .stringValue
         friendID = json["FriendID"] .stringValue
+        desc = json["Desc"] .stringValue
+
     }
     
 

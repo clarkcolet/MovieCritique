@@ -31,7 +31,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieGenre:String = ""
     var externalMovieDescription:String = ""
     var externalMovieID:String = ""
-    var externalHeartFilled:Bool!
+    var externalHeartFilled:Bool = false
     
     var currentRowExternal:TableViewCellMovieReviews!
     
@@ -52,7 +52,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         labelActors.text = externalMovieActors
         textViewDescription.text = externalMovieDescription
         textMovieID.text = externalMovieID
-        heartFilledBoolean = false
+        heartFilledBoolean = externalHeartFilled
         
         
         if (heartFilledBoolean) {
@@ -123,8 +123,16 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         tableActivity.textViewReview.text = reviews[indexPath.row].review
         
         //REVIEW
-        tableActivity.friendRating.rating = 3
+       // tableActivity.friendRating.rating = 3
         //
+        
+        let starString:String = reviews[indexPath.row].star! 
+        
+        if starString != ""
+        {
+        tableActivity.friendRating.rating = Int(starString)!
+        }
+       
         
         if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
             if let data2 = NSData(contentsOf: url2 as URL){
@@ -176,6 +184,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
             vc.externalTitle = labelTitle.text
             vc.externalGenre = labelGenre.text
             vc.externalActors = labelActors.text
+            vc.externalMovieID = textMovieID.text
             vc.title = "Write Review"
           //  vc.externalImageFriend = currentRowExternal.imageProfile.image
           //  vc.externalLabelNameFriend = "Name of friend goes here"
