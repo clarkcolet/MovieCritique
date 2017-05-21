@@ -68,6 +68,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
        // self.tableReviewFeed.reloadData()
         
         let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
+      //  let param:Dictionary<String,String> = ["Title" : labelTitle.text as! String]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -169,6 +170,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("about to enter")
+        print("Reviews: \(reviews.count)")
        // tableView.reloadData()
         return reviews.count
     }
