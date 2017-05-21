@@ -15,7 +15,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
-    var session  = SessionManager()
     
    // var refreshControl: UIRefreshControl!
    // var customView: UIView!
@@ -28,7 +27,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var topSubview: UIView!
     @IBOutlet weak var labelTopSubview: UILabel!
     
-
+   // let session = SessionManager()
     var currentRowExternal:TableViewCellMovies!
     
     //CollectionView
@@ -48,7 +47,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var recentReviewFeed = [FeedRecentReview]()
 
     var refreshControl: UIRefreshControl!
-    
+    let session  = SessionManager()
+
     override func viewDidLoad() {
       //  assignbackground()
         super.viewDidLoad()
@@ -96,13 +96,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         }
         
         self.refreshControl = UIRefreshControl()
-        //refreshControl.backgroundColor = UIColor.clearColor()
-        //refreshControl.tintColor = UIColor.clearColor()
-        self.collectionMovies.addSubview(self.refreshControl)
-        // self.refreshControl.addTarget(self, action: #selector(loadCustomRefreshContents), for: .valueChanged)
-        //  loadCustomRefreshContents()
         
-        //tableView.refreshControl = refreshControl
+        self.collectionMovies.addSubview(self.refreshControl)
+        
         refreshControl.addTarget(self, action:#selector(doSomething), for: .valueChanged)
         
         
@@ -139,8 +135,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func doSomething() {
         print("START")
         movies.removeAll()
-       //
-        Rest.sharedInstance.getMovies{ (json: JSON) in
+        let session2 = SessionManager()
+        let param:Dictionary<String,String> = ["UserID" : session2.RetriveSession() as String]
+        
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -168,8 +166,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         //
         let session = SessionManager()
         
-        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
-        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+        let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        Rest.sharedInstance.getFriendsRecentReview(body: param2 as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -248,13 +246,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         return cellPosterTop
     }
     
-    func refreshData(sender: UIRefreshControl) {
-      //  fetchFixtures()
-        print("lalalalalalalalalal")
-        refreshControl.endRefreshing()
-    }
-    
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

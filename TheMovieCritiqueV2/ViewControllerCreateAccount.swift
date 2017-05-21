@@ -31,6 +31,8 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
     
      @IBOutlet weak var buttonProfile: UIButton!
     
+    var genre:String!
+    
     var externalProfilePhoto:UIImage!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var tasks: [UserImage] = []
@@ -89,7 +91,7 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         }
         
         if(tasks.count > 0) {
-            let task = tasks[0]
+            let task = tasks[tasks.count - 1]
             
             buttonProfile.setImage(UIImage(data: task.imageData! as Data), for: .normal)
             
@@ -162,8 +164,11 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        genre = pickerData[row]
         return pickerData[row]
     }
+    
+
     
     @IBAction func CreateAccountBtn(_ sender: Any) {
         
@@ -177,6 +182,9 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         {
             validator.AnimationShakeTextField(textField: PasswordTxt)
             passwordValid = false
+            let alert = UIAlertController(title: "Error in Password", message: "Password is less than 6 characsters", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else
         {
@@ -189,13 +197,14 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
             validator.AnimationShakeTextField(textField: ConfirmPasswordTxt)
             confirmPasswordValid = false
         }
-        else if ConfirmPasswordTxt.text == PasswordTxt.text
+        else if ConfirmPasswordTxt.text != PasswordTxt.text
         {
             validator.AnimationShakeTextField(textField: ConfirmPasswordTxt)
             confirmPasswordValid = false
         }
         else
         {
+          ///  validator.AnimationShakeTextField(textField: ConfirmPasswordTxt)
             confirmPasswordValid = true
         }
         
@@ -223,7 +232,10 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         if(emailValid && passwordValid && firstNameValid
             && lastNameValid && validFavouriteMovie && confirmPasswordValid)
         {
-            
+            if(genre == nil) {
+                genre = "Action"
+            }
+            startCreating(email: EmailTxt.text!, password: PasswordTxt.text!, firstname: FirstNameTxt.text!, lastname: LastNameTxt.text!, favouritegenre: genre!, favouritemovie: FavouriteMovie.text!, mobileno: phoneNumber.text!)
         }
         
     }
@@ -233,8 +245,8 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
         let param:Dictionary<String,String> = ["Email" : self.EmailTxt.text! as String, "Password" : self.PasswordTxt.text! as String,
             "FirstName" : self.FirstNameTxt.text! as String,
             "LastName" : self.LastNameTxt.text! as String,
-            "MobileNo" : "" as String, //not implemented
-            "FavouriteGenre" : "" as String,
+            "MobileNo" : self.phoneNumber.text! as String, //not implemented
+            "FavouriteGenre" : self.genre as String,
             "FavouriteMovie" : self.FavouriteMovie.text! as String,
             "ImgSrc" : "" as String,//not implemented
             "DOB" : "" as String // not implemented]
@@ -249,13 +261,13 @@ class ViewControllerCreateAccount: UIViewController, UIPickerViewDelegate, UIPic
                         
                         let user = User(json: entry)
                         self.sessionM.StartSession(user: user)
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
-                        self.present(vc!, animated: true, completion: nil)
+                       
                         
                     }
                     DispatchQueue.main.async(execute: {
                         
-                        
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
+                        self.present(vc!, animated: true, completion: nil)
                         
                     })
                 }

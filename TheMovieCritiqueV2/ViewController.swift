@@ -148,19 +148,21 @@ class ViewController: UIViewController {
                             let user = User(json: entry)
                             
                             self.sessionM.StartSession(user: user)
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
-                            self.present(vc!, animated: true, completion: nil)
+                          //  let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
+                           // self.present(vc!, animated: true, completion: nil)
                             
                         }
                         DispatchQueue.main.async(execute: {
                             
-                            
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainNav")
+                            self.present(vc!, animated: true, completion: nil)
                             
                         })
                     }
                 }
                 else
                 {
+                   
                     print("No DATA")
                 }
             }

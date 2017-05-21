@@ -61,7 +61,7 @@ class ViewControllerGenreList: UIViewController, UITableViewDataSource, UITableV
             tmpController.dismiss(animated: false, completion: nil);
         });
         
-        externalMovieList.assignbackground()
+       // externalMovieList.assignbackground()
         externalMovieList.navigationItem.title = currentCell.labelGenre.text
         externalMovieList.filterContentForSearchText(searchText: currentCell.labelGenre.text!)
         

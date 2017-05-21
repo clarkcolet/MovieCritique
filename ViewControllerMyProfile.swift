@@ -42,13 +42,15 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     var tasks: [UserImage] = []
     
     var reviews: [FeedRecentReview] = []
+    var favourites: [Movie] = []
     
     var session = SessionManager()
 
     var validator = Validator()
     
     override func viewDidLoad() {
-     
+        
+        
         
         
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.white
         collectionView.register(CollectionViewCellReviews.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor.white
         subView.addSubview(collectionView)
        
 
@@ -87,6 +89,9 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         getData()
         
         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        labelName.text = session.RetriveUserFirstName()
+        labelGenre.text = session.RetriveUserFavouriteGenre()
         
         Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -112,7 +117,31 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             }
         }
         
-
+        let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getFavourites(body: param2 as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.favourites.append(Movie(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
 
         
     }
@@ -163,7 +192,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor.white
         collectionView.register(CollectionViewCellReviews.self, forCellWithReuseIdentifier: "Cell")
         
         subView.addSubview(collectionView)
@@ -328,16 +357,26 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return favourites.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCellReviews
         
+        cell.textLabel.text = favourites[indexPath.row].title
         
-        cell.textLabel.text = "Beauty and the Beast2"
-        cell.imageView.image = UIImage(named: "beauty2")
+        if let url = NSURL(string: favourites[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                cell.imageView.image  = UIImage(data: data as Data)
+                // cell.imageMovie.image = UIImage(named: "beauty")
+                
+            }
+        }
+        
+        //cell.imageView.image = favourites[indexPath.row].imgSrc
+       // cell.textLabel.text = "Beauty and the Beast"
+       // cell.imageView.image = UIImage(named: "beauty")
         
         return cell
     }

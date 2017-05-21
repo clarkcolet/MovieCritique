@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ViewControllerMyReview: UIViewController {
+class ViewControllerMyReview: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var textViewReview: UITextView!
@@ -32,6 +32,8 @@ class ViewControllerMyReview: UIViewController {
     var externalMovieID:String!
     var externalRating:RatingControl!
     
+    var success:Bool = true
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +51,17 @@ class ViewControllerMyReview: UIViewController {
         } else {
             myRating.rating = 0
         }
-        
-      
+        textViewReview.delegate = self
+     // textViewReview .addTarget(self, action: "myTargetFunction:", forControlEvents: UIControlEvents.TouchDown)
         
         self.navigationController?.navigationBar.tintColor = UIColor.black;
+    }
+    
+    func textViewDidBeginEditing(_ textViewReview: UITextView) {
+        DispatchQueue.main.async {
+            textViewReview.selectAll(nil)
+            print("Started editing")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,11 +86,13 @@ class ViewControllerMyReview: UIViewController {
             Rest.sharedInstance.saveReview(body: param as [String : AnyObject]) { (json: JSON) in
                 if(json["Status"] == "Success")
                 {
-                    print("Success")
+                    print("Success REVIEW")
+                    self.success = true
                 }
                 else
                 {
-                    print("No DATA")
+                    self.success = false
+                    print("No DATA REVIEW")
                 }
             }
 
@@ -89,17 +100,27 @@ class ViewControllerMyReview: UIViewController {
             validator.AnimationShakeTextFieldTextView(textField: textViewReview)
         }
         
+        if (success) {
         let refreshAlert = UIAlertController(title: "Saved", message: "Your review has been submitted", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
         }))
         
-//        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-//            print("Handle Cancel Logic here")
-//        }))
+
         
         present(refreshAlert, animated: true, completion: nil)
+        } else {
+            let refreshAlert = UIAlertController(title: "Saved", message: "Error submitting review", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                print("Handle Ok logic here")
+            }))
+            
+            
+            
+            present(refreshAlert, animated: true, completion: nil)
+        }
     }
 
     /*

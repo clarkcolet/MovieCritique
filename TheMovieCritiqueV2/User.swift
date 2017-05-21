@@ -13,7 +13,7 @@ public class User {
 	public var password : String!
 	public var favouriteGenre : String!
     public var favouriteMovie : String!
-    public var imgSrc : String!
+    public var userImg : String!
 	public var createdOn : String!
 	public var updatedOn : String!
 
@@ -28,7 +28,8 @@ public class User {
         password = json["Password"].stringValue
         favouriteGenre = json["FavouriteGenre"].stringValue
         favouriteMovie = json["FavouriteMovie"].stringValue
-        imgSrc = json["UserImg"].stringValue
+        userImg = json["UserImg"].stringValue
+
         createdOn = json["CreatedOn"].stringValue
         updatedOn = json["UpdatedOn"].stringValue
     }

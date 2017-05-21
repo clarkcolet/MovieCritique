@@ -23,6 +23,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var buttonHeart: UIButton!
     var heartFilledBoolean:Bool = false
+      
     
     
     var externalMovieTitle:String = ""
