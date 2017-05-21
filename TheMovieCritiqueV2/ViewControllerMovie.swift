@@ -114,15 +114,15 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("I was selected: #\(indexPath.item)!")
-//        
-//        let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellMovieReviews
-//        currentRowExternal = currentRow
-//        
-//        performSegue(withIdentifier: "FromMovieToReview", sender: nil)
-//        
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("I was selected: #\(indexPath.item)!")
+        
+        let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellMovieReviews
+        currentRowExternal = currentRow
+        
+        performSegue(withIdentifier: "FromMovieToReview", sender: nil)
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -140,6 +140,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
             vc.externalLabelNameFriend = currentRowExternal.labelUserName.text
            //REVIEW
             vc.externalFriendRating = currentRowExternal.friendRating
+            vc.externaltextViewReview = currentRowExternal.textViewReview.text
             
          
         }

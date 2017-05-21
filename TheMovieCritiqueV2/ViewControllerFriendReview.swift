@@ -34,6 +34,10 @@ class ViewControllerFriendReview: UIViewController {
     var externalImageFriend:UIImage!
     var externalFriendRating:RatingControl!
     
+    @IBOutlet weak var bottomSubview: UIView!
+    
+    @IBOutlet weak var topSubview: UIView!
+    
     
     
     
@@ -54,7 +58,53 @@ class ViewControllerFriendReview: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            
+            let orient = UIApplication.shared.statusBarOrientation
+            
+            switch orient {
+                
+            case .portrait:
+                
+                print("Portrait")
+               
+                
+            case .landscapeLeft,.landscapeRight :
+                
+                print("Landscape")
+                
+                self.bottomSubview.frame =  CGRect(x: 0, y: 674, width: self.view.frame.width, height: 400)
+                self.imageMovie.frame = CGRect(x: 0, y: 221, width: 331, height: 453)
+                self.topSubview.frame =  CGRect(x: 331, y: 221, width: self.view.frame.width-331, height: 453)
+              //  self.topSubview.subviews.removeAll()
+              //  self.topSubview.addSubview(labelTitle)
+               // self.labelTitle.frame = CGRect(x: 30, y: 30, width: self.topSubview.frame.width, height: 36)
+                
+                
+              //  print("X: \(self.labelTopSubview.frame.origin.x)   Y:\(self.labelTopSubview.frame.origin.y) " )
+                // self.topSubview.addSubview(self.labelTopSubview)
+                // self.labelTopSubview.frame = CGRect(x: 21, y: 65, width: 185, height: 20)
+               // print("X: \(self.labelTopSubview.frame.origin.x)   Y:\(self.labelTopSubview.frame.origin.y) " )
+                
+                
+            default:
+                print("Anything But Portrait")
 
+            }
+            
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            //refresh view once rotation is completed not in will transition as it returns incorrect frame size.Refresh here
+            
+        })
+        super.viewWillTransition(to: size, with: coordinator)
+
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

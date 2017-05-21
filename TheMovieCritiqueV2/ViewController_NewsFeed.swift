@@ -21,7 +21,10 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var collectionMovies: UICollectionView!
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
-    @IBOutlet weak var friendRating: RatingControl!
+    @IBOutlet weak var topSubview: UIView!
+    @IBOutlet weak var labelTopSubview: UILabel!
+    
+   
     
     
     
@@ -367,7 +370,13 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
             case .landscapeLeft,.landscapeRight :
                 
                 print("Landscape")
-
+             //   topSubview.frame.width = view.frame.width
+               // topSubview.frame.height = 10
+               self.topSubview.frame =  CGRect(x: -1, y: 65, width: self.view.frame.width, height: 36)
+                print("X: \(self.labelTopSubview.frame.origin.x)   Y:\(self.labelTopSubview.frame.origin.y) " )
+               // self.topSubview.addSubview(self.labelTopSubview)
+               // self.labelTopSubview.frame = CGRect(x: 21, y: 65, width: 185, height: 20)
+                print("X: \(self.labelTopSubview.frame.origin.x)   Y:\(self.labelTopSubview.frame.origin.y) " )
                
                 let cellSize = CGSize(width:self.collectionMovies.frame.width / 10,  height: self.collectionMovies.frame.height/1.2)
                 
