@@ -2,6 +2,7 @@
 //  SessionManager.swift
 //  Kdc
 //
+//  MANAGING SESSION
 //  Created by nishanth on 03/03/2017.
 //  Copyright © 2017 nishanth. All rights reserved.
 //
@@ -10,12 +11,12 @@ import Foundation
 
 class SessionManager
 {
-  //  let rest = RestApiManager()
     
     init() {
         
     }
     
+    // Create a new Session
     func StartSession(user:User) -> Bool
     {
         let preferences = UserDefaults.standard
@@ -42,7 +43,7 @@ class SessionManager
         return status
     }
     
-    
+    //Destroy Current Session
     func DestroySession()
     {
         let preferences = UserDefaults.standard
@@ -55,7 +56,7 @@ class SessionManager
         
     }
     
-    
+    //Retrive the current Session
     func RetriveSession() -> String
     {
         let preferences = UserDefaults.standard

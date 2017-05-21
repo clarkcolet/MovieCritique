@@ -17,12 +17,14 @@ class Rest:NSObject
 
     static let sharedInstance = Rest()
     
+    //logging call
     func getLogin(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
         makeHTTPPostRequest(path: "login",body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     
+    //signup call
     func signup(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
         makeHTTPPostRequest(path: "signup",body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
@@ -63,13 +65,13 @@ class Rest:NSObject
     }
     
     func postfavourites(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
-        makeHTTPPostRequest(path: "addFavourites",body: body, onCompletion: { json, err in
+        makeHTTPPostRequest(path: "addFavourite",body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     
     func updatefavourites(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
-        makeHTTPPostRequest(path: "updateFavourites",body: body, onCompletion: { json, err in
+        makeHTTPPostRequest(path: "updateFavourite",body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
@@ -82,6 +84,7 @@ class Rest:NSObject
         })
     }
     
+    //making http calls
     public func makeHTTPPostRequest(path: String, body: [String: AnyObject], onCompletion: @escaping ServiceResponse) {
         let request = NSMutableURLRequest(url: NSURL(string: BaseURL + path)! as URL)
         
@@ -112,6 +115,7 @@ class Rest:NSObject
         }
     }
     
+    //making http get requests
     private func makeHTTPGetRequest(path: String, onCompletion: @escaping ServiceResponse) {
         let request = NSMutableURLRequest(url: NSURL(string: BaseURL + path)! as URL)
         

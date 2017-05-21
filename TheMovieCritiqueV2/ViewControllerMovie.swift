@@ -33,6 +33,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     var externalMovieDescription:String = ""
     var externalMovieID:String = ""
     var externalHeartFilled:Bool = false
+    var externalFavouriteID:String  = ""
     
     var currentRowExternal:TableViewCellMovieReviews!
     
@@ -63,6 +64,9 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
            buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
         }
         
+        reviews.removeAll()
+       // self.tableReviewFeed.reloadData()
+        
         let param:Dictionary<String,String> = ["MovieID" : textMovieID.text as! String]
         
         Rest.sharedInstance.getReviewPerMovie(body: param as [String : AnyObject]) { (json: JSON) in
@@ -92,17 +96,70 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         // Do any additional setup after loading the view.
     }
     
-    
+    override func awakeFromNib() {
+        print("YAY")
+    }
     
     @IBAction func favouriteMovie(_ sender: UIButton) {
         
-        if (heartFilledBoolean) {
-            buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
-            heartFilledBoolean = false
-        } else {
-            buttonHeart.setImage(UIImage(named: "heartFilled"), for: .normal)
-            heartFilledBoolean = true
+        if (heartFilledBoolean == true) { //true
             
+              buttonHeart.setImage(UIImage(named: "heartEmpty"), for: .normal)
+              heartFilledBoolean = false
+              updateFavourite()
+           
+            
+        } else {
+            
+            
+                buttonHeart.setImage(UIImage(named: "heartFilled"), for: .normal)
+                heartFilledBoolean = false
+                addFavourite()
+            
+            
+        }
+        
+    }
+    
+    func addFavourite()
+    {
+        var result:Bool = false
+        
+        let session = SessionManager()
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as! String, "MovieID" : textMovieID.text as! String]
+        
+        Rest.sharedInstance.postfavourites(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                print("YAY")
+            }
+            else
+            {
+                print("No DATA Favourite Add")
+            }
+        }
+        
+    }
+
+  
+    
+    
+    
+    
+    func updateFavourite()
+    {
+        
+        let param:Dictionary<String,String> = ["FavouriteID" : externalFavouriteID as! String]
+        
+        Rest.sharedInstance.updatefavourites(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                print("Yay")
+            }
+            else
+            {
+                print("No DATA Update")
+            }
         }
         
     }
@@ -112,6 +169,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("about to enter")
+       // tableView.reloadData()
         return reviews.count
     }
     
@@ -131,7 +189,7 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         
         if starString != ""
         {
-        tableActivity.friendRating.rating = Int(starString)!
+            tableActivity.friendRating.rating = Int(starString)!
         }
        
         

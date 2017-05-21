@@ -60,6 +60,14 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
 
         collectionMovies.setCollectionViewLayout(layout, animated: true)
         
+        reloadData()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    func reloadData()
+    {
+        
         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
         Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
@@ -136,6 +144,8 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         print(self.filteredMovie.count)
         return self.filteredMovie.count
     }
+    
+    
     
     // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -272,11 +282,12 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
                     
                     if movie.favourite == "0" || movie.favourite == ""
                     {
-                    vc.externalHeartFilled = false
+                        vc.externalHeartFilled = false
                     }
                     else
                     {
                         vc.externalHeartFilled = true
+                        vc.externalFavouriteID = movie.favourite
                     }
                 }
             }
@@ -312,7 +323,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchText \(String(describing: searchBar.text))")
     }
-
+    
     /*
     // MARK: - Navigation
 
