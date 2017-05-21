@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
@@ -39,7 +40,12 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var tasks: [UserImage] = []
+    
+    var reviews: [FeedRecentReview] = []
+    
+    var session = SessionManager()
 
+    var validator = Validator()
     
     override func viewDidLoad() {
      
@@ -79,6 +85,34 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         buttonProfile.clipsToBounds = true
     
         getData()
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.reviews.append(FeedRecentReview(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+
 
         
     }
@@ -169,6 +203,9 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellReviews
         currentRowExternal = currentRow
         
+        
+        
+        
         performSegue(withIdentifier: "FromMyProfileToReview", sender: nil)
         
     }
@@ -176,18 +213,31 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return reviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath as IndexPath) as! TableViewCellReviews
-        cell.imageMovie.image = UIImage(named: "beauty")
-        cell.movieTitle.text = "Title of the film goes here"
-        cell.time.text = "2:00"
-        cell.nameUser.text = "mark"
-        cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
-        cell.rating.rating = 5
+        
+        if let url = NSURL(string: reviews[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                cell.imageMovie.image  = UIImage(data: data as Data)
+               // cell.imageMovie.image = UIImage(named: "beauty")
+
+            }
+        }
+        
+        cell.movieTitle.text = reviews[indexPath.row].title
+        
+        
+        
+       // cell.time.text = dateFormatter.string(from: date!)
+       // cell.nameUser.text = "
+        cell.review.text = reviews[indexPath.row].review
+        let starString:String = reviews[indexPath.row].star!
+
+        cell.rating.rating = Int(starString)!
         
         return cell
     }
@@ -286,8 +336,8 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCellReviews
         
         
-        cell.textLabel.text = "Beauty and the Beast"
-        cell.imageView.image = UIImage(named: "beauty")
+        cell.textLabel.text = "Beauty and the Beast2"
+        cell.imageView.image = UIImage(named: "beauty2")
         
         return cell
     }
@@ -310,15 +360,24 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
             
             let vc = segue.destination as! ViewControllerMyReview
             
-          //  if(!boolRow) {
+          //  if(!boolRow) {   
+            for movie in reviews
+            {
+                if(movie.title! == currentRowExternal.movieTitle.text)
+                {
+                    
+                   
+            
+
                 vc.externalImage = currentRowExternal.imageMovie.image
-                vc.externalReview = "My review goes here - collection"
-                vc.externalDescription = "Description goes here"
+                vc.externalReview = movie.review
+                vc.externalDescription = movie.desc
                 vc.externalTitle = currentRowExternal.movieTitle.text
-                vc.externalGenre = "Genre goes here"
-                vc.externalActors = "External actors"
+                vc.externalGenre = movie.genre
+                vc.externalActors = movie.cast
                 vc.externalRating = currentRowExternal.rating
             print("External current row rating: \(currentRowExternal.rating.rating)")
+                }
           //  } else {
             
             
@@ -335,18 +394,25 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         if segue.identifier == "FromMyProfileToMovie"{
             
             let vc = segue.destination as! ViewControllerMovie
-            
+            for movie in reviews
+            {
+                if(movie.title! == currentRowExternal.movieTitle.text)
+                {
+                    
             vc.externalMovieTitle = currentCellExternal.textLabel.text!
             vc.externalMovieImage = currentCellExternal.imageView.image
-            vc.externalMovieDescription = "Description of the film goes here"
-            vc.externalMovieGenre = "Genre goes here"
-            vc.externalMovieActors = "Actors go here"
+            vc.externalMovieDescription = movie.desc!
+            vc.externalMovieGenre = movie.genre!
+            vc.externalMovieActors = movie.cast!
             
             vc.title = currentCellExternal.textLabel.text
-            
+                }
+            }
+        }
         }
     }
-    
+
+
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         var session = SessionManager()

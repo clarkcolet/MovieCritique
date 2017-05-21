@@ -23,6 +23,8 @@ class Movie
     public var deleted : String!
     public var createdOn : String!
     public var updatedOn : String!
+    public var favourite : String!
+
     
     required public init(json: JSON) {
         movieID = json["MovieID"].stringValue
@@ -36,6 +38,8 @@ class Movie
         deleted = json["Deleted"].stringValue
         createdOn = json["CreatedOn"].stringValue
         updatedOn = json["UpdatedOn"].stringValue
+        favourite = json["Favourite"].stringValue
+
     }
 
 

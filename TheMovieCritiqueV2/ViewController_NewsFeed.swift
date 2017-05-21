@@ -15,7 +15,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
-
+    var session  = SessionManager()
+    
     @IBOutlet weak var FeedTable: UITableView!
 
     @IBOutlet weak var collectionMovies: UICollectionView!
@@ -69,8 +70,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         layout.minimumInteritemSpacing = 0.5
         collectionMovies.setCollectionViewLayout(layout, animated: true)
         
+         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
-        Rest.sharedInstance.getMovies{ (json: JSON) in
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -97,11 +99,9 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         
         
         
-        let session = SessionManager()
+        let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
-        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
-        
-        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+        Rest.sharedInstance.getFriendsRecentReview(body: param2 as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {

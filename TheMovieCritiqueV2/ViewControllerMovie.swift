@@ -100,8 +100,11 @@ class ViewControllerMovie: UIViewController, UITableViewDataSource, UITableViewD
         
         let starString:String = reviews[indexPath.row].star! 
         
-        //
+        if starString != ""
+        {
         tableActivity.friendRating.rating = Int(starString)!
+        }
+       
         
         if let url2 = NSURL(string: reviews[indexPath.row].userImgSrc!){
             if let data2 = NSData(contentsOf: url2 as URL){

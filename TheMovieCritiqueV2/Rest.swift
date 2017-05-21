@@ -36,14 +36,40 @@ class Rest:NSObject
     }
     
     
-    func getMovies(onCompletion: @escaping (JSON) -> Void) {
+    func getMoviesWithoutUserID(onCompletion: @escaping (JSON) -> Void) {
         makeHTTPGetRequest(path: "getMovies", onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
+    
+    func getMovies(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "getMovies",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    
 
     func getFriendsRecentReview(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
         makeHTTPPostRequest(path: "getFriendsRecentReview",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func getFavourites(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "getFavourites",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func postfavourites(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "addFavourites",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func updatefavourites(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "updateFavourites",body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }

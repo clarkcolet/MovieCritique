@@ -37,6 +37,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     let releaseYear:String = ""
     var movieGenre:String = ""
     
+    var session = SessionManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,10 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
         layout.minimumInteritemSpacing = 0.5
 
         collectionMovies.setCollectionViewLayout(layout, animated: true)
-        Rest.sharedInstance.getMovies{ (json: JSON) in
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
             if(json["Status"] == "Success")
             {
                 if let results = json["Data"].array {
@@ -179,12 +183,19 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             //var results = [Movie]()
             print(filteredMovie)
             filteredMovie.removeAll()
-            for publication in movies {
-                if let fullTitle = publication.genre {
-                    if (fullTitle).contains(searchText) {
-                        filteredMovie.append(publication)
+            if(searchText != "All")
+            {
+                for publication in movies {
+                    if let fullTitle = publication.genre {
+                        if (fullTitle).contains(searchText) {
+                                filteredMovie.append(publication)
+                            }
                     }
                 }
+            }
+            else
+            {
+                filteredMovie.append(contentsOf: movies)
             }
         
 

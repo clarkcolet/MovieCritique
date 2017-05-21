@@ -479,7 +479,7 @@
                                         <rect key="frame" x="0.0" y="1" width="1024" height="233"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSR-jL-SNc" id="PFS-lV-FQy">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="233"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-6o-KWO">
@@ -1012,8 +1012,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="84h-8o-zJg" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="898" y="25" width="135" height="37"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="84h-8o-zJg" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
+                                        <rect key="frame" x="923" y="40" width="110" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="84h-8o-zJg" secondAttribute="height" multiplier="155:41" constant="-4.8780487804878021" id="ECc-BE-zkN"/>
                                             <constraint firstAttribute="height" constant="37" id="OtZ-fr-8Hr"/>
@@ -1029,8 +1029,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rate:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLB-3d-eqs">
-                                        <rect key="frame" x="742" y="25" width="131" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLB-3d-eqs">
+                                        <rect key="frame" x="767" y="40" width="131" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="131" id="wmw-Ki-n1k"/>
                                         </constraints>
@@ -1322,7 +1322,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellNewFriend" id="3Jd-2q-ZIR" customClass="CollectionViewCellNewFriends" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="-7" width="122" height="115"/>
+                                                <rect key="frame" x="0.0" y="-6.5" width="122" height="115"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="115"/>
@@ -1787,8 +1787,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-SP-5L4" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="746" y="40" width="250" height="48"/>
+                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-SP-5L4" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
+                                        <rect key="frame" x="746" y="88" width="250" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="Ale-Zh-ETx"/>
                                             <constraint firstAttribute="width" secondItem="dBN-SP-5L4" secondAttribute="height" multiplier="250:43" constant="-29.069767441860449" id="DvV-9j-Zdp"/>
@@ -1978,7 +1978,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableActivity" rowHeight="289" id="8fG-tO-Nua" customClass="TableViewCellMovies" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="1024" height="289"/>
+                                        <rect key="frame" x="0.0" y="56" width="1024" height="289"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8fG-tO-Nua" id="n69-wo-Y4O">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="288"/>
@@ -2282,9 +2282,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="y51-bi-jfF"/>
-        <segue reference="3dy-2f-gUr"/>
-        <segue reference="idY-cC-GHI"/>
+        <segue reference="ekc-GB-TKS"/>
+        <segue reference="Xfv-5d-K9s"/>
         <segue reference="krU-22-V1K"/>
-        <segue reference="idY-cC-GHI"/>
     </inferredMetricsTieBreakers>
 </document>

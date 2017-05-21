@@ -43,7 +43,14 @@ class ViewControllerMyReview: UIViewController {
         labelGenre.text = externalGenre
         labelDescription.text = externalDescription
         movieID.text = externalMovieID
-       // myRating.rating = externalRating.rating
+        
+        if externalRating != nil {
+        myRating.rating = externalRating.rating
+        } else {
+            myRating.rating = 0
+        }
+        
+      
         
         self.navigationController?.navigationBar.tintColor = UIColor.black;
     }

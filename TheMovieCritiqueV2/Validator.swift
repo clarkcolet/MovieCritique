@@ -149,7 +149,24 @@ class Validator
     }
     
    
-    
+    func convertDateFormater(date: String) -> String {
+        print(date)
+        let dateFormatter = DateFormatter()
+       // dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as! TimeZone
+        
+        guard let date = dateFormatter.date(from: date) else {
+            //assert(false, "no date from string")
+            print("Neh")
+            return ""
+        }
+        
+        dateFormatter.dateFormat = "yyyy MMM EEEE HH:mm"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as! TimeZone
+        let timeStamp = dateFormatter.string(from: date)
+        
+        return timeStamp
+    }
     
     
 }
