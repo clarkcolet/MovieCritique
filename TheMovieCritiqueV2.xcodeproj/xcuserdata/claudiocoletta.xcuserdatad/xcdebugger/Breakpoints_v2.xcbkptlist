@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheMovieCritiqueV2/ViewControllerMovie.swift"
-            timestampString = "516878857.115944"
+            timestampString = "517060983.371483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "ViewControllerMovie"
             landmarkType = "3">
          </BreakpointContent>
