@@ -103,6 +103,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     func doSomething() {
         print("START")
         movies.removeAll()
+        filteredMovie.removeAll()
 
         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         

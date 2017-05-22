@@ -15,9 +15,6 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
-    
-   // var refreshControl: UIRefreshControl!
-   // var customView: UIView!
 
     @IBOutlet weak var FeedTable: UITableView!
 
@@ -134,6 +131,8 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func doSomething() {
         print("START")
         movies.removeAll()
+        recentReviewFeed.removeAll()
+        //self.collectionMovies.delete
         let session2 = SessionManager()
         let param:Dictionary<String,String> = ["UserID" : session2.RetriveSession() as String]
         
