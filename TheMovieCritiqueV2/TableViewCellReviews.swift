@@ -19,6 +19,7 @@ class TableViewCellReviews: UITableViewCell {
     let review = UILabel()
     let rating = RatingControl()
   // let review = UITextView()
+    var movieID:String!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

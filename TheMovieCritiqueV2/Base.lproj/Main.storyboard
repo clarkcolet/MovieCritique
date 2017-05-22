@@ -501,7 +501,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" maximumZoomScale="3" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-ic-5aO">
+                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" ambiguous="YES" maximumZoomScale="3" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-ic-5aO">
                                                     <rect key="frame" x="166" y="38" width="850" height="159"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -531,7 +531,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-Nr-SzO" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
+                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-Nr-SzO" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
                                                     <rect key="frame" x="426" y="4" width="110" height="22"/>
                                                 </stackView>
                                             </subviews>
@@ -1029,7 +1029,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="84h-8o-zJg" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="923" y="40" width="110" height="22"/>
+                                        <rect key="frame" x="898" y="25" width="135" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="84h-8o-zJg" secondAttribute="height" multiplier="155:41" constant="-4.8780487804878021" id="ECc-BE-zkN"/>
                                             <constraint firstAttribute="height" constant="37" id="OtZ-fr-8Hr"/>
@@ -1046,7 +1046,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLB-3d-eqs">
-                                        <rect key="frame" x="767" y="40" width="131" height="19"/>
+                                        <rect key="frame" x="742" y="25" width="131" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="131" id="wmw-Ki-n1k"/>
                                         </constraints>
@@ -1804,7 +1804,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-SP-5L4" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
-                                        <rect key="frame" x="746" y="88" width="250" height="0.0"/>
+                                        <rect key="frame" x="746" y="40" width="250" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="Ale-Zh-ETx"/>
                                             <constraint firstAttribute="width" secondItem="dBN-SP-5L4" secondAttribute="height" multiplier="250:43" constant="-29.069767441860449" id="DvV-9j-Zdp"/>
@@ -2000,19 +2000,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="288.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-ol-3Op">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-ol-3Op">
                                                     <rect key="frame" x="8" y="8" width="142" height="144"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="144" id="Tmn-dp-i7x"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iB-RB-9r2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iB-RB-9r2">
                                                     <rect key="frame" x="160" y="25" width="53" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="0na-Jc-IBP">
+                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="0na-Jc-IBP">
                                                     <rect key="frame" x="158" y="44" width="708" height="205"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -2022,7 +2022,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-t1-zhS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MaI-t1-zhS">
                                                     <rect key="frame" x="160" y="0.0" width="59" height="28"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
@@ -2033,10 +2033,10 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjF-f4-axr">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rjF-f4-axr">
                                                     <rect key="frame" x="865" y="-1" width="159" height="231"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-iJ-RAr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="See More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-iJ-RAr">
                                                     <rect key="frame" x="733" y="254" width="103" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="103" id="omq-dZ-DS3"/>
@@ -2045,14 +2045,14 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD" userLabel="Date Posted">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uff-2T-syD" userLabel="Date Posted">
                                                     <rect key="frame" x="815" y="-1" width="42" height="37"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="datePosted"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hh8-Fo-WF1" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
+                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hh8-Fo-WF1" customClass="RatingControl" customModule="TheMovieCritiqueV2" customModuleProvider="target">
                                                     <rect key="frame" x="889" y="243" width="110" height="22"/>
                                                 </stackView>
                                             </subviews>

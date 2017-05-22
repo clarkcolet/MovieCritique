@@ -19,6 +19,7 @@ class CollectionViewCellReviews: UICollectionViewCell {
 //        }()
     var textLabel: UILabel!
     var imageView: UIImageView!
+    var movieID:String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

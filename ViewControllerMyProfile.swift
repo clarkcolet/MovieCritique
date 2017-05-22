@@ -231,10 +231,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         boolRow = true
         let currentRow = tableView.cellForRow(at: indexPath) as! TableViewCellReviews
         currentRowExternal = currentRow
-        
-        
-        
-        
+
         performSegue(withIdentifier: "FromMyProfileToReview", sender: nil)
         
     }
@@ -258,6 +255,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         }
         
         cell.movieTitle.text = reviews[indexPath.row].title
+        cell.movieID = reviews[indexPath.row].movieID
         
         
         
@@ -365,6 +363,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCellReviews
         
         cell.textLabel.text = favourites[indexPath.row].title
+        cell.movieID = favourites[indexPath.row].movieID
         
         if let url = NSURL(string: favourites[indexPath.row].imgSrc!){
             if let data = NSData(contentsOf: url as URL){
@@ -395,18 +394,17 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FromMyProfileToReview"{
-            
+        print("Inside segue")
+        print(segue.identifier!)
+        if segue.identifier == "FromMyProfileToReview" {
+             print("Inside from my profile to review")
             let vc = segue.destination as! ViewControllerMyReview
             
-          //  if(!boolRow) {   
+         
             for movie in reviews
             {
                 if(movie.title! == currentRowExternal.movieTitle.text)
                 {
-                    
-                   
-            
 
                 vc.externalImage = currentRowExternal.imageMovie.image
                 vc.externalReview = movie.review
@@ -417,38 +415,34 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
                 vc.externalRating = currentRowExternal.rating
             print("External current row rating: \(currentRowExternal.rating.rating)")
                 }
-          //  } else {
-            
-            
-//                vc.externalImage = currentRowExternal.imageMovie.image
-//                vc.externalReview = "My review goes here - table"
-//                vc.externalDescription = "Description goes here"
-//                vc.externalTitle = "Title goes here"
-          //  }
+
             vc.title = "Review"
             
             
         }
+        }
         
-        if segue.identifier == "FromMyProfileToMovie"{
-            
+        if segue.identifier == "FromMyProfileToMovie" {
+            print("Inside from my profile to movie")
             let vc = segue.destination as! ViewControllerMovie
-            for movie in reviews
+            for movie in favourites
             {
-                if(movie.title! == currentRowExternal.movieTitle.text)
+                if(movie.title! == currentCellExternal.textLabel.text)
                 {
-                    
+                    print("Movie title: \(String(describing: movie.title))")
+                    print("External movie title: \(String(describing: currentCellExternal.textLabel.text))")
             vc.externalMovieTitle = currentCellExternal.textLabel.text!
             vc.externalMovieImage = currentCellExternal.imageView.image
             vc.externalMovieDescription = movie.desc!
             vc.externalMovieGenre = movie.genre!
             vc.externalMovieActors = movie.cast!
-            
+            vc.externalHeartFilled = true
             vc.title = currentCellExternal.textLabel.text
+            vc.externalMovieID = currentCellExternal.movieID
                 }
             }
         }
-        }
+        
     }
 
 
