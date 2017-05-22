@@ -41,9 +41,94 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "167x167.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "16x16",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "16x16",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "32x32",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "32x32",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "128x128",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "128x128",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "256x256",
+      "scale" : "1x"
+    },
+    {
+      "size" : "256x256",
+      "idiom" : "mac",
+      "filename" : "iOS-7-Vector-Icon-Rob-Sim@0.5x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "512x512",
+      "scale" : "1x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "iOS-7-Vector-Icon-Rob-Sim.png",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "167x167@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "167x167@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "icon.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "icon@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "icon@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "iOS-7-Vector-Icon-Rob-Sim@1.5x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "iOS-7-Vector-Icon-Rob-Sim@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "iOS-7-Vector-Icon-Rob-Sim@3x.png",
+      "unassigned" : true
     }
   ],
   "info" : {
