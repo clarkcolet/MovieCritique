@@ -92,6 +92,7 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
         
         labelName.text = session.RetriveUserFirstName()
         labelGenre.text = session.RetriveUserFavouriteGenre()
+        labelMovie.text = session.RetriveUserFavouriteMovie()
         
         Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
             if(json["Status"] == "Success")
@@ -551,6 +552,26 @@ class ViewControllerMyProfile: UIViewController, UICollectionViewDelegateFlowLay
 
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         getData()
+        
+        
+        //
+//            let param:Dictionary<String,Any> = ["UserID" : session.RetriveSession() as String, "UserImg" :  task as! UserImage]
+//            
+//            Rest.sharedInstance.saveReview(body: param as [String : AnyObject]) { (json: JSON) in
+//                if(json["Status"] == "Success")
+//                {
+//                    print("Success REVIEW")
+//                    self.success = true
+//                }
+//                else
+//                {
+//                    self.success = false
+//                    print("No DATA REVIEW")
+//                }
+//            }
+//            
+
+        //
         
     }
 

@@ -44,6 +44,12 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
 
     var refreshControl: UIRefreshControl!
     let session  = SessionManager()
+    
+    //
+    var externalMovieList = ViewControllerMovieList()
+    var filteredMovie = [Movie]()
+    //var movies = [Movie]()
+    //
 
     override func viewDidLoad() {
       //  assignbackground()
@@ -75,6 +81,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                         // let user = User(json: entry)
                         
                         self.movies.append(Movie(json: entry))
+                         self.filteredMovie.append(Movie(json:entry))
                         
                     }
                     DispatchQueue.main.async(execute: {
@@ -131,6 +138,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     func doSomething() {
         print("START")
         movies.removeAll()
+        filteredMovie.removeAll()
         recentReviewFeed.removeAll()
         //self.collectionMovies.delete
         let session2 = SessionManager()
@@ -145,6 +153,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
                         // let user = User(json: entry)
                         
                         self.movies.append(Movie(json: entry))
+                          self.filteredMovie.append(Movie(json:entry))
                         
                     }
                     DispatchQueue.main.async(execute: {
@@ -209,7 +218,7 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(self.movies.count)
-        return self.movies.count
+        return self.filteredMovie.count
     }
     
     // make a cell for each cell index path
@@ -219,12 +228,13 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         let cellPosterTop = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CollectionViewMovies
         
         
-        if let url = NSURL(string: movies[indexPath.row].imgSrc){
+        if let url = NSURL(string: filteredMovie[indexPath.row].imgSrc){
             if let data = NSData(contentsOf: url as URL){
                 cellPosterTop.moviePoster.image = UIImage(data: data as Data)
         }
         }
-        cellPosterTop.movieName.text = movies[indexPath.row].title!
+        
+        cellPosterTop.movieName.text = filteredMovie[indexPath.row].title!
         
         
         //
@@ -416,7 +426,98 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchText \(String(describing: searchBar.text))")
+        searchFilm(filmTitle: searchBar.text!)
     }
+    
+    
+    func searchFilm(filmTitle:String!) {
+       
+        //
+         print("Before reload data")
+       // reloadData()
+        print("After reload data")
+        print("This is the title, mate: \(filmTitle!)")
+       // externalMovieList.filterContentForSearchText(searchText:filmTitle!)
+        filterContentForSearchTextAll(searchText: filmTitle!)
+        //
+    }
+    
+    func filterContentForSearchTextAll(searchText:String) {
+        //var results = [Movie]()
+        print(filteredMovie)
+        filteredMovie.removeAll()
+        for publication in movies {
+            print("Search text: \(searchText)")
+            //a.caseInsensitiveCompare(b) == ComparisonResult.orderedSame
+            if let fullTitle = publication.title {
+                if (fullTitle.lowercased()).contains(searchText.lowercased()) {
+                    filteredMovie.append(publication)
+                }
+            }
+            
+        }
+
+        print("Filtered movie: \(filteredMovie)")
+        self.collectionMovies.reloadData()
+    }
+    
+    
+    
+    func filterContentForSearchText(searchText: String) -> [Movie] {
+        var results = [Movie]()
+        if(searchText != "All")
+        {
+            //externalMovieList.movies
+            for m in externalMovieList.movies {
+                if let fullTitle = m.genre {
+                    if (fullTitle).contains(searchText) {
+                        results.append(m)
+                    }
+                }
+            }
+        }
+        else
+        {
+            results = externalMovieList.movies
+        }
+        return results
+    }
+    
+    func reloadData()
+    {
+        
+        let session  = SessionManager()
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getMovies(body: param as [String : AnyObject]){ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        self.movies.append(Movie(json: entry))
+                          self.filteredMovie.append(Movie(json:entry))
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                          self.collectionMovies.reloadData()
+                     //   self.tableView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        self.refreshControl = UIRefreshControl()
+        //self.view.addSubview(self.refreshControl)
+        refreshControl.addTarget(self, action:#selector(doSomething), for: .valueChanged)
+
+    }
+    
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         

@@ -31,6 +31,7 @@ class SessionManager
             preferences.set(user.lastName, forKey: "LastName")
             preferences.set(user.mobileNo, forKey: "MobileNo")
             preferences.set(user.favouriteGenre, forKey: "FavouriteGenre")
+            preferences.set(user.favouriteMovie, forKey: "FavouriteMovie")
 
 
             status = true
@@ -53,6 +54,7 @@ class SessionManager
         preferences.removeObject(forKey: "LastName")
         preferences.removeObject(forKey: "MobileNo")
         preferences.removeObject(forKey: "FavouriteGenre")
+        preferences.removeObject(forKey: "FavouriteMovie")
         
     }
     
@@ -99,5 +101,16 @@ class SessionManager
             FavouriteGenre = preferences.string(forKey: "FavouriteGenre")!
         }
         return FavouriteGenre
+    }
+    
+    func RetriveUserFavouriteMovie() -> String
+    {
+        let preferences = UserDefaults.standard
+        var FavouriteMovie:String = ""
+        if preferences.string(forKey: "FavouriteMovie") != nil
+        {
+            FavouriteMovie = preferences.string(forKey: "FavouriteMovie")!
+        }
+        return FavouriteMovie
     }
 }
