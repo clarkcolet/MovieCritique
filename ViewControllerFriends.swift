@@ -26,6 +26,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     
     var friends = [Friend]()
     var friendsReq = [FriendsRequest]()
+    var filteredFriend = [Friend]()
 
     
     let session = SessionManager()
@@ -47,6 +48,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
                         // let user = User(json: entry)
                         
                         self.friends.append(Friend(json: entry))
+                        self.filteredFriend.append(Friend(json: entry))
                         
                     }
                     DispatchQueue.main.async(execute: {
@@ -92,6 +94,71 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+//    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
+//        
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchBar.showsCancelButton = true
+//        searchController.searchBar.delegate = self       //
+//        let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
+//        let titleView = UIView(frame: frame)
+//        searchController.searchBar.backgroundImage = UIImage()
+//        searchController.searchBar.frame = frame
+//        titleView.addSubview(searchController.searchBar)
+//        navigationItem.titleView = titleView
+//        
+//    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("tryout")
+        searchBar.endEditing(true)
+        navigationItem.titleView = nil
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("searchText \(searchText)")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchText \(String(describing: searchBar.text))")
+        searchFriends(friendName: searchBar.text!)
+    }
+    
+    
+    func searchFriends(friendName:String!) {
+        
+        //
+        print("Before reload data")
+        // reloadData()
+        print("After reload data")
+        print("This is the title, mate: \(friendName!)")
+        // externalMovieList.filterContentForSearchText(searchText:filmTitle!)
+        filterContentForSearchTextAll(searchText: friendName!)
+        //
+    }
+    
+    func filterContentForSearchTextAll(searchText:String) {
+        //var results = [Movie]()
+     //   print(filteredMovie)
+        filteredFriend.removeAll()
+        for publication in friends {
+            print("Search text: \(searchText)")
+            //a.caseInsensitiveCompare(b) == ComparisonResult.orderedSame
+            if let fullTitle = publication.firstName {
+                if (fullTitle.lowercased()).contains(searchText.lowercased()) {
+                    filteredFriend.append(publication)
+                }
+            }
+            
+        }
+        
+      //  print("Filtered movie: \(filteredMovie)")
+        self.collectionViewFriendList.reloadData()
+    }
 
     
     
@@ -99,7 +166,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //For Friend List
          if collectionView == collectionViewFriendList {
-        return friends.count
+        return filteredFriend.count
          } else {
             //For New Friends Bar
             return friendsReq.count
@@ -114,7 +181,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
         if collectionView == collectionViewFriendList {
             let cellFriend = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCellFriend, for: indexPath as IndexPath) as! CollectionViewFriends
             
-            if let url = NSURL(string: friends[indexPath.row].userImg){
+            if let url = NSURL(string: filteredFriend[indexPath.row].userImg){
                 if let data = NSData(contentsOf: url as URL){
                     //  cellPosterTop.moviePoster.image = UIImage(data: data as Data)
                    // cellMovie.imageMovie.image = UIImage(data: data as Data)
@@ -125,7 +192,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
             
             
             
-            cellFriend.labelCellFriend.text = friends[indexPath.row].firstName
+            cellFriend.labelCellFriend.text = filteredFriend[indexPath.row].firstName
             
             return cellFriend
         } else {
@@ -259,7 +326,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
 //        navigationItem.titleView = titleView
 //        
 //    }
-//    
+//
 //    
 //    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //        print("tryout")

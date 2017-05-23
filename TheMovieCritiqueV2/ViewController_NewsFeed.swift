@@ -375,7 +375,11 @@ class ViewController_NewsFeed: UIViewController, UICollectionViewDataSource, UIC
         let starString:String = recentReviewFeed[indexPath.row].star!
         
         //
-        tableActivity.rating.rating = Int(starString)! //HERE GOES RATING
+        if(Int(starString) != nil){
+        tableActivity.rating.rating = Int(starString)!
+        } else {
+            tableActivity.rating.rating = 0
+        }//HERE GOES RATING
         //
        
         
