@@ -103,6 +103,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     func doSomething() {
         print("START")
         movies.removeAll()
+        filteredMovie.removeAll()
 
         let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
         
@@ -223,7 +224,7 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     
         
         
-        func filterContentForSearchText(searchText: String) {
+        func filterContentForSearchText(searchText:String) {
             //var results = [Movie]()
             print(filteredMovie)
             filteredMovie.removeAll()
@@ -243,12 +244,31 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
             }
         
 
-        print(filteredMovie)
+        print("Filtered movie: \(filteredMovie)")
         self.collectionMovies.reloadData()
 
     }
     
-    
+    func filterContentForSearchTextAll(searchText:String) {
+        //var results = [Movie]()
+        print(filteredMovie)
+        filteredMovie.removeAll()
+            for publication in movies {
+              
+                //a.caseInsensitiveCompare(b) == ComparisonResult.orderedSame
+                if let fullTitle = publication.title {
+                    if (fullTitle.lowercased()).contains(searchText.lowercased()) {
+                        filteredMovie.append(publication)
+                    }
+                }
+        
+        }
+        
+        
+        print("Filtered movie: \(filteredMovie)")
+        self.collectionMovies.reloadData()
+        
+    }
    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -322,6 +342,9 @@ class ViewControllerMovieList: UIViewController, UICollectionViewDelegateFlowLay
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searchText \(String(describing: searchBar.text))")
+        ///////////
+        filterContentForSearchTextAll(searchText: searchBar.text!)
+        //////
     }
     
     /*

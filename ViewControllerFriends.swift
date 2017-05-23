@@ -9,16 +9,20 @@
 import UIKit
 import SwiftyJSON
 
-class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var collectionViewFriendList: UICollectionView!
     
     @IBOutlet weak var collectionViewNewFriends: UICollectionView!
     
+    var searchBar = UISearchBar()
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     let reuseIdentifierCellFriend = "cellFriend"
     let reuseIdentifierCellNewFriend = "cellNewFriend"
     
-     var items = ["Dayum R.", "Ragaga"]
+     var items = ["Dayum R.", "Lionel C."]
     
     var friends = [Friend]()
     var friendsReq = [FriendsRequest]()
@@ -190,7 +194,88 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
         
     }
     
+    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
+        
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.showsCancelButton = true
+        searchController.searchBar.delegate = self       //
+        let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
+        let titleView = UIView(frame: frame)
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.frame = frame
+        titleView.addSubview(searchController.searchBar)
+        navigationItem.titleView = titleView
+        
+    }
     
+//    
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        print("tryout")
+//        searchBar.endEditing(true)
+//        navigationItem.titleView = nil
+//        
+//    }
+//    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        print("searchText \(searchText)")
+//    }
+//    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        print("searchText \(String(describing: searchBar.text))")
+//      //  filterContentForSearchFriend(searchText: searchBar.text!)
+//    }
+    
+//    func filterContentForSearchFriend(searchText:String) {
+//        //var results = [Movie]()
+//      //  print(filteredMovie)
+//        filteredMovie.removeAll()
+//        for publication in movies {
+//            print("Search text: \(searchText)")
+//            //a.caseInsensitiveCompare(b) == ComparisonResult.orderedSame
+//            if let fullTitle = publication.title {
+//                if (fullTitle.lowercased()).contains(searchText.lowercased()) {
+//                    filteredMovie.append(publication)
+//                }
+//            }
+//            
+//        }
+//        
+//        print("Filtered movie: \(filteredMovie)")
+//        self.collectionMovies.reloadData()
+//    }
+//    
+//    @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
+//        
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchBar.showsCancelButton = true
+//        searchController.searchBar.delegate = self       //
+//        let frame = CGRect(x: 0, y: 0, width: 500, height: 44)
+//        let titleView = UIView(frame: frame)
+//        searchController.searchBar.backgroundImage = UIImage()
+//        searchController.searchBar.frame = frame
+//        titleView.addSubview(searchController.searchBar)
+//        navigationItem.titleView = titleView
+//        
+//    }
+//    
+//    
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        print("tryout")
+//        searchBar.endEditing(true)
+//        navigationItem.titleView = nil
+//        
+//    }
+//    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        print("searchText \(searchText)")
+//    }
+//    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        print("searchText \(String(describing: searchBar.text))")
+//        searchFilm(filmTitle: searchBar.text!)
+//    }
 
     /*
     // MARK: - Navigation
