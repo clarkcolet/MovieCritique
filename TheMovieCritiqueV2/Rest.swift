@@ -50,6 +50,17 @@ class Rest:NSObject
         })
     }
     
+    func getFriends(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "getFriends",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func getFriendsReq(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {
+        makeHTTPPostRequest(path: "getFriendsReq",body: body, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
     
 
     func getFriendsRecentReview(body:[String:AnyObject],onCompletion: @escaping (JSON) -> Void) {

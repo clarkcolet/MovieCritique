@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -19,11 +20,68 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     
      var items = ["Dayum R.", "Ragaga"]
     
+    var friends = [Friend]()
+    var friendsReq = [FriendsRequest]()
+
+    
+    let session = SessionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionViewFriendList.delegate = self
         collectionViewNewFriends.delegate = self
         // Do any additional setup after loading the view.
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getFriends(body: param as [String : AnyObject]){ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        
+                        self.friends.append(Friend(json: entry))
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionViewFriendList.reloadData() //reload the data
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA") // no result
+            }
+        }
+        
+        Rest.sharedInstance.getFriendsReq(body: param as [String : AnyObject]){ (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        // let user = User(json: entry)
+                        
+                        self.friendsReq.append(FriendsRequest(json: entry))
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionViewNewFriends.reloadData() //reload the data
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA") // no result
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,10 +95,10 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //For Friend List
          if collectionView == collectionViewFriendList {
-        return 2
+        return friends.count
          } else {
             //For New Friends Bar
-            return 2
+            return friendsReq.count
         }
         
         
@@ -51,17 +109,36 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
         //For Friend List
         if collectionView == collectionViewFriendList {
             let cellFriend = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCellFriend, for: indexPath as IndexPath) as! CollectionViewFriends
-            cellFriend.imageCellFriend.image = UIImage(named: "ContactsYellow")
             
-            cellFriend.labelCellFriend.text = items[indexPath.row]
+            if let url = NSURL(string: friends[indexPath.row].userImg){
+                if let data = NSData(contentsOf: url as URL){
+                    //  cellPosterTop.moviePoster.image = UIImage(data: data as Data)
+                   // cellMovie.imageMovie.image = UIImage(data: data as Data)
+                    cellFriend.imageCellFriend.image = UIImage(data:data as Data)
+                    
+                }
+            }
+            
+            
+            
+            cellFriend.labelCellFriend.text = friends[indexPath.row].firstName
             
             return cellFriend
         } else {
             //For new friends bar
             let cellNewFriend = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierCellNewFriend, for: indexPath as IndexPath) as! CollectionViewCellNewFriends
-            cellNewFriend.imageNewFriend.image = UIImage(named: "ContactsYellow")
             
-            cellNewFriend.labelNewFriend.text = items[indexPath.row]
+            if let url = NSURL(string: friends[indexPath.row].userImg){
+                if let data = NSData(contentsOf: url as URL){
+                    //  cellPosterTop.moviePoster.image = UIImage(data: data as Data)
+                    // cellMovie.imageMovie.image = UIImage(data: data as Data)
+                    cellNewFriend.imageNewFriend.image = UIImage(data:data as Data)
+                    
+                }
+            }
+            
+            
+            cellNewFriend.labelNewFriend.text = friendsReq[indexPath.row].firstName
             
             return cellNewFriend
         }
@@ -84,6 +161,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
             friend.navigationTitleExternal  = cellFriend.labelCellFriend.text
             friend.externalLabel = cellFriend.labelCellFriend.text
             friend.externalImage = cellFriend.imageCellFriend.image
+            friend.externalGenre = friends[indexPath.row].favouriteGenre
             //
             cellFriend.externalFriends = self
             cellFriend.externalFriend = friend
@@ -101,6 +179,7 @@ class ViewControllerFriends: UIViewController, UICollectionViewDataSource, UICol
             friend.navigationTitleExternal  = cellNewFriend.labelNewFriend.text
             friend.externalLabel = cellNewFriend.labelNewFriend.text
             friend.externalImage = cellNewFriend.imageNewFriend.image
+            friend.externalGenre = friendsReq[indexPath.row].favouriteGenre
             
         //
            cellNewFriend.externalFriends = self

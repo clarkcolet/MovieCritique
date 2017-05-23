@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
@@ -32,6 +33,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     var reviews:Bool = false
     var tableViewFirstTime:Bool = true
     var externalImage:UIImage!
+    var externalGenre:String = ""
     
      var boolRight:Bool = true
     
@@ -39,6 +41,21 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     var currentRowExternal = TableViewCellReviews()
     
     var boolRow:Bool = false
+    
+    var tasks: [UserImage] = []
+    
+    var reviewsList: [FeedRecentReview] = []
+    
+    var favourites: [Movie] = []
+    
+    var session = SessionManager()
+    
+    var validator = Validator()
+    
+    var externalProfilePhoto:UIImage!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     
     
     @IBOutlet weak var innerLabel: UILabel!
@@ -48,7 +65,9 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         self.title = navigationTitleExternal
         innerLabel.text = externalLabel
-        imageUser.image = externalImage
+        self.imageUser.image = externalImage
+        self.labelGenre.text = externalGenre
+        
          self.navigationController?.navigationBar.tintColor = UIColor.black;
         
        buttonFavourites.setTitleColor(UIColor.black, for: UIControlState.normal)
@@ -75,8 +94,90 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         
         subView.addSubview(collectionView)
         
-  
-        // Do any additional setup after loading the view.
+        
+        getData()
+        
+        let param:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        labelName.text = session.RetriveUserFirstName()
+        labelGenre.text = session.RetriveUserFavouriteGenre()
+        
+        Rest.sharedInstance.getFriendsRecentReview(body: param as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.reviewsList.append(FeedRecentReview(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+        let param2:Dictionary<String,String> = ["UserID" : session.RetriveSession() as String]
+        
+        Rest.sharedInstance.getFavourites(body: param2 as [String : AnyObject]) { (json: JSON) in
+            if(json["Status"] == "Success")
+            {
+                if let results = json["Data"].array {
+                    for entry in results {
+                        
+                        
+                        self.favourites.append(Movie(json: entry))
+                        
+                        
+                    }
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.collectionView.reloadData()
+                        
+                    })
+                }
+            }
+            else
+            {
+                print("No DATA")
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    func getData() {
+        print("Attempt to try to enter tasks count \(tasks.count)")
+        
+        do {
+            tasks = try context.fetch(UserImage.fetchRequest())
+            
+            print(tasks.count)
+        } catch {
+            print("Fetching Failed")
+        }
+        
+        if(tasks.count > 0) {
+            let task = tasks[0]
+            
+          //  buttonProfile.setImage(UIImage(data: task.imageData! as Data), for: .normal)
+            
+            
+            
+            print("I'm here inside tasks count")
+        }
+        
     }
     
     func loadCollectionView(){
@@ -140,17 +241,32 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return reviewsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath as IndexPath) as! TableViewCellReviews
-        cell.imageMovie.image = UIImage(named: "beauty")
-        cell.movieTitle.text = "Title of the film"
-        cell.time.text = "2:00"
-        cell.nameUser.text = "mark"
-        cell.review.text = "Listening to dido.................................................................................................................................pkjljdfjldkvhsdvlkjhsdvlkndlkndsvlkadnvnkladvragaga"
+        
+        if let url = NSURL(string: reviewsList[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                cell.imageMovie.image  = UIImage(data: data as Data)
+                // cell.imageMovie.image = UIImage(named: "beauty")
+                
+                
+            }
+        }
+        
+        
+        
+       // cell.movieTitle.text = reviewsList[indexPath.row].title
+        cell.time.text = reviewsList[indexPath.row].createdOn
+        cell.nameUser.text = reviewsList[indexPath.row].title
+        cell.review.text = reviewsList[indexPath.row].review
+        
+        let starString:String = reviewsList[indexPath.row].star!
+        cell.rating.rating = Int(starString)!
+
 
         return cell
     }
@@ -200,7 +316,7 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return favourites.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -208,8 +324,18 @@ class ViewControllerFriendProfile: UIViewController, UICollectionViewDelegateFlo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCellReviews
         
        
-        cell.textLabel.text = "Beauty and the Beast"
-        cell.imageView.image = UIImage(named: "beauty")
+        cell.textLabel.text = favourites[indexPath.row].title
+        
+        if let url = NSURL(string: favourites[indexPath.row].imgSrc!){
+            if let data = NSData(contentsOf: url as URL){
+                cell.imageView.image  = UIImage(data: data as Data)
+                // cell.imageMovie.image = UIImage(named: "beauty")
+                
+                
+            }
+        }
+        
+        
 
         return cell
     }
